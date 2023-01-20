@@ -68,7 +68,8 @@ const SingleTeacherPage = () => {
                 phoneNumber,
                 classId
             };
-            const updatedUser = await axios.put(`/api/users/${id}`,body);
+            await axios.put(`/api/users/${id}`,body);
+            const updatedUser = await axios.get(`/api/users/${id}`);
             setFirstName(updatedUser.data.firstName);
             setLastName(updatedUser.data.lastName);
             setPhoneNumber(updatedUser.data.phoneNumber);

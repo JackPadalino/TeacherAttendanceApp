@@ -34,10 +34,10 @@ router.put('/:userId',async(req, res, next) => {
         };
         const userToUpdate = await User.findByPk(req.params.userId);
         if(!userToUpdate) throw new Error(notFoundMessage);
-        const updatedUser = await userToUpdate.update(userData);
+        await userToUpdate.update(userData);
         
         //await userToUpdate.update(data);
-        res.send(updatedUser);
+        res.sendStatus(200);
     }catch(error){
         if(error.message===notFoundMessage){
             return res.status(404).send({message:notFoundMessage});
