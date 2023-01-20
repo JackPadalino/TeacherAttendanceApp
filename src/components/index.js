@@ -19,6 +19,7 @@ export { default as AllClassesPage } from './Classes/AllClasses/AllClassesPage';
 // teacher components
 export { default as SingleTeacherPage } from './Teachers/SingleTeacherPage';
 export { default as AllTeachersPage } from './Teachers/AllTeachersPage';
+export { default as AddTeacherPage } from './Teachers/AddTeacherPage';
 
 // schedule components
 export { default as SchedulePage } from './Schedules/SchedulePage';

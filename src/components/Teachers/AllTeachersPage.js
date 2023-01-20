@@ -2,7 +2,20 @@ import React,{ useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { NotFoundPage } from "..";
-import { CreateTeacherForm } from ".";
+
+const pageStyle = {
+    display:'flex',
+    flexDirection:'column',
+    gap:'20px'
+};
+
+const headingStyle={
+    marginBottom:'0px'
+};
+
+const linkStyle={
+    fontSize:'15px'
+};
 
 const AllTeachersPage = () => {
     const { allUsers } = useSelector((state) => state.user);
@@ -10,12 +23,12 @@ const AllTeachersPage = () => {
 
     if(!token) return <NotFoundPage/>
     return (
-        <div>
+        <div style={pageStyle}>
             <div>
-                <CreateTeacherForm/>
+                <h1 style={headingStyle}>All teachers</h1>
+                <Link to={`/teachers/add-teacher`} style={linkStyle}>Add a teacher</Link>
             </div>
             <div>
-                <h1>All teachers</h1>
                 {allUsers.map((user) => {
                     return (
                         <div key={user.id}>

@@ -2,9 +2,11 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { setAllUsers,addNewUser } from "../../store/userSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const CreateTeacherForm = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [firstName,setFirstName] = useState('');
     const [lastName,setLastName] = useState('');
     const [phoneNumber,setPhoneNumber] = useState('');
@@ -32,6 +34,7 @@ const CreateTeacherForm = () => {
         dispatch(addNewUser(newUser.data));
         const users = await axios.get(`/api/users`);
         dispatch(setAllUsers(users.data));
+        navigate('/teachers');
     };
 
     return (
