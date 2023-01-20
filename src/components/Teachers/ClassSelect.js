@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSelector } from "react-redux";
 
-const ClassSelect = () => {
+const ClassSelect = ({handleClassChange}) => {
     const { allClasses } = useSelector((state) => state.class);
 
     return (
         <>
             <label htmlFor="classes">Add a class</label>
-            <select name='classes'>
+            <select name='classes' onChange={handleClassChange}>
                 <option value=''>-</option>
                 {allClasses.map((eachClass) => {
                     return (

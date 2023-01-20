@@ -25,14 +25,18 @@ const SingleTeacherPage = () => {
     const [lastName,setLastName] = useState('');
     const [phoneNumber,setPhoneNumber] = useState('');
     const [classes,setClasses] = useState([]);
+    const [classId,setClassId] = useState('');
+    const [loading,setLoading] = useState(false);
     const [userUpdatedMessage,setUserUpdatedMessage] = useState(false);
     
     const fetchUser = async() =>{
+        setLoading(true);
         const foundUser = await axios.get(`/api/users/${id}`);
         setFirstName(foundUser.data.firstName);
         setLastName(foundUser.data.lastName);
         setPhoneNumber(foundUser.data.phoneNumber);
         setClasses(foundUser.data.classes);
+        setLoading(false);
     };
 
     useEffect(() => {
@@ -51,15 +55,24 @@ const SingleTeacherPage = () => {
         setPhoneNumber(event.target.value);
     };
 
+    const handleClassChange = (event) =>{
+        setClassId(event.target.value);
+    };
+
     const updateTeacher = async(event) =>{
         event.preventDefault();
         try{
             const body = {
                 firstName,
                 lastName,
-                phoneNumber
+                phoneNumber,
+                classId
             };
-            await axios.put(`/api/users/${id}`,body);
+            const updatedUser = await axios.put(`/api/users/${id}`,body);
+            setFirstName(updatedUser.data.firstName);
+            setLastName(updatedUser.data.lastName);
+            setPhoneNumber(updatedUser.data.phoneNumber);
+            setClasses(updatedUser.data.classes);
             const updatedUsers = await axios.get('/api/users');
             dispatch(setAllUsers(updatedUsers.data));
             setUserUpdatedMessage(true);
@@ -81,6 +94,7 @@ const SingleTeacherPage = () => {
     };
 
     if(!token) return <NotFoundPage/>
+    if(loading) return <p>Loading...</p>
     return (
         <div>
             <h1>Teacher profile</h1>
@@ -103,7 +117,7 @@ const SingleTeacherPage = () => {
                             );
                         })}
                     </ul>
-                    <ClassSelect />
+                    <ClassSelect handleClassChange={handleClassChange}/>
                 </div>
                 <button type='submit' style={{width:'56px'}}>Update</button>
             </form>
