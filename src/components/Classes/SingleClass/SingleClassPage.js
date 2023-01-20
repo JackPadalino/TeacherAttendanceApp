@@ -117,7 +117,8 @@ const SingleClassPage = () => {
             <h1>{className}</h1>
             <form onSubmit={updateClass} style={formStyle}>
                 <div>
-                    <input value={className} onChange={handleNameChange}/>
+                    <label htmlFor="class name">Class name</label>
+                    <input name='class name' value={className} onChange={handleNameChange}/>
                 </div>
                 <div>
                     <label htmlFor="school">MS/HS</label>
