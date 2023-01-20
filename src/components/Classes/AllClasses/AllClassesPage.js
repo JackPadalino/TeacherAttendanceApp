@@ -2,7 +2,16 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { NotFoundPage } from "../..";
 import { useSelector } from "react-redux";
-import { CreateClassForm } from '.'
+
+const pageStyle = {
+    display:'flex',
+    flexDirection:'column',
+    gap:'20px'
+};
+
+const headingStyle={
+    marginBottom:'0px'
+};
 
 const AllClassesPage = () => {
     const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -10,12 +19,12 @@ const AllClassesPage = () => {
     
     if(!token) return <NotFoundPage/>
     return (
-        <div>
+        <div style={pageStyle}>
             <div>
-                <CreateClassForm />
+                <h1 style={headingStyle}>All classes</h1>
+                <Link to={'/classes/add-class'}>Add a class</Link>
             </div>
             <div>
-                <h1>All classes</h1>
                 {allClasses.map((eachClass) => {
                     return (
                         <div key={eachClass.id}>

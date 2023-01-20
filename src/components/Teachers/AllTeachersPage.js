@@ -13,9 +13,6 @@ const headingStyle={
     marginBottom:'0px'
 };
 
-const linkStyle={
-    fontSize:'15px'
-};
 
 const AllTeachersPage = () => {
     const { allUsers } = useSelector((state) => state.user);
@@ -26,7 +23,7 @@ const AllTeachersPage = () => {
         <div style={pageStyle}>
             <div>
                 <h1 style={headingStyle}>All teachers</h1>
-                <Link to={`/teachers/add-teacher`} style={linkStyle}>Add a teacher</Link>
+                <Link to={`/teachers/add-teacher`}>Add a teacher</Link>
             </div>
             <div>
                 {allUsers.map((user) => {
