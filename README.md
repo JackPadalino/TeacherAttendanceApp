@@ -8,9 +8,9 @@ Express JS app to automate teacher attendance and staff covereages.
 - Assign coverages from the app
 
 ### Next steps
-- Admin requests: show how many coverages and absences next to a teachers name and create a dropdown for admin to select a teacher's name, the letter day and see what classes need coverages
-- *TRIPLE check absent teacher classes and available teachers!*
-- Update classes to change name, period, school, letter days, and teachers
+- Move 'add a class' functionality to teacher profile page
+- Add 'add a team meeting' functionality to teacher profile page
+- Add 'add lunch period' functionality to teacher profile page
 - Add the ability for admin to schedule absences ahead of time
 
 ### Next,Next steps
