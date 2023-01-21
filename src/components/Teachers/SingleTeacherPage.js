@@ -5,7 +5,6 @@ import { useSelector,useDispatch } from "react-redux";
 import { NotFoundPage } from "..";
 import { ClassSelect,AddExtraPeriodForm } from ".";
 import { setAllUsers } from "../../store/userSlice";
-import { setAllClasses } from "../../store/classSlice";
 
 const formStyle = {
     display:'flex',

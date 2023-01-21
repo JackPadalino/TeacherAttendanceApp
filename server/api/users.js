@@ -19,15 +19,6 @@ router.get('/:userId',async(req, res, next) => {
 router.put('/:userId',async(req, res, next) => {
     const notFoundMessage = 'The object you are trying to update does not exist!';
     try {
-        // updating the user's classes
-        if(req.body.newClassInfo){
-            const classData = {
-                classId:req.body.newClassInfo.classId
-            };
-            const classToAdd = await Class.findByPk(classData.classId);
-            if(!classToAdd) throw new Error(notFoundMessage);
-            await UserClass.create({userId:req.params.userId,classId:classToAdd.id});
-        };
         // updating the user
         if(req.body.teacherInfo){
             const userData = {
@@ -38,6 +29,26 @@ router.put('/:userId',async(req, res, next) => {
             const userToUpdate = await User.findByPk(req.params.userId);
             if(!userToUpdate) throw new Error(notFoundMessage);
             await userToUpdate.update(userData);
+        };
+        // updating the user's classes
+        if(req.body.newClassInfo){
+            const classData = {
+                classId:req.body.newClassInfo.classId
+            };
+            const classToAdd = await Class.findByPk(classData.classId);
+            if(!classToAdd) throw new Error(notFoundMessage);
+            await UserClass.create({userId:req.params.userId,classId:classToAdd.id});
+        };
+        // adding an extra period to the user's schedule
+        if(req.body.newExtraPeriodInfo){
+            const newClassData = {
+                name:req.body.newExtraPeriodInfo.className,
+                school:req.body.newExtraPeriodInfo.school,
+                period:req.body.newExtraPeriodInfo.period,
+                letterDays:req.body.newExtraPeriodInfo.letterDays
+            };
+            const newClass = await Class.create(newClassData);
+            await UserClass.create({userId:req.params.userId,classId:newClass.id});
         };
         res.sendStatus(200);
     }catch(error){
