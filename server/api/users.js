@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const sequelize = require("sequelize");
-const { User,Class,Absence,Message,Day,Coverage } = require("../db");
+const { User,UserClass,Class,Absence,Message,Day,Coverage } = require("../db");
 
 // GET localhost:3000/api/users/userId
 router.get('/:userId',async(req, res, next) => {
@@ -19,14 +19,24 @@ router.get('/:userId',async(req, res, next) => {
 router.put('/:userId',async(req, res, next) => {
     const notFoundMessage = 'The object you are trying to update does not exist!';
     try {
-        const data = {
+        // updating the user's classes
+        const classData = {
+            classId:req.body.classId
+        };
+        const classToAdd = await Class.findByPk(classData.classId);
+        if(!classToAdd) throw new Error(notFoundMessage);
+        await UserClass.create({userId:req.params.userId,classId:classToAdd.id});
+        // updating the user
+        const userData = {
             firstName:req.body.firstName,
             lastName:req.body.lastName,
             phoneNumber:req.body.phoneNumber
-          };
+        };
         const userToUpdate = await User.findByPk(req.params.userId);
         if(!userToUpdate) throw new Error(notFoundMessage);
-        await userToUpdate.update(data);
+        await userToUpdate.update(userData);
+        
+        //await userToUpdate.update(data);
         res.sendStatus(200);
     }catch(error){
         if(error.message===notFoundMessage){

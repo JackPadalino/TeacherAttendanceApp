@@ -1,27 +1,42 @@
 import axios from 'axios';
 import React, { useState,useEffect } from 'react';
 import { useNavigate,useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { NotFoundPage } from "..";
+import { ClassSelect } from ".";
 import { setAllUsers } from "../../store/userSlice";
+import { setAllClasses } from "../../store/classSlice";
+
+const formStyle = {
+    display:'flex',
+    flexDirection:'column',
+    gap:'10px'
+};
 
 const SingleTeacherPage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { allClasses } = useSelector((state) => state.class);
     const [token, setToken] = useState(window.localStorage.getItem("token"));
     const [confirmDeleteMessage,setConfirmDeleteMessage] = useState(false);
 
     const [firstName,setFirstName] = useState('');
     const [lastName,setLastName] = useState('');
     const [phoneNumber,setPhoneNumber] = useState('');
+    const [classes,setClasses] = useState([]);
+    const [classId,setClassId] = useState('');
+    const [loading,setLoading] = useState(false);
     const [userUpdatedMessage,setUserUpdatedMessage] = useState(false);
     
     const fetchUser = async() =>{
+        setLoading(true);
         const foundUser = await axios.get(`/api/users/${id}`);
         setFirstName(foundUser.data.firstName);
         setLastName(foundUser.data.lastName);
         setPhoneNumber(foundUser.data.phoneNumber);
+        setClasses(foundUser.data.classes);
+        setLoading(false);
     };
 
     useEffect(() => {
@@ -40,15 +55,25 @@ const SingleTeacherPage = () => {
         setPhoneNumber(event.target.value);
     };
 
+    const handleClassChange = (event) =>{
+        setClassId(event.target.value);
+    };
+
     const updateTeacher = async(event) =>{
         event.preventDefault();
         try{
             const body = {
                 firstName,
                 lastName,
-                phoneNumber
+                phoneNumber,
+                classId
             };
             await axios.put(`/api/users/${id}`,body);
+            const updatedUser = await axios.get(`/api/users/${id}`);
+            setFirstName(updatedUser.data.firstName);
+            setLastName(updatedUser.data.lastName);
+            setPhoneNumber(updatedUser.data.phoneNumber);
+            setClasses(updatedUser.data.classes);
             const updatedUsers = await axios.get('/api/users');
             dispatch(setAllUsers(updatedUsers.data));
             setUserUpdatedMessage(true);
@@ -70,14 +95,32 @@ const SingleTeacherPage = () => {
     };
 
     if(!token) return <NotFoundPage/>
+    if(loading) return <p>Loading...</p>
     return (
         <div>
             <h1>Teacher profile</h1>
-            <form onSubmit={updateTeacher}>
-                <input value={firstName} onChange={handleFirstNameChange}/>
-                <input value={lastName} onChange={handleLastNameChange}/>
-                <input value={phoneNumber} onChange={handlePhoneNumberChange}/>
-                <button>Submit</button>
+            
+            <form onSubmit={updateTeacher} style={formStyle}>
+                <div>
+                    <h3>Personal info.</h3>
+                    <input value={firstName} onChange={handleFirstNameChange}/>
+                    <input value={lastName} onChange={handleLastNameChange}/>
+                    <input value={phoneNumber} onChange={handlePhoneNumberChange}/>
+                </div>
+                <div>
+                    <h3>Schedule</h3>
+                    <ul>
+                        {classes.map((eachClass) => {
+                            return (
+                                <div key={eachClass.id}>
+                                    <li>{eachClass.name} - {eachClass.period} - {eachClass.letterDays}</li>
+                                </div>  
+                            );
+                        })}
+                    </ul>
+                    <ClassSelect handleClassChange={handleClassChange}/>
+                </div>
+                <button type='submit' style={{width:'56px'}}>Update</button>
             </form>
             {userUpdatedMessage && <p style={{ color: "green", marginTop: "10px" }}>Teacher successfully updated.</p>}
             {!confirmDeleteMessage && <button onClick={() => confirmDelete()}>Delete</button>}
