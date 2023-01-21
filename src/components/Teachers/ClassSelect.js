@@ -11,7 +11,7 @@ const ClassSelect = ({handleClassChange}) => {
                 <option value=''>-</option>
                 {allClasses.map((eachClass) => {
                     return (
-                        <option key={eachClass.id} value={eachClass.id}>{eachClass.name}</option>
+                        <option key={eachClass.id} value={eachClass.id}>{eachClass.id} {eachClass.name} {eachClass.letterDays}</option>
                     );
                 })}
             </select>

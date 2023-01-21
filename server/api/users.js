@@ -23,9 +23,11 @@ router.put('/:userId',async(req, res, next) => {
         const classData = {
             classId:req.body.classId
         };
-        const classToAdd = await Class.findByPk(classData.classId);
-        if(!classToAdd) throw new Error(notFoundMessage);
-        await UserClass.create({userId:req.params.userId,classId:classToAdd.id});
+        if(!classData.classId==''){
+            const classToAdd = await Class.findByPk(classData.classId);
+            if(!classToAdd) throw new Error(notFoundMessage);
+            await UserClass.create({userId:req.params.userId,classId:classToAdd.id});
+        };
         // updating the user
         const userData = {
             firstName:req.body.firstName,
