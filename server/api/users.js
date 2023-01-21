@@ -20,25 +20,25 @@ router.put('/:userId',async(req, res, next) => {
     const notFoundMessage = 'The object you are trying to update does not exist!';
     try {
         // updating the user's classes
-        const classData = {
-            classId:req.body.classId
-        };
-        if(!classData.classId==''){
+        if(req.body.newClassInfo){
+            const classData = {
+                classId:req.body.newClassInfo.classId
+            };
             const classToAdd = await Class.findByPk(classData.classId);
             if(!classToAdd) throw new Error(notFoundMessage);
             await UserClass.create({userId:req.params.userId,classId:classToAdd.id});
         };
         // updating the user
-        const userData = {
-            firstName:req.body.firstName,
-            lastName:req.body.lastName,
-            phoneNumber:req.body.phoneNumber
+        if(req.body.teacherInfo){
+            const userData = {
+                firstName:req.body.teacherInfo.firstName,
+                lastName:req.body.teacherInfo.lastName,
+                phoneNumber:req.body.teacherInfo.phoneNumber
+            };
+            const userToUpdate = await User.findByPk(req.params.userId);
+            if(!userToUpdate) throw new Error(notFoundMessage);
+            await userToUpdate.update(userData);
         };
-        const userToUpdate = await User.findByPk(req.params.userId);
-        if(!userToUpdate) throw new Error(notFoundMessage);
-        await userToUpdate.update(userData);
-        
-        //await userToUpdate.update(data);
         res.sendStatus(200);
     }catch(error){
         if(error.message===notFoundMessage){
