@@ -94,7 +94,7 @@ const SingleTeacherPage = () => {
 
     // function for updating in backend
     const updateTeacher = async(event) =>{
-        event.preventDefault();
+        //event.preventDefault();
         let teacherInfo;
         let newClassInfo;
         let newExtraPeriodInfo;
