@@ -8,7 +8,8 @@ Express JS app to automate teacher attendance and staff covereages.
 - Assign coverages from the app
 
 ### Next steps
-- Check 'see coverages' functionality after adding lunch periods and team meetings
+- Add teachers busy with team meetings as potential coverage options for an absence but with a special mark
+to let admin know
 - Add the ability for admin to schedule absences ahead of time
 - Add the ability for admin to assign coverages from within the app
 
