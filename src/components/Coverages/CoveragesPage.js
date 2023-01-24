@@ -62,7 +62,8 @@ const CoveragesPage = () => {
                                 <ul>
                                     {user.classes.map((eachClass) =>{
                                         return (
-                                            eachClass.letterDays.includes(coverageDay.letterDay) && <li key={eachClass.id}>{eachClass.name} - {eachClass.period}</li>
+                                            // eachClass.letterDays.includes(coverageDay.letterDay) && <li key={eachClass.id}>{eachClass.name} - {eachClass.period}</li>
+                                            eachClass.letterDays.includes(coverageDay.letterDay) && <Link to={`/coverages/${eachClass.id}/${eachClass.school}/${eachClass.period}/${coverageDay.letterDay}`}>{eachClass.name} - {eachClass.period}</Link>
                                         )
                                     })}
                                 </ul>
