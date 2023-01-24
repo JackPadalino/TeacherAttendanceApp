@@ -16,7 +16,7 @@ import {
   AddTeacherPage,
   // coverage components
   CoveragesPage,
-  //AvailableCoverages,
+  AvailableCoverages,
   // schedule components
   SchedulePage,
   // day component
@@ -46,7 +46,7 @@ const RouterComponent = () => {
       
       {/* coverage routes */}
       <Route exact path="/coverages" element={<CoveragesPage />}/>
-      {/* <Route exact path="/coverages/:classId/:school/:period/:letter" element={<AvailableCoverages />} /> */}
+      <Route exact path="/coverages/:classId/:school/:period/:letterDay" element={<AvailableCoverages />} />
 
       {/* schedule routes */}
       <Route exact path="/schedules" element={<SchedulePage />} />

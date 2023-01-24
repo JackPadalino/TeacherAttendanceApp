@@ -59,10 +59,12 @@ const CoveragesPage = () => {
                                     <p>{user.fullName}</p>
                                     <button value={user.id} onClick={deleteAbsence} style={deleteButtonStyle} >x</button>
                                 </div>
+
                                 <ul>
                                     {user.classes.map((eachClass) =>{
                                         return (
-                                            eachClass.letterDays.includes(coverageDay.letterDay) && <li key={eachClass.id}>{eachClass.name} - {eachClass.period}</li>
+                                            // eachClass.letterDays.includes(coverageDay.letterDay) && <li key={eachClass.id}>{eachClass.name} - {eachClass.period}</li>
+                                            eachClass.letterDays.includes(coverageDay.letterDay) && <li><Link to={`/coverages/${eachClass.id}/${eachClass.school}/${eachClass.period}/${coverageDay.letterDay}`}>{eachClass.name} - {eachClass.period}</Link></li>
                                         )
                                     })}
                                 </ul>
