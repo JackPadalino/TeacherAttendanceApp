@@ -14,7 +14,7 @@ const AddExtraPeriodForm = ({handleClassNameChange,handleSchoolChange,handlePeri
 
     return (
         <form>
-            <label htmlFor="class name">Add a new period</label>
+            <label htmlFor="class name">Add lunch/team meeting</label>
             <select name='class name' onChange={handleClassNameChange}>
                 <option value=''>-</option>
                 <option value='Lunch'>Lunch</option>
