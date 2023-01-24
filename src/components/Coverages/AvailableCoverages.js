@@ -15,18 +15,11 @@ const AvailableCoverages = () => {
     const [allAvailableUsers,setAllAvailableUsers] = useState([]);
     
     const fetchData = async() => {
+        // need to know what teachers have a period assigned to them this period
+
         // fetching an array of all classes happening at this time
         let allClasses = await axios.get(`/api/classes/${school}/${period}/${letterDay}`);
         allClasses = allClasses.data;
-        // fetching the class that needs coverage
-        const thisClass = await axios.get(`/api/classes/${classId}`);
-        setThisClass(thisClass.data);
-        // finding what teachers already have this class assigned to them (finding teachers and coteachers)
-        // making an array of the user ids for all co teachers of this class
-        const thisClassUsers = thisClass.data.users;
-        console.log(thisClassUsers);
-        thisClassUserIds = thisClassUsers.map((user)=>user.id);
-        setThisClassUserIds(thisClassUserIds);
         // making an array of all busy teachers that are teaching during this period
         // making an array of all teachers that all teachers that are either busy OR are not co-teachers of that class
         const contentClasses = allClasses.filter(eachClass=>eachClass.name!=='Team meeting');
@@ -34,11 +27,6 @@ const AvailableCoverages = () => {
         unAvailableUsers = unAvailableUsers.filter((user)=>!thisClassUserIds.includes(user.id));
         // combining unavailable teachers with absent teachers
         unAvailableUsers = [...allAbsentUsers,...unAvailableUsers];
-        // making an array of teachers that are not teaching that period but are in a team meeting
-        const teamMeetings = allClasses.filter(eachClass=>eachClass.name==='Team meeting');
-        const teamMeetingUsers = teamMeetings.flatMap(eachMeeting => eachMeeting.users);
-        teamMeetingUserIds = teamMeetingUsers.map(user=>user.id)
-        setTeamMeetingUserIds(teamMeetingUserIds);
         // making an array of all unavailable teacher ids
         const allUnAvailableUserIds = unAvailableUsers.map((user)=>user.id);
         // comparing the two user id arrays and making a final array of available user ids
@@ -48,6 +36,19 @@ const AvailableCoverages = () => {
         // fetching all available teachers from their ids
         const availableUsers = allUsers.filter(user => !allUnAvailableUserIds.includes(user.id));
         setAllAvailableUsers(availableUsers);
+        // fetching the class that needs coverage
+        const thisClass = await axios.get(`/api/classes/${classId}`);
+        setThisClass(thisClass.data);
+        // finding what teachers already have this class assigned to them (finding teachers and coteachers)
+        // making an array of the user ids for all co teachers of this class
+        const thisClassUsers = thisClass.data.users;
+        thisClassUserIds = thisClassUsers.map((user)=>user.id);
+        setThisClassUserIds(thisClassUserIds);
+        // making an array of teachers that are not teaching that period but are in a team meeting
+        const teamMeetings = allClasses.filter(eachClass=>eachClass.name==='Team meeting');
+        const teamMeetingUsers = teamMeetings.flatMap(eachMeeting => eachMeeting.users);
+        teamMeetingUserIds = teamMeetingUsers.map(user=>user.id)
+        setTeamMeetingUserIds(teamMeetingUserIds);
       };
 
     useEffect(() => {
