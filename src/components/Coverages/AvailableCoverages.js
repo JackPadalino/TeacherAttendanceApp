@@ -27,27 +27,18 @@ const AvailableCoverages = () => {
         // making an array of all teachers that all teachers that are either busy OR are not co-teachers of that class
         // combining unavailable teachers with absent teachers
         const classes = await axios.get(`/api/classes/${school}/${period}/${letterDay}`);
-        const busyUsers = classes.data.flatMap(eachClass => eachClass.users);
-        const unAvailableUsers = busyUsers.filter((user)=>!thisClassUserIds.includes(user.id));
-
-        //~~this is the new stuff~
-        const allUnAvailableUsers = [...allAbsentUsers,...unAvailableUsers]; //UNCOMMENT THIS TO RETURN TO OLD CODE!!
-        //unAvailableUsers.push(singleAbsentUser);
-
-
-
-        // making an array of all unique unavailable teacher ids
+        let unAvailableUsers = classes.data.flatMap(eachClass => eachClass.users);
+        unAvailableUsers = unAvailableUsers.filter((user)=>!thisClassUserIds.includes(user.id));
+        unAvailableUsers = [...allAbsentUsers,...unAvailableUsers];
+        // making an array of all unavailable teacher ids
         // comparing the two user id arrays and making a final array of available user ids
         // we needed to make an array of ids so that we could filter out teachers who are not
         // available --> was not working when trying to directly filter entire teacher objects
         // this is because all objects are unique in memory even if key/value pairs are same
         // fetching all available teachers from their ids
-        const allUserIds = allUsers.map((user)=>user.id);
         const allUnAvailableUserIds = unAvailableUsers.map((user)=>user.id);
-        const availableUserIds = allUserIds.filter(id => !allUnAvailableUserIds.includes(id)); 
-        const userPromises = availableUserIds.map(id => axios.get(`/api/users/${id}`));
-        const userResponses = await Promise.all(userPromises);
-        setAvailableUsers(userResponses.map(response => response.data));
+        const availableUsers = allUsers.filter(user => !allUnAvailableUserIds.includes(user.id));
+        setAvailableUsers(availableUsers);
       };
 
     useEffect(() => {
