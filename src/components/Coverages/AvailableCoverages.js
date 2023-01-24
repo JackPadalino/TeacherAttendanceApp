@@ -25,9 +25,18 @@ const AvailableCoverages = () => {
         // fetching an array of all classes happening at this time
         // making an array of all busy teachers that are teaching during this period
         // making an array of all teachers that all teachers that are either busy OR are not co-teachers of that class
+        // making an array of teachers that are not teaching that period but are in a team meeting
         // combining unavailable teachers with absent teachers
-        const classes = await axios.get(`/api/classes/${school}/${period}/${letterDay}`);
-        let unAvailableUsers = classes.data.flatMap(eachClass => eachClass.users);
+        let allClasses = await axios.get(`/api/classes/${school}/${period}/${letterDay}`);
+        allClasses = allClasses.data;
+        
+        // need to somehow mark teachers that are in team meetings as potential coverage options
+        const contentClasses = allClasses.filter(eachClass=>eachClass.name!=='Team meeting');
+        const teamMeetings = allClasses.filter(eachClass=>eachClass.name==='Team meeting');
+        
+        console.log({'Content classes:':contentClasses,'Team meetings:':teamMeetings});
+        
+        let unAvailableUsers = contentClasses.flatMap(eachClass => eachClass.users);
         unAvailableUsers = unAvailableUsers.filter((user)=>!thisClassUserIds.includes(user.id));
         unAvailableUsers = [...allAbsentUsers,...unAvailableUsers];
         // making an array of all unavailable teacher ids
@@ -54,7 +63,7 @@ const AvailableCoverages = () => {
                     return (
                         user.role==='teacher' && <div key={user.id}>
                             {thisClassUserIds.includes(user.id) ? 
-                            <p style={{'color':'red'}}><i>{user.firstName} {user.lastName}</i></p> : 
+                            <p style={{'color':'red'}}><i>{user.firstName} {user.lastName} - Co-teacher</i></p> : 
                             <p>{user.firstName} {user.lastName}</p>}
                             <ul>
                                 {user.classes.map((eachClass)=>{
