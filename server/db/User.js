@@ -56,7 +56,7 @@ const User = db.define("user", {
   },
   role:{
     type:Sequelize.ENUM,
-    values:['teacher','admin'],
+    values:['teacher','admin','gangster'],
     defaultValue:'teacher'
   }
   // email: {

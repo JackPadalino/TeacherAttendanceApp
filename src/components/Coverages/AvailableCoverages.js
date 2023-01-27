@@ -58,7 +58,7 @@ const AvailableCoverages = () => {
             <div>
                 {allAvailableUsers.map((user) => {
                     return (
-                        user.role==='teacher' && <div key={user.id}>
+                        (user.role==='teacher' || user.role==='gangster') && <div key={user.id}>
                             {thisClassUserIds.includes(user.id) && <p style={{'color':'red'}}><i>{user.firstName} {user.lastName} - Co-teacher</i></p>}
                             {teamMeetingUserIds.includes(user.id) && <p style={{'color':'green'}}><i>{user.firstName} {user.lastName} - In a team meeting</i></p>}
                             {!thisClassUserIds.includes(user.id) && !teamMeetingUserIds.includes(user.id) && <p>{user.firstName} {user.lastName}</p>} 
