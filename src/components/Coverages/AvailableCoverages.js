@@ -8,7 +8,7 @@ const AvailableCoverages = () => {
     const { classId,school,period,letterDay } = useParams();
     const [token, setToken] = useState(window.localStorage.getItem("token"));
     const { allUsers } = useSelector((state) => state.user);
-    const { allAbsentUsers } = useSelector((state) => state.coverage);
+    const { allAbsentUsers,coverageDay } = useSelector((state) => state.coverage);
     const [thisClass,setThisClass] = useState({});
     let [thisClassUserIds,setThisClassUserIds] = useState([]);
     let [teamMeetingUserIds,setTeamMeetingUserIds] = useState([]);
@@ -51,6 +51,19 @@ const AvailableCoverages = () => {
         fetchData();
     }, []);
 
+    const editCoverages = async(event) => {
+        if(event.target.checked){
+            const body = {
+                classId,
+                userId:event.target.value,
+                dayId:coverageDay.id
+            };
+            await axios.post('/api/classes/coverages',body);
+        }else{
+            await axios.delete(`/api/classes/coverages/${classId}/${event.target.value}/${coverageDay.id}`);
+        };
+    };
+
     if(!token) return <NotFoundPage/>
     return (
         <div>
@@ -59,9 +72,13 @@ const AvailableCoverages = () => {
                 {allAvailableUsers.map((user) => {
                     return (
                         (user.role==='teacher' || user.role==='gangster') && <div key={user.id}>
-                            {thisClassUserIds.includes(user.id) && <p style={{'color':'red'}}><i>{user.firstName} {user.lastName} - Co-teacher</i></p>}
-                            {teamMeetingUserIds.includes(user.id) && <p style={{'color':'green'}}><i>{user.firstName} {user.lastName} - In a team meeting</i></p>}
-                            {!thisClassUserIds.includes(user.id) && !teamMeetingUserIds.includes(user.id) && <p>{user.firstName} {user.lastName}</p>} 
+                            <div style={{display:'flex'}}>
+                                {thisClassUserIds.includes(user.id) && <p style={{'color':'red'}}><i>{user.firstName} {user.lastName} - Co-teacher</i></p>}
+                                {teamMeetingUserIds.includes(user.id) && <p style={{'color':'green'}}><i>{user.firstName} {user.lastName} - In a team meeting</i></p>}
+                                {!thisClassUserIds.includes(user.id) && !teamMeetingUserIds.includes(user.id) && <p>{user.firstName} {user.lastName}</p>}
+                                <input type='checkbox' value={user.id} onChange={editCoverages}/>
+                            </div>
+                            
                             <ul>
                                 {user.classes.map((eachClass)=>{
                                     return (

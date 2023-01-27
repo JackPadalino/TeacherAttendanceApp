@@ -1,7 +1,7 @@
 const express = require("express");
 const { Sequelize } = require("sequelize");
 const router = express.Router();
-const { User,Class,UserClass } = require("../db");
+const { User,Class,UserClass,Coverage } = require("../db");
 
 // GET localhost:3000/api/classes/:school/:period/:letter
 router.get('/:school/:period/:letter',async(req, res, next) => {
@@ -63,17 +63,43 @@ router.get('/:userId/:letter',async(req, res, next) => {
     };
 });
 
-// GET localhost:3000/api/classes/coverages/:period
-router.get('/coverages/:period',async(req, res, next) => {
+// GET localhost:3000/api/classes/coverages
+router.get('/coverages',async(req, res, next) => {
     try {
-        const freePeriod = await Class.findOne({
+        const coverages = await Coverage.findAll();
+        res.send(coverages);
+    }catch(error){
+        next(error);
+    };
+});
+
+// POST localhost:3000/api/classes/coverages
+router.post('/coverages',async(req, res, next) => {
+    try {
+        const coverageData = {
+            classId:req.body.classId,
+            userId:req.body.userId,
+            dayId:req.body.dayId,
+        };
+        await Coverage.create(coverageData);
+        res.sendStatus(200);
+    }catch(error){
+        next(error);
+    };
+});
+
+// DELETE localhost:3000/api/classes/coverages
+router.delete('/coverages/:classId/:userId/:dayId',async(req, res, next) => {
+    try {
+        const foundCoverage = await Coverage.findOne({
             where:{
-                period:req.params.period,
-                isFreePeriod:true
-            },
-            include:[User]
+                classId:req.params.classId,
+                userId:req.params.userId,
+                dayId:req.params.dayId
+            }
         });
-        res.send(freePeriod);
+        if(foundCoverage) foundCoverage.destroy();
+        res.sendStatus(200);
     }catch(error){
         next(error);
     };
