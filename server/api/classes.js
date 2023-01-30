@@ -63,38 +63,6 @@ router.get('/:userId/:letter',async(req, res, next) => {
     };
 });
 
-// POST localhost:3000/api/classes/coverages
-router.post('/coverages',async(req, res, next) => {
-    try {
-        const coverageData = {
-            classId:req.body.classId,
-            userId:req.body.userId,
-            dayId:req.body.dayId,
-        };
-        await Coverage.create(coverageData);
-        res.sendStatus(200);
-    }catch(error){
-        next(error);
-    };
-});
-
-// DELETE localhost:3000/api/classes/coverages
-router.delete('/coverages/:classId/:userId/:dayId',async(req, res, next) => {
-    try {
-        const foundCoverage = await Coverage.findOne({
-            where:{
-                classId:req.params.classId,
-                userId:req.params.userId,
-                dayId:req.params.dayId
-            }
-        });
-        if(foundCoverage) foundCoverage.destroy();
-        res.sendStatus(200);
-    }catch(error){
-        next(error);
-    };
-});
-
 // GET localhost:3000/api/classes/:classId
 router.get('/:classId',async(req, res, next) => {
     try {
@@ -135,16 +103,6 @@ router.post('/',async(req, res, next) => {
         };
         await Class.create(classData);
         res.sendStatus(200);
-    }catch(error){
-        next(error);
-    };
-});
-
-// GET localhost:3000/api/classes/coverages
-router.get('/coverages',async(req, res, next) => {
-    try {
-        const coverages = await Coverage.findAll();
-        res.send(coverages);
     }catch(error){
         next(error);
     };
