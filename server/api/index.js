@@ -7,5 +7,6 @@ router.use('/attendance', require('./attendance'));
 router.use('/classes', require('./classes'));
 router.use('/users', require('./users'));
 router.use('/day', require('./day'));
+router.use('/coverages', require('./coverages'));
 
 module.exports = router;
