@@ -3,12 +3,13 @@ import React, { useState,useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { NotFoundPage } from "..";
+import { setAllCoverages } from "../../store/coverageSlice";
 
 const AvailableCoverages = () => {
     const { classId,school,period,letterDay } = useParams();
     const [token, setToken] = useState(window.localStorage.getItem("token"));
     const { allUsers } = useSelector((state) => state.user);
-    const { allAbsentUsers,coverageDay } = useSelector((state) => state.coverage);
+    const { allAbsentUsers,coverageDay,allCoverages } = useSelector((state) => state.coverage);
     const [thisClass,setThisClass] = useState({});
     let [thisClassUserIds,setThisClassUserIds] = useState([]);
     let [teamMeetingUserIds,setTeamMeetingUserIds] = useState([]);
@@ -50,6 +51,8 @@ const AvailableCoverages = () => {
     useEffect(() => {
         fetchData();
     }, []);
+
+    console.log(allCoverages);
 
     const editCoverages = async(event) => {
         if(event.target.checked){

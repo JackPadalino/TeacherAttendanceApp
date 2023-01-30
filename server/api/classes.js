@@ -63,16 +63,6 @@ router.get('/:userId/:letter',async(req, res, next) => {
     };
 });
 
-// GET localhost:3000/api/classes/coverages
-router.get('/coverages',async(req, res, next) => {
-    try {
-        const coverages = await Coverage.findAll();
-        res.send(coverages);
-    }catch(error){
-        next(error);
-    };
-});
-
 // POST localhost:3000/api/classes/coverages
 router.post('/coverages',async(req, res, next) => {
     try {
@@ -145,6 +135,16 @@ router.post('/',async(req, res, next) => {
         };
         await Class.create(classData);
         res.sendStatus(200);
+    }catch(error){
+        next(error);
+    };
+});
+
+// GET localhost:3000/api/classes/coverages
+router.get('/coverages',async(req, res, next) => {
+    try {
+        const coverages = await Coverage.findAll();
+        res.send(coverages);
     }catch(error){
         next(error);
     };

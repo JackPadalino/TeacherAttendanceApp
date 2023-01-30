@@ -5,7 +5,8 @@ const initialState = {
     daySelected:false,
     selectedCoverageDate:'',
     allAbsentUsers: [],
-    coveredClasses:[]
+    coveredClasses:[],
+    allCoverages:[]
 };
 
 export const coverageSlice = createSlice({
@@ -32,6 +33,9 @@ export const coverageSlice = createSlice({
     },
     setCoveredClasses: (state, action) => {
       state.coveredClasses = action.payload;
+    },
+    setAllCoverages:(state,action)=>{
+      state.allCoverages = action.payload;
     }
   },
 });
@@ -43,7 +47,8 @@ export const {
     setSelectedCoverageDate,
     setAllAbsentUsers,
     resetAllAbsentUsers,
-    setCoveredClasses
+    setCoveredClasses,
+    setAllCoverages
 } = coverageSlice.actions;
 
 export default coverageSlice.reducer;

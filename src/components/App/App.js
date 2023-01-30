@@ -4,6 +4,7 @@ import axios from "axios";
 import { Navbar, RouterComponent } from "..";
 import { setUser,setAllUsers } from "../../store/userSlice";
 import { setAllClasses } from "../../store/classSlice";
+import { setAllCoverages } from "../../store/coverageSlice";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -33,10 +34,16 @@ const App = () => {
     dispatch(setAllUsers(response.data));
   };
 
+  const fetchCoverages = async()=>{
+    const response = await axios.get('/api/coverages');
+    dispatch(setAllCoverages(response.data));
+  };
+
   useEffect(() => {
     checkForUser();
     fetchClasses();
     fetchUsers();
+    fetchCoverages();
   }, []);
 
   return (
