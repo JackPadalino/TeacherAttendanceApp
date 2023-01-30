@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useState,useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { NotFoundPage } from "..";
 import { setAllCoverages } from "../../store/coverageSlice";
 
 const AvailableCoverages = () => {
     const { classId,school,period,letterDay } = useParams();
+    const dispatch = useDispatch();
     const [token, setToken] = useState(window.localStorage.getItem("token"));
     const { allUsers } = useSelector((state) => state.user);
     const { allAbsentUsers,coverageDay,allCoverages } = useSelector((state) => state.coverage);
@@ -15,7 +16,7 @@ const AvailableCoverages = () => {
     let [teamMeetingUserIds,setTeamMeetingUserIds] = useState([]);
     const [allAvailableUsers,setAllAvailableUsers] = useState([]);
     
-    const fetchData = async() => {
+    const fetchAvaiableCoverages = async() => {
         // fetching the class that needs coverage
         const thisClass = await axios.get(`/api/classes/${classId}`);
         setThisClass(thisClass.data);
@@ -45,14 +46,12 @@ const AvailableCoverages = () => {
         setTeamMeetingUserIds(teamMeetingUserIds);
         // comparing the two user id arrays and making a final array of available user ids
         const availableUsers = allUsers.filter(user => !allUnAvailableUserIds.includes(user.id));
-        setAllAvailableUsers(availableUsers); 
+        setAllAvailableUsers(availableUsers);
       };
 
     useEffect(() => {
-        fetchData();
+        fetchAvaiableCoverages();
     }, []);
-
-    console.log(allCoverages);
 
     const editCoverages = async(event) => {
         if(event.target.checked){
@@ -61,11 +60,17 @@ const AvailableCoverages = () => {
                 userId:event.target.value,
                 dayId:coverageDay.id
             };
-            await axios.post('/api/classes/coverages',body);
+            await axios.post('/api/coverages',body);  
         }else{
-            await axios.delete(`/api/classes/coverages/${classId}/${event.target.value}/${coverageDay.id}`);
+            await axios.delete(`/api/coverages/${classId}/${event.target.value}/${coverageDay.id}`);
         };
+        const response = await axios.get('/api/coverages');
+        dispatch(setAllCoverages(response.data));
     };
+
+    console.log(allCoverages);
+
+    
 
     if(!token) return <NotFoundPage/>
     return (
