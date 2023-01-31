@@ -28,7 +28,7 @@ router.delete('/:classId/:userId/:dayId',async(req, res, next) => {
                 dayId:req.params.dayId
             }
         });
-        if(foundCoverage) foundCoverage.destroy();
+        if(foundCoverage) await foundCoverage.destroy();
         res.sendStatus(200);
     }catch(error){
         next(error);
