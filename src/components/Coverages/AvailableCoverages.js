@@ -15,6 +15,7 @@ const AvailableCoverages = () => {
     let [thisClassUserIds,setThisClassUserIds] = useState([]);
     let [teamMeetingUserIds,setTeamMeetingUserIds] = useState([]);
     const [allAvailableUsers,setAllAvailableUsers] = useState([]);
+    const [coveringUserIds,setCoveringUserIds] = useState([]);
     
     const fetchAvaiableCoverages = async() => {
         // fetching the class that needs coverage
@@ -47,10 +48,19 @@ const AvailableCoverages = () => {
         // comparing the two user id arrays and making a final array of available user ids
         const availableUsers = allUsers.filter(user => !allUnAvailableUserIds.includes(user.id));
         setAllAvailableUsers(availableUsers);
-      };
+    };
 
+    const fetchCoveringUserIds = () =>{
+        // creating an array of ID's of teachers covering this class on this letter day
+        const thisClassCoverages = allCoverages.filter(coverage=>coverage.classId===Number(classId));
+        const userIds = thisClassCoverages.map((coverage)=>coverage.userId);
+        setCoveringUserIds(userIds);
+    };
+
+    
     useEffect(() => {
         fetchAvaiableCoverages();
+        fetchCoveringUserIds();
     }, []);
 
     const editCoverages = async(event) => {
@@ -68,10 +78,7 @@ const AvailableCoverages = () => {
         dispatch(setAllCoverages(response.data));
     };
 
-    console.log(allCoverages);
-
     
-
     if(!token) return <NotFoundPage/>
     return (
         <div>
@@ -84,9 +91,10 @@ const AvailableCoverages = () => {
                                 {thisClassUserIds.includes(user.id) && <p style={{'color':'red'}}><i>{user.firstName} {user.lastName} - Co-teacher</i></p>}
                                 {teamMeetingUserIds.includes(user.id) && <p style={{'color':'green'}}><i>{user.firstName} {user.lastName} - In a team meeting</i></p>}
                                 {!thisClassUserIds.includes(user.id) && !teamMeetingUserIds.includes(user.id) && <p>{user.firstName} {user.lastName}</p>}
-                                <input type='checkbox' value={user.id} onChange={editCoverages}/>
+                                {coveringUserIds.includes(user.id) ?
+                                <input type='checkbox' value={user.id} onChange={editCoverages} checked={true}/> :
+                                <input type='checkbox' value={user.id} onChange={editCoverages}/>}
                             </div>
-                            
                             <ul>
                                 {user.classes.map((eachClass)=>{
                                     return (
