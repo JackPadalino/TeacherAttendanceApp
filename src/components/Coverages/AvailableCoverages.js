@@ -53,27 +53,26 @@ const AvailableCoverages = () => {
 
     const fetchCoverages = async() =>{
         const response = await axios.get('/api/coverages');
+        console.log({'All coverages':response.data})
         // creating an array of ID's of teachers covering this class on this letter day
-        const thisClassCoverages = response.data.filter(coverage=>coverage.classId===Number(classId));
-        console.log(thisClassCoverages);
-        const userIds = thisClassCoverages.map((coverage)=>coverage.userId);
-        setCoveringUserIds(userIds);
+        const thisClassCoverages = response.data.filter(coverage=>coverage.classId===Number(classId) && coverage.dayId===coverageDay.id);
+        console.log({'This class coverages':thisClassCoverages})
     };
 
     
     useEffect(() => {
         fetchAvailableCoverages();
-        //fetchCoverages();
+        fetchCoverages();
     }, []);
 
     const updateCoverages = async(event) => {
-        // const body = {
-        //     classId,
-        //     dayId:coverageDay.id,
-        //     userIds:coveringUserIds
-        // };
-        // await axios.post('/api/coverages',body);
-        console.log('Button clicked.')
+        const body = {
+            classId,
+            dayId:coverageDay.id,
+            userIds:coveringUserIds
+        };
+        await axios.post('/api/coverages',body);
+        //console.log('Button clicked.')
     };
 
     // adding a letter day to the letterDays array if not present or removing if present
@@ -84,8 +83,6 @@ const AvailableCoverages = () => {
             setCoveringUserIds([...coveringUserIds,event.target.value]);
         };
     };
-
-    console.log(coveringUserIds);
     
     if(!token) return <NotFoundPage/>
     return (
