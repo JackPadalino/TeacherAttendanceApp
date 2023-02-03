@@ -8,10 +8,25 @@ router.post('/',async(req, res, next) => {
     try {
         const coverageData = {
             classId:req.body.classId,
-            userId:req.body.userId,
             dayId:req.body.dayId,
+            userIds:req.body.userIds,
         };
-        await Coverage.create(coverageData);
+        const foundCoverages = await Coverage.findAll({
+            where:{
+                classId:coverageData.classId,
+                dayId:coverageData.dayId
+            }
+        })
+        foundCoverages.forEach(async(coverage)=>{
+            await coverage.destroy();
+        });
+        coverageData.userIds.forEach(async(userId)=>{
+            await Coverage.create({
+                classId:coverageData.classId,
+                dayId:coverageData.dayId,
+                userId:userId
+            });
+        })
         res.sendStatus(200);
     }catch(error){
         next(error);
