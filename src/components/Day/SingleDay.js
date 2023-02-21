@@ -51,7 +51,7 @@ const SingleDay = () => {
 
     if(!token) return <NotFoundPage/>
     return (
-        <div>
+        <>
             <h1>{coverageDay.date} {coverageDay.letterDay} day</h1>
             <form onSubmit={updateDay}>
                 <label htmlFor="letter day">Letter day</label>
@@ -70,7 +70,7 @@ const SingleDay = () => {
             {confirmDeleteMessage && <p style={{color:'red'}}>Are you sure you want to delete this day?</p>}
             {confirmDeleteMessage && <button onClick={() => confirmDelete()}>Cancel</button>}
             {confirmDeleteMessage && <button onClick={() => deleteDay()}>Delete</button>}
-        </div>
+        </>
     );
 };
 

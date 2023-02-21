@@ -81,7 +81,7 @@ const AvailableCoverages = () => {
     
     if(!token) return <NotFoundPage/>
     return (
-        <div>
+        <>
             <h1>Available coverages for {thisClass.school} {thisClass.name}{thisClass.grade} - Period {thisClass.period} - {letterDay} day</h1>
             <div>
                 {allAvailableUsers.map((user) => {
@@ -106,7 +106,7 @@ const AvailableCoverages = () => {
                     )
                 })}
             </div>
-        </div>
+        </>
     );
 };
 

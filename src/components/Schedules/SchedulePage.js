@@ -22,7 +22,7 @@ const SchedulePage = () => {
 
     if(!token) return <NotFoundPage/>
     return (
-        <div>
+        <>
             <h1>Teacher schedules</h1>
             <TeacherSelect scheduleAbsentUser={scheduleAbsentUser} handleTeacherChange={handleTeacherChange}/>
             <LetterDaysSelect scheduleLetterDay={scheduleLetterDay} handleLetterDayChange={handleLetterDayChange}/>
@@ -35,7 +35,7 @@ const SchedulePage = () => {
                     })}
                 </ul>
             </div>}
-        </div>
+        </>
     );
 };
 

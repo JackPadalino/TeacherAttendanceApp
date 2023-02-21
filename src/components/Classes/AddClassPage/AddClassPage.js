@@ -7,9 +7,9 @@ const AddClassPage = () => {
 
     if(!token) return <NotFoundPage/>
     return (
-        <div>
+        <>
             <CreateClassForm/>
-        </div>
+        </>
     );
 };
 

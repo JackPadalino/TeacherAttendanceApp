@@ -113,7 +113,7 @@ const SingleClassPage = () => {
     if(!token) return <NotFoundPage/>
     if(loading) return <p>Loading...</p>
     return (
-        <div>
+        <>
             <h1>{className}</h1>
             <form onSubmit={updateClass} style={formStyle}>
                 <div>
@@ -209,7 +209,7 @@ const SingleClassPage = () => {
             {confirmDeleteMessage && <p style={{color:'red'}}>Are you sure you want to delete this class?</p>}
             {confirmDeleteMessage && <button onClick={() => confirmDelete()}>Cancel</button>}
             {confirmDeleteMessage && <button onClick={() => deleteClass()}>Delete</button>}
-        </div>
+        </>
     );
 };
 

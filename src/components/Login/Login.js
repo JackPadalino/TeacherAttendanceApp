@@ -40,7 +40,7 @@ const Login = () => {
 
   if(token) return <p>You are already logged in.</p>
   return (
-    <div>
+    <>
       <h1>Login</h1>
       <form onSubmit={attemptLogin} className="loginRegForm">
           <input placeholder="username" value={credentials.username} name="username" onChange={onChange}/>
@@ -50,7 +50,7 @@ const Login = () => {
       {/* <div className="registerAccount">
           <Link to="/register">Need an account?</Link>
       </div> */}
-    </div>
+    </>
   );
 };
 

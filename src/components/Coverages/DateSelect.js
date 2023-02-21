@@ -36,10 +36,12 @@ const DateSelect = () => {
     };
 
     return (
-        <form>
-            <label htmlFor="date">Date</label>
-            <input type="date" id="date" value={selectedCoverageDate} onChange={handleDateChange}></input>
-        </form>
+        <>
+            <form>
+                <label htmlFor="date">Date</label>
+                <input type="date" id="date" value={selectedCoverageDate} onChange={handleDateChange}></input>
+            </form>
+        </>
     );
 };
 
