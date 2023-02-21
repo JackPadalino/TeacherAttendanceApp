@@ -1,7 +1,7 @@
 const express = require("express");
 const { Sequelize } = require("sequelize");
 const router = express.Router();
-const { User,Class,UserClass } = require("../db");
+const { User,Class,UserClass,Coverage } = require("../db");
 
 // GET localhost:3000/api/classes/:school/:period/:letter
 router.get('/:school/:period/:letter',async(req, res, next) => {
@@ -58,22 +58,6 @@ router.get('/:userId/:letter',async(req, res, next) => {
             ]
           });
           res.send(user.classes);
-    }catch(error){
-        next(error);
-    };
-});
-
-// GET localhost:3000/api/classes/coverages/:period
-router.get('/coverages/:period',async(req, res, next) => {
-    try {
-        const freePeriod = await Class.findOne({
-            where:{
-                period:req.params.period,
-                isFreePeriod:true
-            },
-            include:[User]
-        });
-        res.send(freePeriod);
     }catch(error){
         next(error);
     };

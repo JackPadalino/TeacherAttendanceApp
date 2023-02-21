@@ -7,9 +7,9 @@ const AddTeachersPage = () => {
 
     if(!token) return <NotFoundPage/>
     return (
-        <div>
+        <>
             <CreateTeacherForm/>
-        </div>
+        </>
     );
 };
 

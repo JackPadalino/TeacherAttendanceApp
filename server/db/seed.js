@@ -35,7 +35,8 @@ const seed = async () => {
             firstName:'James',
             lastName:'Quinn',
             email: 'j.Quinn@hotmail.com',
-            phoneNumber: '+15248333601'
+            phoneNumber: '+15248333601',
+            role:'gangster'
         },
         {
             //fullName:'Bismarck Oppong',

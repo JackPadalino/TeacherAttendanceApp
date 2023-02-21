@@ -36,19 +36,21 @@ const LetterDaySelect = () => {
     };
 
     return (
-        <form onSubmit={createNewDay}>
-            <label htmlFor="letter day">Letter day</label>
-            <select name="letter day" id="letter day" onChange={handleLetterDayChange}>
-                <option value="">-</option>
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
-                <option value="E">E</option>
-                <option value="F">F</option>
-            </select>
-            <input type='submit' value='Submit'/>
-        </form>
+        <>
+            <form onSubmit={createNewDay}>
+                <label htmlFor="letter day">Letter day</label>
+                <select name="letter day" id="letter day" onChange={handleLetterDayChange}>
+                    <option value="">-</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                </select>
+                <input type='submit' value='Submit'/>
+            </form>
+        </>
     );
 };
 

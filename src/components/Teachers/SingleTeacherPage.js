@@ -136,7 +136,7 @@ const SingleTeacherPage = () => {
     if(!token) return <NotFoundPage/>
     if(loading) return <p>Loading...</p>
     return (
-        <div>
+        <>
             <h1>Teacher profile</h1>
             
             <form onSubmit={updateTeacher} style={formStyle}>
@@ -176,7 +176,7 @@ const SingleTeacherPage = () => {
             {confirmDeleteMessage && <p style={{color:'red'}}>Are you sure you want to delete this teacher?</p>}
             {confirmDeleteMessage && <button onClick={() => confirmDelete()}>Cancel</button>}
             {confirmDeleteMessage && <button onClick={() => deleteTeacher()}>Delete</button>}
-        </div>
+        </>
     );
 };
 

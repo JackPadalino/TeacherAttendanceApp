@@ -36,7 +36,7 @@ const CoveragesPage = () => {
 
     if(!token) return <NotFoundPage/>
     return (
-        <div>
+        <>
             <h1>Absences/Coverages</h1>
             <div>
                 <DateSelect/>
@@ -73,7 +73,7 @@ const CoveragesPage = () => {
                     })}
                 </div>
             </div>}
-        </div>
+        </>
     );
 };
 
