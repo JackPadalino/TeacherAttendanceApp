@@ -10,14 +10,15 @@ const AvailableCoverages = () => {
     const dispatch = useDispatch();
     const [token, setToken] = useState(window.localStorage.getItem("token"));
     const { allUsers } = useSelector((state) => state.user);
-    const { allAbsentUsers,coverageDay,allCoverages } = useSelector((state) => state.coverage);
+    const { allAbsentUsers,coverageDay } = useSelector((state) => state.coverage);
     const [thisClass,setThisClass] = useState({});
     let [thisClassUserIds,setThisClassUserIds] = useState([]);
     let [teamMeetingUserIds,setTeamMeetingUserIds] = useState([]);
     const [allAvailableUsers,setAllAvailableUsers] = useState([]);
+    const [thisClassCoverages,setThisClassCoverages] = useState([]);
     const [coveringUserIds,setCoveringUserIds] = useState([]);
     
-    const fetchAvaiableCoverages = async() => {
+    const fetchAvailableCoverages = async() => {
         // fetching the class that needs coverage
         const thisClass = await axios.get(`/api/classes/${classId}`);
         setThisClass(thisClass.data);
@@ -50,39 +51,44 @@ const AvailableCoverages = () => {
         setAllAvailableUsers(availableUsers);
     };
 
-    const fetchCoveringUserIds = () =>{
+    const fetchCoverages = async() =>{
+        const response = await axios.get('/api/coverages');
+        console.log({'All coverages':response.data})
         // creating an array of ID's of teachers covering this class on this letter day
-        const thisClassCoverages = allCoverages.filter(coverage=>coverage.classId===Number(classId));
-        const userIds = thisClassCoverages.map((coverage)=>coverage.userId);
-        setCoveringUserIds(userIds);
+        const thisClassCoverages = response.data.filter(coverage=>coverage.classId===Number(classId) && coverage.dayId===coverageDay.id);
+        console.log({'This class coverages':thisClassCoverages})
     };
 
     
     useEffect(() => {
-        fetchAvaiableCoverages();
-        fetchCoveringUserIds();
+        fetchAvailableCoverages();
+        fetchCoverages();
     }, []);
 
-    const editCoverages = async(event) => {
-        if(event.target.checked){
-            const body = {
-                classId,
-                userId:event.target.value,
-                dayId:coverageDay.id
-            };
-            await axios.post('/api/coverages',body);  
-        }else{
-            await axios.delete(`/api/coverages/${classId}/${event.target.value}/${coverageDay.id}`);
+    const updateCoverages = async(event) => {
+        const body = {
+            classId,
+            dayId:coverageDay.id,
+            userIds:coveringUserIds
         };
-        const response = await axios.get('/api/coverages');
-        dispatch(setAllCoverages(response.data));
+        await axios.post('/api/coverages',body);
+        //console.log('Button clicked.')
     };
 
+    // adding a letter day to the letterDays array if not present or removing if present
+    const handleCoveringUsersChange =(event)=>{
+        if(coveringUserIds.includes(event.target.value)){
+            setCoveringUserIds(coveringUserIds.filter(userId=>userId!==event.target.value))
+        }else{
+            setCoveringUserIds([...coveringUserIds,event.target.value]);
+        };
+    };
     
     if(!token) return <NotFoundPage/>
     return (
         <>
             <h1>Available coverages for {thisClass.school} {thisClass.name}{thisClass.grade} - Period {thisClass.period} - {letterDay} day</h1>
+            <button onClick={updateCoverages}>Assign coverages</button>
             <div>
                 {allAvailableUsers.map((user) => {
                     return (
@@ -92,8 +98,8 @@ const AvailableCoverages = () => {
                                 {teamMeetingUserIds.includes(user.id) && <p style={{'color':'green'}}><i>{user.firstName} {user.lastName} - In a team meeting</i></p>}
                                 {!thisClassUserIds.includes(user.id) && !teamMeetingUserIds.includes(user.id) && <p>{user.firstName} {user.lastName}</p>}
                                 {coveringUserIds.includes(user.id) ?
-                                <input type='checkbox' value={user.id} onChange={editCoverages} checked={true}/> :
-                                <input type='checkbox' value={user.id} onChange={editCoverages}/>}
+                                <input type='checkbox' value={user.id} onChange={handleCoveringUsersChange} checked={true}/> :
+                                <input type='checkbox' value={user.id} onChange={handleCoveringUsersChange}/>}
                             </div>
                             <ul>
                                 {user.classes.map((eachClass)=>{
