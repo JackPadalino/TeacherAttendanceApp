@@ -2,8 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     coverageDay:{},
-    daySelected:false,
-    selectedCoverageDate:'',
+    dateSelected:false,
+    letterDaySelected:false,
+    selectedCoverageDate:new Date(),
     allAbsentUsers: [],
     coveredClasses:[],
     allCoverages:[]
@@ -19,8 +20,11 @@ export const coverageSlice = createSlice({
     resetCoverageDay: (state,action) => {
       state.coverageDay = initialState.coverageDay
     },
-    setDaySelected:(state,action) => {
+    setDateSelected:(state,action) => {
       state.daySelected = action.payload;
+    },
+    setLetterDaySelected:(state,action) => {
+      state.letterDaySelected = action.payload;
     },
     setSelectedCoverageDate: (state, action) => {
         state.selectedCoverageDate = action.payload;
@@ -42,7 +46,8 @@ export const coverageSlice = createSlice({
 
 export const {
     setCoverageDay,
-    setDaySelected,
+    setDateSelected,
+    setLetterDaySelected,
     resetCoverageDay,
     setSelectedCoverageDate,
     setAllAbsentUsers,
