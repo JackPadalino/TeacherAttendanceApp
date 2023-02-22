@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    coverageDay:{},
+    coverageDay:null,
+    newCoverageDate:null,
     dateSelected:false,
-    letterDaySelected:false,
-    selectedCoverageDate:new Date(),
     allAbsentUsers: [],
     coveredClasses:[],
     allCoverages:[]
@@ -20,14 +19,14 @@ export const coverageSlice = createSlice({
     resetCoverageDay: (state,action) => {
       state.coverageDay = initialState.coverageDay
     },
+    setNewCoverageDate: (state,action) => {
+      state.newCoverageDate = action.payload;
+    },
+    resetNewCoverageDate: (state,action) => {
+      state.newCoverageDate = initialState.newCoverageDay
+    },
     setDateSelected:(state,action) => {
-      state.daySelected = action.payload;
-    },
-    setLetterDaySelected:(state,action) => {
-      state.letterDaySelected = action.payload;
-    },
-    setSelectedCoverageDate: (state, action) => {
-        state.selectedCoverageDate = action.payload;
+      state.dateSelected = action.payload;
     },
     setAllAbsentUsers: (state, action) => {
       state.allAbsentUsers = action.payload;
@@ -45,15 +44,15 @@ export const coverageSlice = createSlice({
 });
 
 export const {
-    setCoverageDay,
-    setDateSelected,
-    setLetterDaySelected,
-    resetCoverageDay,
-    setSelectedCoverageDate,
-    setAllAbsentUsers,
-    resetAllAbsentUsers,
-    setCoveredClasses,
-    setAllCoverages
+  setCoverageDay,
+  resetCoverageDay,
+  setNewCoverageDate,
+  resetNewCoverageDate,
+  setDateSelected,
+  setAllAbsentUsers,
+  resetAllAbsentUsers,
+  setCoveredClasses,
+  setAllCoverages
 } = coverageSlice.actions;
 
 export default coverageSlice.reducer;

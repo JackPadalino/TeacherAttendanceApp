@@ -22,7 +22,7 @@ const nameStyle = {
 
 const CoveragesPage = () => {
     const dispatch = useDispatch()
-    const { daySelected,coverageDay,allAbsentUsers } = useSelector((state) => state.coverage);
+    const { coverageDay,allAbsentUsers,dateSelected } = useSelector((state) => state.coverage);
     const [token, setToken] = useState(window.localStorage.getItem("token"));
 
     const deleteAbsence = async(event) => {
@@ -41,11 +41,11 @@ const CoveragesPage = () => {
             <div>
                 <DateSelect/>
             </div>
-            {daySelected && !coverageDay.id && <div>
+            {!coverageDay && dateSelected && <div>
                 <p style={{color:'red'}}>No information about this date. Please select a letter day to get started.</p>
                 <LetterDaySelect/>
             </div>}
-            {daySelected && coverageDay.id && <div>
+            {coverageDay && <div>
                 <h1><Link to={'/single-day'}>{coverageDay.date} {coverageDay.letterDay} day</Link></h1>
                 <div>
                     <h3>Absences today</h3>

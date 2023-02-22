@@ -1,35 +1,28 @@
 import axios from 'axios';
-import React,{ useState } from 'react';
+import React,{ useRef } from 'react';
 import { useDispatch,useSelector } from "react-redux";
 import { setCoverageDay } from "../../store/coverageSlice";
 
 const LetterDaySelect = () => {
     const dispatch = useDispatch();
-    const { selectedCoverageDate } = useSelector((state) => state.coverage);
-    const [selectedLetterDay,setSelectedLetterDay] = useState('');
+    const { newCoverageDate } = useSelector((state) => state.coverage);
+    const selectedLetterDay = useRef("");
 
     const handleLetterDayChange = async(event)=>{
         event.preventDefault();
-        setSelectedLetterDay(event.target.value);
+        selectedLetterDay.current = event.target.value;
+        console.log(selectedLetterDay.current)
     };
 
     const createNewDay = async(event) => {
         event.preventDefault();
-
-        const year = selectedCoverageDate.slice(0,4);
-        const month = parseInt(selectedCoverageDate.slice(5,7));
-        const day = parseInt(selectedCoverageDate.slice(8,10));
-        const date = `${year}-${month}-${day}`;
-
-        const letterDay = selectedLetterDay;
-
         const body = {
-            date,
-            letterDay
+            date:new Date(newCoverageDate),
+            letterDay:selectedLetterDay.current
         };
         await axios.post('/api/day',body);
         
-        const foundDay = await axios.get(`/api/day/${date}`);
+        const foundDay = await axios.get(`/api/day/${newCoverageDate}`);
         if(foundDay.data.id){
             dispatch(setCoverageDay(foundDay.data));
         };
