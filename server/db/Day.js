@@ -8,9 +8,10 @@ const Day = db.define("day", {
   //     defaultValue: UUIDV4
   // },
   date: {
-    type: Sequelize.STRING,
+    type: Sequelize.DATE,
+    allowNull: false,
     validate: {
-        isDate: true,
+      notEmpty: true,
     },
     unique:true
   },

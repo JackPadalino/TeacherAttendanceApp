@@ -538,12 +538,12 @@ const seed = async () => {
 
     //-------------create all days here-------------//
     const dayList = [
-        {date:'2022-12-16',letterDay:'A'},
-        {date:'2022-12-19',letterDay:'B'},
-        {date:'2022-12-20',letterDay:'A'},
-        {date:'2022-12-21',letterDay:'D'},
-        {date:'2022-12-22',letterDay:'E'},
-        {date:'2022-12-23',letterDay:'F'}
+        {date:new Date('2022-12-16'),letterDay:'A'},
+        {date:new Date('2022-12-19'),letterDay:'B'},
+        {date:new Date('2022-12-20'),letterDay:'A'},
+        {date:new Date('2022-12-21'),letterDay:'D'},
+        {date:new Date('2022-12-22'),letterDay:'E'},
+        {date:new Date('2022-12-23'),letterDay:'F'}
     ];
 
     const [
