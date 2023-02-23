@@ -13,7 +13,6 @@ import {
   // teacher components
   SingleTeacherPage,
   AllTeachersPage,
-  AddTeacherPage,
   // coverage components
   CoveragesPage,
   AvailableCoverages,
@@ -41,7 +40,6 @@ const RouterComponent = () => {
 
       {/* teacher routes */}
       <Route exact path="/teachers" element={<AllTeachersPage />} />
-      <Route exact path="/teachers/add-teacher" element={<AddTeacherPage />} />
       <Route exact path="/teachers/:id" element={<SingleTeacherPage />} />
       
       {/* coverage routes */}

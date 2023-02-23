@@ -10,7 +10,7 @@ export { default as NotFoundPage } from './NotFoundPage/NotFoundPage';
 
 // coverage components
 export { default as CoveragesPage } from './Coverages/CoveragesPage';
- export { default as AvailableCoverages } from './Coverages/AvailableCoverages';
+export { default as AvailableCoverages } from './Coverages/AvailableCoverages';
 
 // class components
 export { default as SingleClassPage } from './Classes/SingleClass/SingleClassPage';
@@ -20,7 +20,6 @@ export { default as AddClassPage } from './Classes/AddClassPage/AddClassPage';
 // teacher components
 export { default as SingleTeacherPage } from './Teachers/SingleTeacherPage';
 export { default as AllTeachersPage } from './Teachers/AllTeachersPage';
-export { default as AddTeacherPage } from './Teachers/AddTeacherPage';
 
 // schedule components
 export { default as SchedulePage } from './Schedules/SchedulePage';
