@@ -2,11 +2,9 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { setAllUsers,addNewUser } from "../../store/userSlice";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
-const CreateTeacherForm = () => {
+const CreateTeacherForm = ({setShowForm,setShowButton}) => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [firstName,setFirstName] = useState('');
     const [lastName,setLastName] = useState('');
     const [phoneNumber,setPhoneNumber] = useState('');
@@ -30,16 +28,16 @@ const CreateTeacherForm = () => {
             lastName,
             phoneNumber
         };
-        const newUser = await axios.post(`/api/users`,body);
-        dispatch(addNewUser(newUser.data));
-        const users = await axios.get(`/api/users`);
-        dispatch(setAllUsers(users.data));
-        navigate('/teachers');
+        await axios.post(`/api/users`,body)
+            .then((newUser)=>dispatch(addNewUser(newUser.data)));
+        await axios.get(`/api/users`)
+            .then((users)=>dispatch(setAllUsers(users.data)));
+        setShowForm(false);
+        setShowButton(true);
     };
 
     return (
         <>
-            <h1>Add a teacher</h1>
             <form onSubmit={addTeacher}>
                 <input placeholder="First name" name="first name" onChange={handleFirstNameChange}/>
                 <input placeholder="Last name" name="last name" onChange={handleLastNameChange}/>
