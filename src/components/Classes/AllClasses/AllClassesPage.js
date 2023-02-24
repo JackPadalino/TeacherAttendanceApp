@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { NotFoundPage } from "../..";
 import { useSelector } from "react-redux";
-import CreateClassForm from "../AddClassPage/CreateClassForm";
+import CreateClassForm from "./CreateClassForm";
 
 const pageStyle = {
     display:'flex',

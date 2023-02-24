@@ -3,12 +3,6 @@ import React, { useState } from 'react';
 import { setAllClasses } from "../../../store/classSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { 
-    SchoolSelect,
-    GradeSelect,
-    PeriodSelect,
-    LetterDaysSelect
-} from '../AllClasses'
 
 const formStyle = {
     display:'flex',
@@ -18,7 +12,6 @@ const formStyle = {
 
 const CreateClassForm = ({setShowForm,setShowButton}) => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [className,setClassName] = useState('');
     const [school,setSchool] = useState('');
     const [grade,setGrade] = useState('');
