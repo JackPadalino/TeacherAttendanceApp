@@ -16,7 +16,7 @@ const formStyle = {
     gap:'10px'
 };
 
-const CreateClassForm = () => {
+const CreateClassForm = ({setShowForm,setShowButton}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [className,setClassName] = useState('');
@@ -39,7 +39,8 @@ const CreateClassForm = () => {
         const allClasses = await axios.get('/api/classes');
         dispatch(setAllClasses(allClasses.data));
         setSuccessMessage(true);
-        navigate('/classes');
+        setShowForm(false);
+        setShowButton(true);
     };
 
     const handleNameChange = (event) =>{
@@ -69,7 +70,6 @@ const CreateClassForm = () => {
 
     return (
         <>
-            <h1>Add a class</h1>
             <div>
                 <form onSubmit={addClass} style={formStyle}>
                     <div>
