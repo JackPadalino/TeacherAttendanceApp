@@ -5,12 +5,6 @@ import React from 'react';
  *  to a teacher's schedule. 
  * */
 const AddExtraPeriodForm = ({handleClassNameChange,handleSchoolChange,handlePeriodChange,handleLetterDaysChange}) => {
-    // add a select for either lunch or team meeting
-    // add a select for MS or HS
-    // add a select for period
-    // add check boxes for letter days
-
-    
 
     return (
         <>

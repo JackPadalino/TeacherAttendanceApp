@@ -31,7 +31,6 @@ const Navbar = () => {
         {!user.id && <Link to="/login">Login</Link>}
         {user.id && <Link to="/schedules">Schedules</Link>}
         {user.id && <Link to="/coverages">Absences/Coverages</Link>}
-        {/* {user.id && <Link to="/absences">Absences</Link>} */}
         {user.id && <Link to="/teachers">Teachers</Link>}
         {user.id && <Link to="/classes">Classes</Link>}
       </div>

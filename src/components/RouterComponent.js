@@ -7,8 +7,6 @@ import {
   // class components
   SingleClassPage,
   AllClassesPage,
-  // absence components
-  //Absences,
   // teacher components
   SingleTeacherPage,
   AllTeachersPage,
@@ -32,9 +30,6 @@ const RouterComponent = () => {
       {/* class routes */}
       <Route exact path="/classes" element={<AllClassesPage />} />
       <Route exact path="/classes/:id" element={<SingleClassPage />} />
-
-      {/* absence routes */}
-      {/* <Route exact path="/absences" element={<Absences />} /> */}
 
       {/* teacher routes */}
       <Route exact path="/teachers" element={<AllTeachersPage />} />
