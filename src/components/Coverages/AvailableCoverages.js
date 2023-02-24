@@ -10,8 +10,8 @@ const AvailableCoverages = () => {
     const { allUsers } = useSelector((state) => state.user);
     const { allAbsentUsers,coverageDay } = useSelector((state) => state.coverage);
     const [thisClass,setThisClass] = useState({});
-    let [thisClassUserIds,setThisClassUserIds] = useState([]);
-    let [teamMeetingUserIds,setTeamMeetingUserIds] = useState([]);
+    const [thisClassUserIds,setThisClassUserIds] = useState([]);
+    const [teamMeetingUserIds,setTeamMeetingUserIds] = useState([]);
     const [allAvailableUsers,setAllAvailableUsers] = useState([]);
     const [coveringUserIds,setCoveringUserIds] = useState([]);
     const [updatedMessage,setUpdatedMessage] = useState(false);
@@ -20,30 +20,36 @@ const AvailableCoverages = () => {
         // fetching the class that needs coverage
         const thisClass = await axios.get(`/api/classes/${classId}`);
         setThisClass(thisClass.data);
+
         // finding what teachers already have this class assigned to them (finding teachers and coteachers)
         // making an array of the user ids for all co teachers of this class
         const thisClassUsers = thisClass.data.users;
-        thisClassUserIds = thisClassUsers.map((user)=>user.id);
+        let classUserIds = thisClassUsers.map((user)=>user.id);
+
         // fetching an array of all classes happening at this time
         let allClasses = await axios.get(`/api/classes/${school}/${period}/${letterDay}`);
         allClasses = allClasses.data;
+
         // making an array of the classes that are not team meetings
         const contentClasses = allClasses.filter((eachClass)=>eachClass.name!=='Team meeting');
+
         // creating an array of all users that are not co teachers of this class and are not in team meetings --> are busy teaching
         let unAvailableUsers = contentClasses.flatMap(eachClass => eachClass.users);
-        unAvailableUsers = unAvailableUsers.filter((user)=>!thisClassUserIds.includes(user.id));
-        // combining unavailable teachers with absent teachers
-        unAvailableUsers = [...allAbsentUsers,...unAvailableUsers];
+        unAvailableUsers = unAvailableUsers.filter((user)=>!classUserIds.includes(user.id));
+
         // making an array of all unavailable teacher ids
+        unAvailableUsers = [...allAbsentUsers,...unAvailableUsers];
         const allUnAvailableUserIds = unAvailableUsers.map((user)=>user.id);
         // filtering the id's of the this class's teachers again now that we have accounted for absent co teachers
-        thisClassUserIds = thisClassUserIds.filter((id)=>!allUnAvailableUserIds.includes(id));
-        setThisClassUserIds(thisClassUserIds);
+        classUserIds = classUserIds.filter((id)=>!allUnAvailableUserIds.includes(id));
+        setThisClassUserIds(classUserIds);
+
         // making an array of teachers that are not teaching that period but are in a team meeting
         const teamMeetings = allClasses.filter(eachClass=>eachClass.name==='Team meeting');
         const teamMeetingUsers = teamMeetings.flatMap(eachMeeting => eachMeeting.users);
-        teamMeetingUserIds = teamMeetingUsers.map(user=>user.id)
-        setTeamMeetingUserIds(teamMeetingUserIds);
+        const meetingUserIds = teamMeetingUsers.map(user=>user.id)
+        setTeamMeetingUserIds(meetingUserIds);
+
         // comparing the two user id arrays and making a final array of available user ids
         const availableUsers = allUsers.filter(user => !allUnAvailableUserIds.includes(user.id));
         setAllAvailableUsers(availableUsers);
@@ -61,7 +67,7 @@ const AvailableCoverages = () => {
     useEffect(() => {
         fetchAvailableCoverages();
         fetchCoverages();
-    }, []);
+    }, [classId,school,period,letterDay,allUsers,allAbsentUsers,coverageDay]);
 
     const updateCoverages = async(event) => {
         const body = {
@@ -84,7 +90,7 @@ const AvailableCoverages = () => {
         };
         setCoveringUserIds(updatedCoverageUserIds);
     };
-    
+
     if(!token) return <NotFoundPage/>
     return (
         <>
@@ -102,7 +108,6 @@ const AvailableCoverages = () => {
                                 {coveringUserIds.includes(user.id) ?
                                 <input type='checkbox' value={user.id} onChange={handleCoveringUsersChange} checked={true}/> :
                                 <input type='checkbox' value={user.id} onChange={handleCoveringUsersChange}/>}
-
                             </div>
                             <ul>
                                 {user.classes.map((eachClass)=>{
