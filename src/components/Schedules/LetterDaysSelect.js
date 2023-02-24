@@ -1,8 +1,14 @@
 import React from 'react';
-import { useSelector } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
+import { setScheduleLetterDay } from "../../store/scheduleSlice";
 
-const LetterDaysSelect = ({scheduleLetterDay,handleLetterDayChange}) => {
-    //const { letterDay } = useSelector((state) => state.absence);
+const LetterDaysSelect = () => {
+    const dispatch = useDispatch();
+    const { scheduleLetterDay } = useSelector((state) => state.schedule);
+
+    const handleLetterDayChange = (event) =>{
+        dispatch(setScheduleLetterDay(event.target.value));
+    };
 
     return (
             <>

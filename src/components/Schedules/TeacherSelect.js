@@ -1,8 +1,18 @@
+import axios from 'axios';
 import React from 'react';
-import { useSelector } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
+import { setScheduleAbsentUser } from "../../store/scheduleSlice";
 
-const TeacherSelect = ({scheduleAbsentUser,handleTeacherChange}) => {
+const TeacherSelect = () => {
     const { allUsers } = useSelector((state) => state.user);
+    const dispatch = useDispatch();
+    const { scheduleAbsentUser } = useSelector((state) => state.schedule);
+
+    const handleTeacherChange = async(event) =>{
+        const user = await axios.get(`/api/users/${event.target.value}`)
+        console.log(user.data);
+        dispatch(setScheduleAbsentUser(user.data));
+    };
 
     return (
         <>
