@@ -15,7 +15,6 @@ export { default as AvailableCoverages } from './Coverages/AvailableCoverages';
 // class components
 export { default as SingleClassPage } from './Classes/SingleClass/SingleClassPage';
 export { default as AllClassesPage } from './Classes/AllClasses/AllClassesPage';
-export { default as AddClassPage } from './Classes/AddClassPage/AddClassPage';
 
 // teacher components
 export { default as SingleTeacherPage } from './Teachers/SingleTeacherPage';
