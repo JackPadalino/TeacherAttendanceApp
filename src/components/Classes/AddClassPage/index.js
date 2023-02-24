@@ -1,1 +1,0 @@
-export { default as CreateClassForm } from '../AllClasses/CreateClassForm';

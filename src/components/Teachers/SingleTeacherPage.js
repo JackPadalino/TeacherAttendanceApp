@@ -138,7 +138,6 @@ const SingleTeacherPage = () => {
     return (
         <>
             <h1>Teacher profile</h1>
-            
             <form onSubmit={updateTeacher} style={formStyle}>
                 <div>
                     <h3>Personal info.</h3>

@@ -4,6 +4,7 @@ import { useNavigate,useParams } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
 import { NotFoundPage } from "../..";
 import { setAllClasses } from "../../../store/classSlice";
+import { SchoolSelect, GradeSelect, PeriodSelect, LetterDaysSelect, TeacherSelect } from "."
 
 const formStyle = {
     display:'flex',
@@ -120,66 +121,10 @@ const SingleClassPage = () => {
                     <label htmlFor="class name">Class name</label>
                     <input name='class name' value={className} onChange={handleNameChange}/>
                 </div>
-                <div>
-                    <label htmlFor="school">MS/HS</label>
-                    <select name='school' value={school} onChange={handleSchoolChange}>
-                        <option value="-">-</option>
-                        <option value="MS">MS</option>
-                        <option value="HS">HS</option>
-                    </select>
-                </div>
-                <div>
-                    <label htmlFor="grade">Grade</label>
-                    <select name='grade' value={grade} onChange={handleGradeChange}>
-                        <option value="-">-</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                    </select>
-                </div>
-                <div>
-                    <label htmlFor="period">Period</label>
-                    <select name='period' value={period} onChange={handlePeriodChange}>
-                        <option value="-">-</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                    </select>
-                </div>
-                <div>
-                    <label>Letter days</label>
-                    {letterDays.includes('A') ? <input type="checkbox" name="A day" value="A" onChange={handleLetterDaysChange} checked={true}/> :
-                    <input type="checkbox" name="A day" value="A" onChange={handleLetterDaysChange}/>}
-                    <label htmlFor="A day">A</label>
-
-                    {letterDays.includes('B') ? <input type="checkbox" name="B day" value="B" onChange={handleLetterDaysChange} checked={true}/> :
-                    <input type="checkbox" name="B day" value="B" onChange={handleLetterDaysChange}/>}
-                    <label htmlFor="B day">B</label>
-
-                    {letterDays.includes('C') ? <input type="checkbox" name="C day" value="C" onChange={handleLetterDaysChange} checked={true}/> :
-                    <input type="checkbox" name="C day" value="C" onChange={handleLetterDaysChange}/>}
-                    <label htmlFor="C day">C</label>
-
-                    {letterDays.includes('D') ? <input type="checkbox" name="D day" value="D" onChange={handleLetterDaysChange} checked={true}/> :
-                    <input type="checkbox" name="D day" value="D" onChange={handleLetterDaysChange}/>}
-                    <label htmlFor="D day">D</label>
-
-                    {letterDays.includes('E') ? <input type="checkbox" name="E day" value="E" onChange={handleLetterDaysChange} checked={true}/> :
-                    <input type="checkbox" name="E day" value="E" onChange={handleLetterDaysChange}/>}
-                    <label htmlFor="E day">E</label>
-
-                    {letterDays.includes('F') ? <input type="checkbox" name="F day" value="F" onChange={handleLetterDaysChange} checked={true}/> :
-                    <input type="checkbox" name="F day" value="F" onChange={handleLetterDaysChange}/>}
-                    <label htmlFor="F day">F</label>
-                </div>
+                <SchoolSelect school={school} handleSchoolChange={handleSchoolChange}/>
+                <GradeSelect grade={grade} handleGradeChange={handleGradeChange}/>
+                <PeriodSelect period={period} handlePeriodChange={handlePeriodChange}/>
+                <LetterDaysSelect letterDays={letterDays} handleLetterDaysChange={handleLetterDaysChange}/>
                 <div>
                     <label htmlFor='teachers'>Teachers</label>
                     <ul name='teachers'>
@@ -190,18 +135,7 @@ const SingleClassPage = () => {
                         })}
                     </ul>
                 </div>
-                <div>
-                    <label htmlFor="teacher">Add a teacher</label>
-                    <select name='teacher'onChange={handleTeacherChange}>
-                        <option value=''>-</option>
-                        {allUsers.map((user) => {
-                            return (
-                                <option key={user.id} value={user.id}>{user.fullName}</option>
-                            );
-                        })}
-                    </select>
-                </div>
-
+                <TeacherSelect handleTeacherChange={handleTeacherChange}/>
                 <button type='submit' style={{width:'56px'}}>Update</button>
             </form>
             {successMessage && <p style={{ color: "green", marginTop: "10px" }}>Class '{className}' successfully updated.</p>}
