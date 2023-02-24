@@ -16,7 +16,7 @@ router.post('/',async(req, res, next) => {
                 classId:coverageData.classId,
                 dayId:coverageData.dayId
             }
-        })
+        });
         foundCoverages.forEach(async(coverage)=>{
             await coverage.destroy();
         });
@@ -26,7 +26,7 @@ router.post('/',async(req, res, next) => {
                 dayId:coverageData.dayId,
                 userId:userId
             });
-        })
+        });
         res.sendStatus(200);
     }catch(error){
         next(error);
