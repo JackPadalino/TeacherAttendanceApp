@@ -58,7 +58,7 @@ const AvailableCoverages = () => {
     // creating an array of ID's of teachers covering this class on this letter day
     const fetchCoverages = async() =>{
         const response = await axios.get('/api/coverages');
-        const thisClassCoverages = response.data.filter(coverage=>coverage.classId===Number(classId) && coverage.dayId===coverageDay.id);
+        const thisClassCoverages = response.data.filter(coverage=>coverage.classId===classId && coverage.dayId===coverageDay.id);
         const userIds = thisClassCoverages.flatMap(eachCoverage => eachCoverage.userId);
         setCoveringUserIds(userIds);
     };
@@ -82,7 +82,7 @@ const AvailableCoverages = () => {
     // adding a letter day to the letterDays array if not present or removing if present
     const handleCoveringUsersChange =(event)=>{
         let updatedCoverageUserIds;
-        const newUserId = +event.target.value;
+        const newUserId = event.target.value;
         if(!coveringUserIds.includes(newUserId)){
             updatedCoverageUserIds = [...coveringUserIds,newUserId];
         }else{

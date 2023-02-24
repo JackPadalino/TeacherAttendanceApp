@@ -2,11 +2,11 @@ const db = require("./db");
 const Sequelize = require("sequelize");
 
 const Day = db.define("day", {
-  // id: {
-  //     type: UUID,
-  //     primaryKey: true,
-  //     defaultValue: UUIDV4
-  // },
+  id: {
+    type: Sequelize.UUID,
+    primaryKey: true,
+    defaultValue: Sequelize.UUIDV4
+  },
   date: {
     type: Sequelize.DATE,
     allowNull: false,

@@ -2,11 +2,11 @@ const db = require("./db");
 const Sequelize = require("sequelize");
 
 const Message = db.define("message", {
-  // id: {
-  //     type: UUID,
-  //     primaryKey: true,
-  //     defaultValue: UUIDV4
-  // },
+  id: {
+    type: Sequelize.UUID,
+    primaryKey: true,
+    defaultValue: Sequelize.UUIDV4
+  },
   content: {
     type: Sequelize.STRING
   }

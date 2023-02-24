@@ -2,11 +2,11 @@ const db = require("./db");
 const Sequelize = require("sequelize");
 
 const Class = db.define("class", {
-  // id: {
-  //     type: UUID,
-  //     primaryKey: true,
-  //     defaultValue: UUIDV4
-  // },
+  id: {
+    type: Sequelize.UUID,
+    primaryKey: true,
+    defaultValue: Sequelize.UUIDV4
+  },
   name: {
     type: Sequelize.STRING
   },
@@ -33,37 +33,7 @@ const Class = db.define("class", {
   letterDays:{
     type:Sequelize.ARRAY(Sequelize.STRING),
     allowNull:false
-  },
-  // grade:{
-  //   type:Sequelize.INTEGER,
-  //   validate:{
-  //     min:6,
-  //     max:12
-  //   },
-  //   allowNull:false
-  // },
-  // isFreePeriod:{
-  //   type:Sequelize.BOOLEAN,
-  //   defaultValue:false
-  // },
-  // startTime:{
-  //   type:Sequelize.INTEGER,
-  //   allowNull:false,
-  //   validate:{
-  //     isInt:true,
-  //     min:600,
-  //     max:1800
-  //   }
-  // },
-  // endTime:{
-  //   type:Sequelize.INTEGER,
-  //   allowNull:false,
-  //   validate:{
-  //     isInt:true,
-  //     min:600,
-  //     max:1800
-  //   }
-  // },
+  }
 });
 
 module.exports = Class;

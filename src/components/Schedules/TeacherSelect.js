@@ -10,7 +10,6 @@ const TeacherSelect = () => {
 
     const handleTeacherChange = async(event) =>{
         const user = await axios.get(`/api/users/${event.target.value}`)
-        console.log(user.data);
         dispatch(setScheduleAbsentUser(user.data));
     };
 

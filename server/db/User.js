@@ -5,11 +5,11 @@ const jwt = require("jsonwebtoken");
 const JWT = process.env.JWT;
 
 const User = db.define("user", {
-  // id: {
-  //     type: UUID,
-  //     primaryKey: true,
-  //     defaultValue: UUIDV4
-  // },
+  id: {
+    type: Sequelize.UUID,
+    primaryKey: true,
+    defaultValue: Sequelize.UUIDV4
+  },
   firstName: {
     type: Sequelize.STRING,
     validate: {
