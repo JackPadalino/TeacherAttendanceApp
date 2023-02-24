@@ -43,7 +43,7 @@ const AllClassesPage = () => {
             <div>
                 {allClasses.map((eachClass) => {
                     return (
-                        <div key={eachClass.id}>
+                        eachClass.name!=='Team meeting' && <div key={eachClass.id}>
                             <Link to={`/classes/${eachClass.id}`}>{eachClass.name}</Link>
                         </div>  
                     );
