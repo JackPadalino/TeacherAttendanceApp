@@ -14,6 +14,7 @@ const AvailableCoverages = () => {
     let [teamMeetingUserIds,setTeamMeetingUserIds] = useState([]);
     const [allAvailableUsers,setAllAvailableUsers] = useState([]);
     const [coveringUserIds,setCoveringUserIds] = useState([]);
+    const [updatedMessage,setUpdatedMessage] = useState(false);
     
     const fetchAvailableCoverages = async() => {
         // fetching the class that needs coverage
@@ -69,6 +70,7 @@ const AvailableCoverages = () => {
             userIds:coveringUserIds
         };
         await axios.post('/api/coverages',body);
+        setUpdatedMessage(true);
     };
 
     // adding a letter day to the letterDays array if not present or removing if present
@@ -87,7 +89,8 @@ const AvailableCoverages = () => {
     return (
         <>
             <h1>Available coverages for {thisClass.school} {thisClass.name}{thisClass.grade} - Period {thisClass.period} - {letterDay} day</h1>
-            <button onClick={updateCoverages}>Assign coverages</button>
+            <button onClick={updateCoverages}>Update coverages</button>
+            {updatedMessage && <p style={{ color: "green", marginTop: "10px" }}>Coverages for this class have been updated.</p>}
             <div>
                 {allAvailableUsers.map((user) => {
                     return (
