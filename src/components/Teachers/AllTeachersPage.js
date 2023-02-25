@@ -27,28 +27,28 @@ const modalStyle = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 200,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
-    pt: 2,
-    px: 4,
-    pb: 3,
+    pt: 5,
+    px: 2,
+    pb: 5,
+
+    display:'flex',
+    flexDirection:'column',
+    justifyContent:'center',
+    alignItems:"center",
   };
 
 const AllTeachersPage = () => {
     const { allUsers } = useSelector((state) => state.user);
     const [token, setToken] = useState(window.localStorage.getItem("token"));
-    // variables for MUI components
     const [parentModalOpen,setParentModalOpen] = useState(false);
-
-    // functions for handling modal
+    
+    // functions for handling modals
     const handleParentModal = () => {
-        if(parentModalOpen){
-            setParentModalOpen(false);
-        }else{
-            setParentModalOpen(true);
-        };
+        setParentModalOpen(parentModalOpen ? false : true);
     };
     
     if(!token) return <NotFoundPage/>
@@ -60,10 +60,8 @@ const AllTeachersPage = () => {
                 aria-labelledby="parent-modal-title"
                 aria-describedby="parent-modal-description"
             >
-                <Box sx={{ ...modalStyle, width: 400 }}>
-                    <Typography>Add a teacher</Typography>
+                <Box sx={modalStyle}>
                     <CreateTeacherForm />
-                    {/* <ChildModal /> */}
                 </Box>
             </Modal>
             <div>
