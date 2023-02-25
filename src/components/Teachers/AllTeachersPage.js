@@ -22,7 +22,7 @@ const buttonStyle={
     color:'blue'
 };
 
-const modalStyle = {
+const parentModalStyle = {
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -34,9 +34,24 @@ const modalStyle = {
     pt: 5,
     px: 2,
     pb: 5,
-
     display:'flex',
-    flexDirection:'column',
+    justifyContent:'center',
+    alignItems:"center",
+  };
+
+const childModalStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 300,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    pt: 5,
+    px: 2,
+    pb: 5,
+    display:'flex',
     justifyContent:'center',
     alignItems:"center",
   };
@@ -45,10 +60,15 @@ const AllTeachersPage = () => {
     const { allUsers } = useSelector((state) => state.user);
     const [token, setToken] = useState(window.localStorage.getItem("token"));
     const [parentModalOpen,setParentModalOpen] = useState(false);
+    const [successModalOpen,setSuccessModalOpen] = useState(false);
     
     // functions for handling modals
     const handleParentModal = () => {
         setParentModalOpen(parentModalOpen ? false : true);
+    };
+
+    const handleSuccessModal = () => {
+        setSuccessModalOpen(successModalOpen ? false : true);
     };
     
     if(!token) return <NotFoundPage/>
@@ -60,8 +80,18 @@ const AllTeachersPage = () => {
                 aria-labelledby="parent-modal-title"
                 aria-describedby="parent-modal-description"
             >
-                <Box sx={modalStyle}>
-                    <CreateTeacherForm />
+                <Box sx={parentModalStyle}>
+                    <CreateTeacherForm handleParentModal={handleParentModal} handleSuccessModal={handleSuccessModal}/>
+                </Box>
+            </Modal>
+            <Modal
+                open={successModalOpen}
+                onClose={handleSuccessModal}
+                aria-labelledby="parent-modal-title"
+                aria-describedby="parent-modal-description"
+                >
+                <Box sx={childModalStyle}>
+                    <Typography variant="h5">New teacher added!</Typography>
                 </Box>
             </Modal>
             <div>
