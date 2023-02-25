@@ -77,7 +77,7 @@ router.get('/',async(req, res, next) => {
 // GET localhost:3000/api/users
 router.post('/',async(req, res, next) => {
     try {
-        const newUser = await User.create(req.body);
+        await User.create(req.body);
         res.sendStatus(200);
     }catch(error){
         next(error);
