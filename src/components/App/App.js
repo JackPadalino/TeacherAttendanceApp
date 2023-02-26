@@ -6,6 +6,13 @@ import { setUser,setAllUsers } from "../../store/userSlice";
 import { setAllClasses } from "../../store/classSlice";
 import { setAllCoverages } from "../../store/coverageSlice";
 
+const appStyle={
+  paddingTop:"50px",
+  paddingLeft:"200px",
+  paddingRight:"200px",
+  height:"100vh"
+};
+
 const App = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
@@ -47,10 +54,10 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <div style={appStyle}>
       <Navbar />
       <RouterComponent />
-    </>
+    </div>
   );
 };
 

@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link,useNavigate } from "react-router-dom";
 import { resetUser } from "../../store/userSlice";
-import { Box,Typography,TextField,Button} from '@mui/material';
-import Fab from '@mui/material/Fab';
+import { Box,Typography,TextField,Button,Fab,Menu,MenuItem} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
 const navStyle={
@@ -29,14 +28,26 @@ const linkStyle={
 };
 
 const buttonStyle={
+  all:'unset',
+  cursor:'pointer',
   fontFamily:'Montserrat',
   color:'black'
 };
 
 const Navbar = () => {
   const { user } = useSelector((state) => state.user);
+  const [addMenuOpen,setAddMenuOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const handleOpenAddMenu = () => {
+    setAddMenuOpen(true);
+  };
+  const handleCloseAddMenu = () => {
+    setAddMenuOpen(false);
+  };
 
   const logout = () => {
     window.localStorage.removeItem("token");
@@ -58,9 +69,28 @@ const Navbar = () => {
       <div style={navRight}>
         {!user.id && <Link style={linkStyle} to="/login">Login</Link>}
         {user.id && <Fab color="primary" aria-label="add" size="small">
-            <AddIcon />
+            <AddIcon onClick={handleOpenAddMenu}/>
         </Fab>}
-        {user.id && <Button onClick={logout} sx={buttonStyle}>Logout</Button>}
+        <Menu
+        id="demo-positioned-menu"
+        aria-labelledby="demo-positioned-button"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleCloseAddMenu}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+      >
+        <MenuItem >Profile</MenuItem>
+        <MenuItem >My account</MenuItem>
+        <MenuItem >Logout</MenuItem>
+      </Menu>
+        {user.id && <button onClick={logout} style={buttonStyle}>Logout</button>}
       </div>
     </div>
   );
