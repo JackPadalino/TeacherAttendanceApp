@@ -8,7 +8,9 @@ import AddIcon from '@mui/icons-material/Add';
 const navStyle={
   display:'flex',
   justifyContent:"space-between",
-  alignItems:"center"
+  alignItems:"center",
+  borderBottom:'1px solid orange',
+  paddingBottom:'5px'
 };
 
 const navCenter={
@@ -67,22 +69,23 @@ const Navbar = () => {
       </div>}
       <div style={navRight}>
         {!user.id && <Link style={linkStyle} to="/login">Login</Link>}
-        {user.id && <Fab color="primary" aria-label="add" size="small">
-        <AddIcon
+        {user.id && <AddIcon
           id="demo-positioned-button"
           aria-controls={addMenuOpen ? 'demo-positioned-menu' : undefined}
           aria-haspopup="true"
           aria-expanded={addMenuOpen ? 'true' : undefined}
           onClick={handleMenuOpen}
-        />
-        </Fab>}
+          sx={{
+            cursor:"pointer"
+          }}
+        />}
           <Menu
           anchorEl={anchorEl}
           open={addMenuOpen}
           onClose={handleMenuClose}
           anchorOrigin={{
             vertical: 'top',
-            horizontal: 'left',
+            horizontal: 'right',
           }}
           transformOrigin={{
             vertical: 'top',
