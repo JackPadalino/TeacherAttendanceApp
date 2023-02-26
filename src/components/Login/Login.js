@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../store/userSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Box,Container,Typography,TextField,Button,Grid,Link,FormControlLabel,Avatar} from '@mui/material';
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -38,19 +40,81 @@ const Login = () => {
     loginWithToken(token);
   };
 
-  if(token) return <p>You are already logged in.</p>
+  if(token) return (
+    <Typography
+      sx={{
+        fontFamily:'Montserrat',
+        color:'black'
+      }}
+    >
+      You are already logged in.
+    </Typography>)
   return (
-    <>
-      <h1>Login</h1>
-      <form onSubmit={attemptLogin} className="loginRegForm">
-          <input placeholder="username" value={credentials.username} name="username" onChange={onChange}/>
-          <input type='password' placeholder="password" name="password" value={credentials.password} onChange={onChange}/>
-          <button>Login</button>
-      </form>
-      {/* <div className="registerAccount">
-          <Link to="/register">Need an account?</Link>
-      </div> */}
-    </>
+    <Container component="main" maxWidth="xs">
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap:"10px",
+            placeSelf: "center center",
+            placeItems: "center center",
+            placeContent: "center center",
+            position: "relative",
+            top: "15vh",
+          }}
+          component="form" 
+          noValidate
+          autoComplete="off"
+          onSubmit={attemptLogin}
+          className="loginRegForm"
+        >
+          <Avatar
+            sx={{
+              bgcolor: "white",
+              border: '1px solid #1976d2'
+
+            }}
+          >
+            <LockOutlinedIcon color="primary"/>
+          </Avatar>
+          <TextField
+            //margin="normal"
+            required
+            fullWidth
+            onChange={onChange}
+            id="username"
+            label="Username"
+            name="username"
+            //autoComplete="username"
+            value={credentials.username}
+            //autoFocus
+          />
+          <TextField
+            //margin="normal"
+            required
+            fullWidth
+            onChange={onChange}
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            value={credentials.password}
+            //autoComplete="current-password"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            size="large"
+            fullHeight
+          >
+            Login
+          </Button>
+        </Box>
+        {/* <div className="registerAccount">
+            <Link to="/register">Need an account?</Link>
+        </div> */}
+    </Container>
   );
 };
 
