@@ -14,11 +14,11 @@ const Home = () => {
             placeItems: "center center",
             placeContent: "center center",
             position: "relative",
-            top: "15vh",
+            top: "5vh",
           }}
         >
           <Typography 
-            variant="h1"
+            variant="h3"
             sx={{
               fontFamily:'Montserrat'
             }}
