@@ -36,17 +36,16 @@ const buttonStyle={
 
 const Navbar = () => {
   const { user } = useSelector((state) => state.user);
-  const [addMenuOpen,setAddMenuOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleOpenAddMenu = () => {
-    setAddMenuOpen(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const addMenuOpen = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
   };
-  const handleCloseAddMenu = () => {
-    setAddMenuOpen(false);
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   const logout = () => {
@@ -69,27 +68,30 @@ const Navbar = () => {
       <div style={navRight}>
         {!user.id && <Link style={linkStyle} to="/login">Login</Link>}
         {user.id && <Fab color="primary" aria-label="add" size="small">
-            <AddIcon onClick={handleOpenAddMenu}/>
+        <AddIcon
+          id="demo-positioned-button"
+          aria-controls={addMenuOpen ? 'demo-positioned-menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={addMenuOpen ? 'true' : undefined}
+          onClick={handleClick}
+        />
         </Fab>}
-        <Menu
-        id="demo-positioned-menu"
-        aria-labelledby="demo-positioned-button"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleCloseAddMenu}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
-      >
-        <MenuItem >Profile</MenuItem>
-        <MenuItem >My account</MenuItem>
-        <MenuItem >Logout</MenuItem>
-      </Menu>
+          <Menu
+          anchorEl={anchorEl}
+          open={addMenuOpen}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'left',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          >
+            <MenuItem ><Link to="/teachers" style={linkStyle}>Add new teacher</Link></MenuItem>
+            <MenuItem ><Link to="/classes" style={linkStyle}>Add new class</Link></MenuItem>
+          </Menu>
         {user.id && <button onClick={logout} style={buttonStyle}>Logout</button>}
       </div>
     </div>
