@@ -41,10 +41,10 @@ const Navbar = () => {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const addMenuOpen = Boolean(anchorEl);
-  const handleClick = (event) => {
+  const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleMenuClose = () => {
     setAnchorEl(null);
   };
 
@@ -73,13 +73,13 @@ const Navbar = () => {
           aria-controls={addMenuOpen ? 'demo-positioned-menu' : undefined}
           aria-haspopup="true"
           aria-expanded={addMenuOpen ? 'true' : undefined}
-          onClick={handleClick}
+          onClick={handleMenuOpen}
         />
         </Fab>}
           <Menu
           anchorEl={anchorEl}
           open={addMenuOpen}
-          onClose={handleClose}
+          onClose={handleMenuClose}
           anchorOrigin={{
             vertical: 'top',
             horizontal: 'left',
