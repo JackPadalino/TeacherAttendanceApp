@@ -3,8 +3,11 @@ import React, { useRef,useState,useEffect } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { NotFoundPage } from "..";
+import{ setAllUsers } from '../../store/userSlice';
 
 const AvailableCoverages = () => {
+    console.log('available coverages function called!');
+    const dispatch = useDispatch();
     const { classId,school,period,letterDay } = useParams();
     const [token, setToken] = useState(window.localStorage.getItem("token"));
     const { allUsers } = useSelector((state) => state.user);
@@ -76,6 +79,8 @@ const AvailableCoverages = () => {
             userIds:coveringUserIds
         };
         await axios.post('/api/coverages',body);
+        const updatedUsers = await axios.get('/api/users');
+        dispatch(setAllUsers(updatedUsers.data));
         setUpdatedMessage(true);
     };
 
@@ -90,6 +95,8 @@ const AvailableCoverages = () => {
         };
         setCoveringUserIds(updatedCoverageUserIds);
     };
+
+    console.log(allAvailableUsers);
 
     if(!token) return <NotFoundPage/>
     return (
