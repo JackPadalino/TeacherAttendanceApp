@@ -17,7 +17,7 @@ const SchedulePage = () => {
                 sx={{
                     display: "flex",
                     flexDirection: "column",
-                    gap:"15px",
+                    gap:"30px",
                     placeSelf: "center",
                     placeItems: "center",
                     //placeContent: "center center",
