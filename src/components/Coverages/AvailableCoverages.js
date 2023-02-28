@@ -3,8 +3,11 @@ import React, { useRef,useState,useEffect } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { NotFoundPage } from "..";
+import{ setAllUsers } from '../../store/userSlice';
 
 const AvailableCoverages = () => {
+    console.log('available coverages function called!');
+    const dispatch = useDispatch();
     const { classId,school,period,letterDay } = useParams();
     const [token, setToken] = useState(window.localStorage.getItem("token"));
     const { allUsers } = useSelector((state) => state.user);
@@ -67,7 +70,7 @@ const AvailableCoverages = () => {
     useEffect(() => {
         fetchAvailableCoverages();
         fetchCoverages();
-    }, [classId,school,period,letterDay,allUsers,allAbsentUsers,coverageDay]);
+    }, [allUsers]);
 
     const updateCoverages = async(event) => {
         const body = {
@@ -76,6 +79,8 @@ const AvailableCoverages = () => {
             userIds:coveringUserIds
         };
         await axios.post('/api/coverages',body);
+        const updatedUsers = await axios.get('/api/users');
+        dispatch(setAllUsers(updatedUsers.data));
         setUpdatedMessage(true);
     };
 
@@ -91,6 +96,8 @@ const AvailableCoverages = () => {
         setCoveringUserIds(updatedCoverageUserIds);
     };
 
+    console.log(allAvailableUsers);
+
     if(!token) return <NotFoundPage/>
     return (
         <>
@@ -102,7 +109,7 @@ const AvailableCoverages = () => {
                     return (
                         (user.role==='teacher' || user.role==='gangster') && <div key={user.id}>
                             <div style={{display:'flex'}}>
-                                {thisClassUserIds.includes(user.id) && <p style={{'color':'red'}}><i>{user.firstName} {user.lastName} - Co-teacher - Total coverages:{user.coverages.length}</i></p>}
+                                {thisClassUserIds.includes(user.id) && <p style={{'color':'red'}}><i>{user.firstName} {user.lastName} - Co-teacher - Total coverages: {user.coverages.length}</i></p>}
                                 {teamMeetingUserIds.includes(user.id) && <p style={{'color':'green'}}><i>{user.firstName} {user.lastName} - In a team meeting - Total coverages:{user.coverages.length}</i></p>}
                                 {!thisClassUserIds.includes(user.id) && !teamMeetingUserIds.includes(user.id) && <p>{user.firstName} {user.lastName} - Total coverages:{user.coverages.length}</p>}
                                 {coveringUserIds.includes(user.id) ?
