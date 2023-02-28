@@ -72,7 +72,7 @@ const DateSelect = () => {
             </form> */}
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DesktopDatePicker
-                    label="Date desktop"
+                    label="Date"
                     inputFormat="MM/DD/YYYY"
                     value={startDate}
                     onChange={handleDateChange}
