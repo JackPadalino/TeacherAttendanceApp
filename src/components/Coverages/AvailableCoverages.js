@@ -79,8 +79,8 @@ const AvailableCoverages = () => {
             userIds:coveringUserIds
         };
         await axios.post('/api/coverages',body);
-        const updatedUsers = await axios.get('/api/users');
-        dispatch(setAllUsers(updatedUsers.data));
+        const updatedUsers = await axios.get('/api/users')
+            .then(dispatch(setAllUsers(updatedUsers.data)));
         setUpdatedMessage(true);
     };
 

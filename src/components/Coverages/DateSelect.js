@@ -22,17 +22,19 @@ const DateSelect = () => {
     const [startDate, setStartDate] = useState(dayjs);
 
     const handleChange = (newValue) => {
-        setValue(newValue);
+        setStartDate(newValue);
         console.log(typeof newValue['$d'].toISOString())
         console.log(typeof new Date(newValue['$d']));
     };
 
-    const handleDateChange = async(selectedDate) => {
-        setStartDate(selectedDate)
+    const handleDateChange = async(event) => {
+        event.preventDefault();
+        //setStartDate(selectedDate)
         dispatch(setDateSelected(true));
 
-        const dateStr = selectedDate.toISOString();
-        const foundDay = await axios.get(`/api/day/${dateStr}`);
+        //const dateStr = selectedDate.toISOString();
+        const selectedDate = new Date(event.target.value).toISOString();
+        const foundDay = await axios.get(`/api/day/${selectedDate}`);
         if(foundDay.data.id){
             dispatch(setCoverageDay(foundDay.data));
             dispatch(resetNewCoverageDate());
@@ -60,7 +62,7 @@ const DateSelect = () => {
                     label="Date desktop"
                     inputFormat="MM/DD/YYYY"
                     value={startDate}
-                    onChange={handleDateChange}
+                    onChange={handleChange}
                     renderInput={(params) => <TextField {...params} />}
                     />
             </LocalizationProvider>
