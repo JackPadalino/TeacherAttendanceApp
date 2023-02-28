@@ -43,8 +43,8 @@ const DateSelect = () => {
     // };
 
     const handleDateChange = async(newValue) => {
+        dispatch(setDateSelected(true));
         setStartDate(newValue);
-        console.log();
         const date1 = newValue.toDate().toISOString().slice(0,10);
         const date2 = "T00:00:00.000Z";
         const dateStr=date1+date2;
