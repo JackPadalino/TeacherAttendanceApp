@@ -5,6 +5,7 @@ import { useSelector,useDispatch } from "react-redux";
 import { DateSelect,LetterDaySelect,TeacherSelect } from './';
 import { NotFoundPage } from "..";
 import { setAllAbsentUsers } from "../../store/coverageSlice";
+import { Box,Container,Typography,List,ListItem,ListItemIcon,ListItemText} from '@mui/material';
 
 const deleteButtonStyle = {
     height:'15px',
@@ -36,29 +37,40 @@ const CoveragesPage = () => {
 
     if(!token) return <NotFoundPage/>
     return (
-        <>
-            <h1>Absences/Coverages</h1>
-            <div>
+        <Container>
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap:"30px",
+                    placeSelf: "center",
+                    placeItems: "center",
+                    //placeContent: "center center",
+                    position: "relative",
+                    top: "5vh",
+                }}
+            >
+            <Typography variant="h3" sx={{fontFamily:'Montserrat'}}>Absences/Coverages</Typography>
+            <Box>
                 <DateSelect/>
-            </div>
-            {!coverageDay && dateSelected && <div>
-                <p style={{color:'red'}}>No information about this date. Please select a letter day to get started.</p>
+            </Box>
+            {!coverageDay && dateSelected && <Box>
+                <Typography variant="h6" sx={{fontFamily:'Montserrat',color:'red'}}>No information about this date. Please select a letter day to get started.</Typography>
                 <LetterDaySelect/>
-            </div>}
-            {coverageDay && <div>
-                <h1><Link to={'/single-day'}>{coverageDay.date} {coverageDay.letterDay} day</Link></h1>
-                <div>
-                    <h3>Absences today</h3>
-                    <div>
+            </Box>}
+            {coverageDay && <Box>
+                <Typography variant="h6"><Link to={'/single-day'}>{coverageDay.date.slice(0,10)} {coverageDay.letterDay} day</Link></Typography>
+                <Box>
+                    <Box>
                         <TeacherSelect />
-                    </div>
+                    </Box>
                     {allAbsentUsers.map((user) => {
                         return (
-                            <div key={user.id}>
-                                <div style={nameStyle}>
+                            <Box key={user.id}>
+                                <Box style={nameStyle}>
                                     <p>{user.fullName}</p>
                                     <button value={user.id} onClick={deleteAbsence} style={deleteButtonStyle} >x</button>
-                                </div>
+                                </Box>
                                 <ul>
                                     {user.classes.map((eachClass) =>{
                                         return (
@@ -71,12 +83,13 @@ const CoveragesPage = () => {
                                         )
                                     })}
                                 </ul>
-                            </div>  
+                            </Box>  
                         );
                     })}
-                </div>
-            </div>}
-        </>
+                </Box>
+            </Box>}
+            </Box>
+        </Container>
     );
 };
 
