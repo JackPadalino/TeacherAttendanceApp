@@ -70,7 +70,7 @@ const AvailableCoverages = () => {
     useEffect(() => {
         fetchAvailableCoverages();
         fetchCoverages();
-    }, [classId,school,period,letterDay,allUsers,allAbsentUsers,coverageDay]);
+    }, [allUsers]);
 
     const updateCoverages = async(event) => {
         const body = {
