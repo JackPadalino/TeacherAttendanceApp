@@ -109,7 +109,7 @@ const AvailableCoverages = () => {
                     return (
                         (user.role==='teacher' || user.role==='gangster') && <div key={user.id}>
                             <div style={{display:'flex'}}>
-                                {thisClassUserIds.includes(user.id) && <p style={{'color':'red'}}><i>{user.firstName} {user.lastName} - Co-teacher - Total coverages:{user.coverages.length}</i></p>}
+                                {thisClassUserIds.includes(user.id) && <p style={{'color':'red'}}><i>{user.firstName} {user.lastName} - Co-teacher - Total coverages: {user.coverages.length}</i></p>}
                                 {teamMeetingUserIds.includes(user.id) && <p style={{'color':'green'}}><i>{user.firstName} {user.lastName} - In a team meeting - Total coverages:{user.coverages.length}</i></p>}
                                 {!thisClassUserIds.includes(user.id) && !teamMeetingUserIds.includes(user.id) && <p>{user.firstName} {user.lastName} - Total coverages:{user.coverages.length}</p>}
                                 {coveringUserIds.includes(user.id) ?
