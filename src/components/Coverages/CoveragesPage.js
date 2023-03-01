@@ -8,6 +8,7 @@ import { setAllAbsentUsers } from "../../store/coverageSlice";
 import { Box,Container,Typography,Button,IconButton,Select,MenuItem,FormControl,List,ListItem,ListItemIcon,ListItemText} from '@mui/material';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import PersonIcon from '@mui/icons-material/Person';
+import SchoolIcon from '@mui/icons-material/School';
 
 const deleteButtonStyle = {
     height:'15px',
@@ -39,65 +40,64 @@ const CoveragesPage = () => {
 
     if(!token) return <NotFoundPage/>
     return (
-        <Container>
             <Box
                 sx={{
                     display: "flex",
                     flexDirection: "column",
                     gap:"30px",
-                    placeSelf: "center",
-                    placeItems: "center",
+                    //placeSelf: "center",
+                    //placeItems: "center",
                     //placeContent: "center center",
                     position: "relative",
                     top: "5vh",
                 }}
             >
-            <Typography variant="h3" sx={{fontFamily:'Montserrat'}}>Absences/Coverages</Typography>
-            <Box sx={{display:"flex",gap:"10px",alignItems:"center"}}><DateSelect/>{coverageDay && <Typography variant="h4"><Link to={'/single-day'} style={{textDecoration:"none"}}>{coverageDay.letterDay} day*</Link></Typography>}</Box>
-            {!coverageDay && dateSelected && 
+            <Box sx={{display:"flex",flexDirection:"column",gap:"20px",alignItems:"center"}}>
+                <Typography variant="h3" sx={{fontFamily:'Montserrat'}}>Absences/Coverages</Typography>
+                <Box sx={{display:"flex",gap:"10px"}}>
+                    <DateSelect/>{coverageDay && <Typography variant="h4"><Link to={'/single-day'} style={{textDecoration:"none"}}>{coverageDay.letterDay} day*</Link></Typography>}
+                </Box>
+                {!coverageDay && dateSelected && 
                 <Box sx={{display:"flex",placeItems:"center",flexDirection:"column",gap:"10px"}}>
                     <Typography sx={{fontFamily:'Montserrat',color:'red'}}>No information about this date. Please select a letter day to get started.</Typography>
                     <LetterDaySelect/>
                 </Box>}
+                {coverageDay && <TeacherSelect/>}
+            </Box>
+            
             {coverageDay &&
-                <Box>
-                        <TeacherSelect />
-                        {allAbsentUsers.map((user) => {
-                            return (
-                                <Box key={user.id}>
+                <Box sx={{display:"flex",flexWrap:"wrap",rowGap:"20px"}}>
+                    {allAbsentUsers.map((user) => {
+                        return (
+                            <Box key={user.id} sx={{width:"33%"}}>
+                                <Box>
                                     <Box style={nameStyle}>
-                                        <Typography sx={{fontFamily:'Montserrat'}}>
-                                            {user.fullName}
-                                        </Typography>
-                                        
-                                        <IconButton
-                                            size="small"
-                                            value={user.id}
-                                            onClick={deleteAbsence}
-                                        >
-                                            <HighlightOffIcon
-                                                fontSize="small"
-                                                />
+                                        <Typography sx={{fontFamily:'Montserrat'}}>{user.fullName}</Typography>
+                                        <IconButton size="small" value={user.id} onClick={deleteAbsence}>
+                                            <HighlightOffIcon fontSize="small" />   
                                         </IconButton>
                                     </Box>
-                                    <ul>
+                                    <List>
                                         {user.classes.map((eachClass) =>{
                                             return (
                                                 eachClass.letterDays.includes(coverageDay.letterDay) && 
-                                                <li key={eachClass.id}>
-                                                    <Typography sx={{fontFamily:'Montserrat'}}><Link to={`/coverages/${eachClass.id}/${eachClass.school}/${eachClass.period}/${coverageDay.letterDay}`}>
-                                                        {eachClass.name} - {eachClass.period}
-                                                    </Link></Typography>
-                                                </li>
+                                                <ListItem disablePadding key={eachClass.id}>
+                                                    <ListItemIcon >
+                                                        <SchoolIcon sx={{fontSize:"20px"}}/>
+                                                    </ListItemIcon>
+                                                    <ListItemText sx={{fontFamily:'Montserrat'}}>
+                                                        <Link to={`/coverages/${eachClass.id}/${eachClass.school}/${eachClass.period}/${coverageDay.letterDay}`}>{eachClass.name} - {eachClass.period}</Link>
+                                                    </ListItemText>
+                                                </ListItem>
                                             )
                                         })}
-                                    </ul>
-                                </Box>  
-                            );
-                        })}
+                                    </List>
+                                </Box>
+                            </Box>  
+                        );
+                    })}
                 </Box>}
             </Box>
-        </Container>
     );
 };
 
