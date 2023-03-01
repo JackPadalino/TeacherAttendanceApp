@@ -53,51 +53,49 @@ const CoveragesPage = () => {
                 }}
             >
             <Typography variant="h3" sx={{fontFamily:'Montserrat'}}>Absences/Coverages</Typography>
-            {!coverageDay ? <Box><DateSelect/></Box> : <Box sx={{display:"flex",gap:"5px"}}><DateSelect/><Typography variant="h4"><Link to={'/single-day'} sx={{textDecoration:"none"}}>{coverageDay.letterDay} day*</Link></Typography></Box>}
-            {!coverageDay && dateSelected && <Box>
-                <Typography variant="h6" sx={{fontFamily:'Montserrat',color:'red'}}>No information about this date. Please select a letter day to get started.</Typography>
-                <LetterDaySelect/>
-            </Box>}
-            {coverageDay && <Box>
+            <Box sx={{display:"flex",gap:"10px",alignItems:"center"}}><DateSelect/>{coverageDay && <Typography variant="h4"><Link to={'/single-day'} style={{textDecoration:"none"}}>{coverageDay.letterDay} day*</Link></Typography>}</Box>
+            {!coverageDay && dateSelected && 
+                <Box sx={{display:"flex",placeItems:"center",flexDirection:"column",gap:"10px"}}>
+                    <Typography sx={{fontFamily:'Montserrat',color:'red'}}>No information about this date. Please select a letter day to get started.</Typography>
+                    <LetterDaySelect/>
+                </Box>}
+            {coverageDay &&
                 <Box>
-                    <Box>
                         <TeacherSelect />
-                    </Box>
-                    {allAbsentUsers.map((user) => {
-                        return (
-                            <Box key={user.id}>
-                                <Box style={nameStyle}>
-                                    <Typography variant="h8" sx={{fontFamily:'Montserrat'}}>
-                                        {user.fullName}
-                                    </Typography>
-                                    
-                                    <IconButton
-                                        size="small"
-                                        value={user.id}
-                                        onClick={deleteAbsence}
-                                    >
-                                        <HighlightOffIcon
-                                            fontSize="small"
-                                            />
-                                    </IconButton>
-                                </Box>
-                                <ul>
-                                    {user.classes.map((eachClass) =>{
-                                        return (
-                                            eachClass.letterDays.includes(coverageDay.letterDay) && 
-                                            <li key={eachClass.id}>
-                                                <Link to={`/coverages/${eachClass.id}/${eachClass.school}/${eachClass.period}/${coverageDay.letterDay}`}>
-                                                    {eachClass.name} - {eachClass.period}
-                                                </Link>
-                                            </li>
-                                        )
-                                    })}
-                                </ul>
-                            </Box>  
-                        );
-                    })}
-                </Box>
-            </Box>}
+                        {allAbsentUsers.map((user) => {
+                            return (
+                                <Box key={user.id}>
+                                    <Box style={nameStyle}>
+                                        <Typography sx={{fontFamily:'Montserrat'}}>
+                                            {user.fullName}
+                                        </Typography>
+                                        
+                                        <IconButton
+                                            size="small"
+                                            value={user.id}
+                                            onClick={deleteAbsence}
+                                        >
+                                            <HighlightOffIcon
+                                                fontSize="small"
+                                                />
+                                        </IconButton>
+                                    </Box>
+                                    <ul>
+                                        {user.classes.map((eachClass) =>{
+                                            return (
+                                                eachClass.letterDays.includes(coverageDay.letterDay) && 
+                                                <li key={eachClass.id}>
+                                                    <Typography sx={{fontFamily:'Montserrat'}}><Link to={`/coverages/${eachClass.id}/${eachClass.school}/${eachClass.period}/${coverageDay.letterDay}`}>
+                                                        {eachClass.name} - {eachClass.period}
+                                                    </Link></Typography>
+                                                </li>
+                                            )
+                                        })}
+                                    </ul>
+                                </Box>  
+                            );
+                        })}
+                </Box>}
             </Box>
         </Container>
     );
