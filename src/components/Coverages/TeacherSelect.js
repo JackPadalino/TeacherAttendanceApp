@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { setAllAbsentUsers } from "../../store/coverageSlice";
+import { Box,Button,InputLabel,Select,MenuItem,FormControl} from '@mui/material';
 
 const TeacherSelect = () => {
     const dispatch = useDispatch();
@@ -33,20 +34,26 @@ const TeacherSelect = () => {
     };
 
     return (
-        <>
-            <form onSubmit={createAbsence}>
-                <select name='teacher' onChange={handleTeacherChange}>
-                    <option value=''>-</option>
-                    {allUsers.map((user) => {
-                        return (
-                            <option key={user.id} value={user.id}>{user.fullName}</option>
-                        );
-                    })}
-                </select>
-                <input type='submit' value='Mark absent'/>
+        <Box sx={{width:300}}>
+            <form onSubmit={createAbsence} style={{display:"flex",gap:"10px"}}>
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Teacher</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        label="Teacher"
+                        onChange={handleTeacherChange}
+                    >
+                        {allUsers.map((user) => {
+                            return (
+                                <MenuItem key={user.id} value={user.id}>{user.fullName}</MenuItem>
+                            );
+                        })}
+                    </Select>
+                </FormControl>
+                <Button type="submit" variant="contained">Absent</Button>
             </form>
-            {invalidEntry && <p style={{color:'red'}}>Please select a teacher!</p>}
-        </>
+        </Box>
     );
 };
 
