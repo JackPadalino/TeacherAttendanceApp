@@ -17,12 +17,6 @@ const deleteButtonStyle = {
     padding:'0px'
 };
 
-const nameStyle = {
-    display:'flex',
-    alignItems:'center',
-    gap:'10px'
-};
-
 const CoveragesPage = () => {
     const dispatch = useDispatch()
     const { coverageDay,allAbsentUsers,dateSelected } = useSelector((state) => state.coverage);
@@ -51,51 +45,50 @@ const CoveragesPage = () => {
                     top: "5vh",
                 }}
             >
-            <Box sx={{display:"flex",flexDirection:"column",gap:"20px",alignItems:"center"}}>
-                <Typography variant="h3" sx={{fontFamily:'Montserrat'}}>Absences/Coverages</Typography>
-                <Box sx={{display:"flex",gap:"10px"}}>
-                    <DateSelect/>{coverageDay && <Typography variant="h4"><Link to={'/single-day'} style={{textDecoration:"none"}}>{coverageDay.letterDay} day*</Link></Typography>}
+                <Box sx={{display:"flex",flexDirection:"column",gap:"20px",alignItems:"center"}}>
+                    <Typography variant="h3" sx={{fontFamily:'Montserrat'}}>Absences/Coverages</Typography>
+                    <DateSelect/>
+                    {!coverageDay && dateSelected && 
+                    <Box sx={{display:"flex",placeItems:"center",flexDirection:"column",gap:"10px"}}>
+                        <Typography sx={{fontFamily:'Montserrat',color:'red'}}>No information about this date. Please select a letter day to get started.</Typography>
+                        <LetterDaySelect/>
+                    </Box>}
                 </Box>
-                {!coverageDay && dateSelected && 
-                <Box sx={{display:"flex",placeItems:"center",flexDirection:"column",gap:"10px"}}>
-                    <Typography sx={{fontFamily:'Montserrat',color:'red'}}>No information about this date. Please select a letter day to get started.</Typography>
-                    <LetterDaySelect/>
-                </Box>}
-                {coverageDay && <TeacherSelect/>}
-            </Box>
-            
-            {coverageDay &&
-                <Box sx={{display:"flex",flexWrap:"wrap",rowGap:"20px"}}>
-                    {allAbsentUsers.map((user) => {
-                        return (
-                            <Box key={user.id} sx={{width:"33%"}}>
-                                <Box>
-                                    <Box style={nameStyle}>
-                                        <Typography sx={{fontFamily:'Montserrat'}}>{user.fullName}</Typography>
-                                        <IconButton size="small" value={user.id} onClick={deleteAbsence}>
-                                            <HighlightOffIcon fontSize="small" />   
-                                        </IconButton>
-                                    </Box>
-                                    <List>
-                                        {user.classes.map((eachClass) =>{
-                                            return (
-                                                eachClass.letterDays.includes(coverageDay.letterDay) && 
-                                                <ListItem disablePadding key={eachClass.id}>
-                                                    <ListItemIcon >
-                                                        <SchoolIcon sx={{fontSize:"20px"}}/>
-                                                    </ListItemIcon>
-                                                    <ListItemText sx={{fontFamily:'Montserrat'}}>
-                                                        <Link to={`/coverages/${eachClass.id}/${eachClass.school}/${eachClass.period}/${coverageDay.letterDay}`}>{eachClass.name} - {eachClass.period}</Link>
-                                                    </ListItemText>
-                                                </ListItem>
-                                            )
-                                        })}
-                                    </List>
-                                </Box>
-                            </Box>  
-                        );
-                    })}
-                </Box>}
+                {coverageDay &&
+                    <Box sx={{display:"flex"}}>
+                        <Box sx={{display:"flex",flexDirection:"column",gap:"10px",width:"25%"}}>
+                            <Typography variant="h3"><Link to={'/single-day'} style={{textDecoration:"none"}}>{coverageDay.letterDay} Day</Link></Typography>
+                            <TeacherSelect/>
+                        </Box>
+                        <Box sx={{display:"flex",flexWrap:"wrap",rowGap:"20px",width:"75%"}}>
+                            
+                            {allAbsentUsers.map((user) => {
+                                return (
+                                    <Box key={user.id} sx={{display:"flex",flexDirection:"column",justifyContent:"center",width:"33%"}}>
+                                            <Box sx={{display:"flex",justifyContent:"center",gap:"10px"}}>
+                                                <Typography sx={{fontFamily:'Montserrat',fontSize:"30px"}}>{user.fullName}</Typography>
+                                                <IconButton size="small" value={user.id} onClick={deleteAbsence}>
+                                                    <HighlightOffIcon fontSize="small" />   
+                                                </IconButton>
+                                            </Box>
+                                            <Box>
+                                                {user.classes.map((eachClass) =>{
+                                                    return (
+                                                        eachClass.letterDays.includes(coverageDay.letterDay) && 
+                                                        <Box key={eachClass.id}>
+                                                            <Typography sx={{fontFamily:'Montserrat'}} align="center">
+                                                                <Link to={`/coverages/${eachClass.id}/${eachClass.school}/${eachClass.period}/${coverageDay.letterDay}`}>{eachClass.name} - {eachClass.period}</Link>
+                                                            </Typography>
+                                                        </Box>
+                                                    )
+                                                })}
+                                            </Box>
+                                    </Box>  
+                                );
+                            })}
+                        </Box>
+                    </Box>}
+
             </Box>
     );
 };

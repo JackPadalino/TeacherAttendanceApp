@@ -25,7 +25,7 @@ const SchedulePage = () => {
                     top: "5vh",
                 }}
             >
-                <Typography variant="h3" sx={{fontFamily:'Montserrat'}}>Teacher schedules</Typography>
+                <Typography variant="h3" sx={{fontFamily:'Montserrat'}}>Teacher Schedules</Typography>
                 <Box
                     sx={{
                         display:"flex",
