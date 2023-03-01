@@ -1,10 +1,11 @@
 import React from 'react';
+import { Typography,Box } from '@mui/material';
 
 const NotFoundPage = () => {
     return (
-        <>
-           <p>Oops! There's nothing here.</p> 
-        </>
+        <Box>
+           <Typography sx={{fontFamily:"Montserrat"}}>Oops! There's nothing here.</Typography> 
+        </Box>
     );
 };
 
