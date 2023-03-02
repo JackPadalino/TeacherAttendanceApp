@@ -25,11 +25,11 @@ const SchedulePage = () => {
                     top: "5vh",
                 }}
             >
-                <Typography variant="h3" sx={{fontFamily:'Montserrat'}}>Teacher schedules</Typography>
+                <Typography variant="h3" sx={{fontFamily:'Montserrat'}}>Teacher Schedules</Typography>
                 <Box
                     sx={{
                         display:"flex",
-                        gap:"5px"
+                        gap:"10px"
                     }}
                 >
                     <TeacherSelect/>
