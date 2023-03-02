@@ -34,7 +34,7 @@ const TeacherSelect = () => {
     };
 
     return (
-        <Box sx={{width:"300px"}}>
+        <Box>
             <form onSubmit={createAbsence} style={{display:"flex",gap:"10px"}}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Teacher</InputLabel>

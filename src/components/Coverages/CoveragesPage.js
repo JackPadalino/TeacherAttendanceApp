@@ -55,17 +55,17 @@ const CoveragesPage = () => {
                 </Box>
                 {coverageDay &&
                     <Box sx={{display:"flex"}}>
-                        <Box sx={{display:"flex",flexDirection:"column",gap:"10px",width:"25%",height:"300px",borderRight:"1px solid lightgrey"}}>
-                            <Typography variant="h3"><Link to={'/single-day'} style={{textDecoration:"none"}}>{coverageDay.letterDay} Day</Link></Typography>
+                        <Box sx={{display:"flex",flexDirection:"column",gap:"10px",width:"25%",height:"300px",paddingRight:"20px",borderRight:"1px solid lightgrey"}}>
+                            <Typography variant="h4"><Link to={'/single-day'} style={{textDecoration:"none"}}>{coverageDay.letterDay} Day</Link></Typography>
                             <TeacherSelect/>
                         </Box>
-                        <Box sx={{display:"flex",flexWrap:"wrap",alignItems:"flex-start",rowGap:"20px",width:"75%"}}>
+                        <Box sx={{display:"flex",flexWrap:"wrap",alignItems:"flex-start",gap:"20px",width:"75%",paddingLeft:"20px"}}>
                             
                             {allAbsentUsers.map((user) => {
                                 return (
-                                    <Box key={user.id} sx={{display:"flex",flexDirection:"column",justifyContent:"center",width:"33%"}}>
+                                    <Box key={user.id} sx={{display:"flex",flexDirection:"column",justifyContent:"center",overflow:"auto"}}>
                                             <Box sx={{display:"flex",justifyContent:"center",gap:"10px"}}>
-                                                <Typography sx={{fontFamily:'Montserrat',fontSize:"30px"}}>{user.fullName}</Typography>
+                                                <Typography sx={{fontFamily:'Montserrat',fontSize:"25px"}}>{user.fullName}</Typography>
                                                 <IconButton size="small" value={user.id} onClick={deleteAbsence}>
                                                     <HighlightOffIcon fontSize="small" />   
                                                 </IconButton>
