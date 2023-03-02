@@ -37,7 +37,7 @@ const CoveragesPage = () => {
                 sx={{
                     display: "flex",
                     flexDirection: "column",
-                    gap:"30px",
+                    gap:"50px",
                     //placeSelf: "center",
                     //placeItems: "center",
                     //placeContent: "center center",
