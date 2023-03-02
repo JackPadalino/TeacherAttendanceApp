@@ -55,7 +55,7 @@ const CoveragesPage = () => {
                 </Box>
                 {coverageDay &&
                     <Box sx={{display:"flex"}}>
-                        <Box sx={{display:"flex",flexDirection:"column",gap:"10px",width:"25%",height:"300px",alignItems:"center",borderRight:"1px solid lightgrey"}}>
+                        <Box sx={{display:"flex",flexDirection:"column",gap:"10px",width:"25%",height:"300px",borderRight:"1px solid lightgrey"}}>
                             <Typography variant="h3"><Link to={'/single-day'} style={{textDecoration:"none"}}>{coverageDay.letterDay} Day</Link></Typography>
                             <TeacherSelect/>
                         </Box>
