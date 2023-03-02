@@ -5,13 +5,8 @@ import { Navbar, RouterComponent } from "..";
 import { setUser,setAllUsers } from "../../store/userSlice";
 import { setAllClasses } from "../../store/classSlice";
 import { setAllCoverages } from "../../store/coverageSlice";
-
-const appStyle={
-  paddingTop:"50px",
-  paddingLeft:"200px",
-  paddingRight:"200px",
-  height:"100vh"
-};
+import { Box } from '@mui/material';
+import { appStyle } from "./style";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -54,10 +49,10 @@ const App = () => {
   }, []);
 
   return (
-    <div style={appStyle}>
+    <Box sx={appStyle}>
       <Navbar />
       <RouterComponent />
-    </div>
+    </Box>
   );
 };
 
