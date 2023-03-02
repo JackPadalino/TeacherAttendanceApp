@@ -29,7 +29,7 @@ const SchedulePage = () => {
                 <Box
                     sx={{
                         display:"flex",
-                        gap:"5px"
+                        gap:"10px"
                     }}
                 >
                     <TeacherSelect/>

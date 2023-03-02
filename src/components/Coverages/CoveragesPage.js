@@ -42,25 +42,24 @@ const CoveragesPage = () => {
                     //placeItems: "center",
                     //placeContent: "center center",
                     position: "relative",
-                    top: "5vh",
+                    top: "5vh"
                 }}
             >
                 <Box sx={{display:"flex",flexDirection:"column",gap:"20px",alignItems:"center"}}>
                     <Typography variant="h3" sx={{fontFamily:'Montserrat'}}>Absences/Coverages</Typography>
-                    <DateSelect/>
-                    {!coverageDay && dateSelected && 
-                    <Box sx={{display:"flex",placeItems:"center",flexDirection:"column",gap:"10px"}}>
-                        <Typography sx={{fontFamily:'Montserrat',color:'red'}}>No information about this date. Please select a letter day to get started.</Typography>
-                        <LetterDaySelect/>
-                    </Box>}
+                    {!coverageDay && dateSelected && <Typography sx={{fontFamily:'Montserrat',color:'red'}}>No information about this date. Please select a letter day to get started.</Typography>}
+                    
+                    <Box sx={{display:"flex",gap:"10px"}}>
+                        <DateSelect/> {!coverageDay && dateSelected && <LetterDaySelect/>}
+                    </Box>
                 </Box>
                 {coverageDay &&
                     <Box sx={{display:"flex"}}>
-                        <Box sx={{display:"flex",flexDirection:"column",gap:"10px",width:"25%"}}>
+                        <Box sx={{display:"flex",flexDirection:"column",gap:"10px",width:"25%",height:"300px",alignItems:"center",borderRight:"1px solid lightgrey"}}>
                             <Typography variant="h3"><Link to={'/single-day'} style={{textDecoration:"none"}}>{coverageDay.letterDay} Day</Link></Typography>
                             <TeacherSelect/>
                         </Box>
-                        <Box sx={{display:"flex",flexWrap:"wrap",rowGap:"20px",width:"75%"}}>
+                        <Box sx={{display:"flex",flexWrap:"wrap",alignItems:"flex-start",rowGap:"20px",width:"75%"}}>
                             
                             {allAbsentUsers.map((user) => {
                                 return (
