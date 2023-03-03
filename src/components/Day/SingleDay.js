@@ -73,7 +73,7 @@ const SingleDay = () => {
                             <MenuItem value="F">F</MenuItem>
                         </Select>
                     </FormControl>
-                    <Button type="submit" variant="contained">Update</Button>
+                    <Button type="submit" variant="outlined">Update</Button>
                     <Button variant="outlined" color="error" onClick={() => handleModalOpen()}>Delete</Button>
                 </form>
             </Box>
