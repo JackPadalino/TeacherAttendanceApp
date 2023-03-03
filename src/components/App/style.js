@@ -1,6 +1,6 @@
 export const appStyle={
     paddingTop:"50px",
-    paddingLeft:"200px",
-    paddingRight:"200px",
+    paddingLeft:"100px",
+    paddingRight:"100px",
     height:"100vh"
 };
