@@ -5,6 +5,7 @@ import { TeacherSelect,LetterDaysSelect } from '.';
 import { Box,Container,Typography,List,ListItem,ListItemIcon,ListItemText} from '@mui/material';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import SchoolIcon from '@mui/icons-material/School';
+import { mainContainer,title,selectContainer,listItemStyle } from "./style";
 
 const SchedulePage = () => {
     const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -14,24 +15,10 @@ const SchedulePage = () => {
     return (
         <Container component="main">
             <Box
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap:"30px",
-                    placeSelf: "center",
-                    placeItems: "center",
-                    //placeContent: "center center",
-                    position: "relative",
-                    top: "5vh",
-                }}
+                sx={mainContainer}
             >
-                <Typography variant="h3" sx={{fontFamily:'Montserrat'}}>Teacher Schedules</Typography>
-                <Box
-                    sx={{
-                        display:"flex",
-                        gap:"10px"
-                    }}
-                >
+                <Typography variant="h3" sx={title}>Teacher Schedules</Typography>
+                <Box sx={selectContainer}>
                     <TeacherSelect/>
                     <LetterDaysSelect/>
                 </Box>
@@ -46,7 +33,7 @@ const SchedulePage = () => {
                                     </ListItemIcon>
                                     <ListItemText
                                         primary={`${eachClass.name} - ${eachClass.period}`}
-                                        primaryTypographyProps={{fontFamily:"Montserrat",fontSize: '25px'}}
+                                        primaryTypographyProps={listItemStyle}
                                         />
                                 </ListItem>
                             )

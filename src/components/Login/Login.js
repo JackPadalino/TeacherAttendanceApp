@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Box,Container,Typography,TextField,Button,Grid,Link,FormControlLabel,Avatar} from '@mui/material';
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { mainBox,avatar,loggedInMessage } from "./style";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -42,39 +43,20 @@ const Login = () => {
 
   if(token) return (
     <Typography
-      sx={{
-        fontFamily:'Montserrat',
-        color:'black'
-      }}
+      sx={loggedInMessage}
     >
       You are already logged in.
     </Typography>)
   return (
     <Container component="main" maxWidth="xs">
         <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap:"10px",
-            placeSelf: "center center",
-            placeItems: "center center",
-            placeContent: "center center",
-            position: "relative",
-            top: "5vh",
-          }}
+          sx={mainBox}
           component="form" 
           noValidate
           autoComplete="off"
           onSubmit={attemptLogin}
-          className="loginRegForm"
         >
-          <Avatar
-            sx={{
-              bgcolor: "white",
-              border: '1px solid #1976d2'
-
-            }}
-          >
+          <Avatar sx={avatar}>
             <LockOutlinedIcon color="primary"/>
           </Avatar>
           <TextField
@@ -106,7 +88,6 @@ const Login = () => {
             fullWidth
             variant="contained"
             size="large"
-            fullHeight
           >
             Login
           </Button>

@@ -27,10 +27,7 @@ const TeacherSelect = () => {
                 >
                     {allUsers.map((user) => {
                         return (
-                            <MenuItem
-                                key={user.id}
-                                value={user.id}
-                            >
+                            <MenuItem key={user.id} value={user.id}>
                                 {user.fullName}
                             </MenuItem>
                         );

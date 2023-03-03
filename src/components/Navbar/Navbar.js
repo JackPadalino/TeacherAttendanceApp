@@ -4,37 +4,7 @@ import { Link,useNavigate } from "react-router-dom";
 import { resetUser } from "../../store/userSlice";
 import { Box,Typography,TextField,Button,Fab,Menu,MenuItem} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-
-const navStyle={
-  display:'flex',
-  justifyContent:"space-between",
-  alignItems:"center",
-  borderBottom:'1px solid orange',
-  paddingBottom:'5px'
-};
-
-const navCenter={
-  display:'flex',
-  gap:"20px"
-};
-
-const navRight={
-  display:"flex",
-  gap:"10px"
-};
-
-const linkStyle={
-  textDecoration:'none',
-  fontFamily:'Montserrat',
-  color:'black'
-};
-
-const buttonStyle={
-  all:'unset',
-  cursor:'pointer',
-  fontFamily:'Montserrat',
-  color:'black'
-};
+import { navStyle,navCenter,navRight,linkStyle,buttonStyle } from "./style";
 
 const Navbar = () => {
   const { user } = useSelector((state) => state.user);
