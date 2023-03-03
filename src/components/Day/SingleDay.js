@@ -1,10 +1,13 @@
 import axios from 'axios';
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useRef } from 'react';
 import { useNavigate,useParams,Link } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
 import { NotFoundPage } from "..";
 import { setCoverageDay,resetCoverageDay,setAllAbsentUsers } from "../../store/coverageSlice";
 import { Box,Typography,Button,InputLabel,Select,MenuItem,FormControl,Modal} from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import IconButton from "@mui/material/IconButton";
 import { mainContainer,title,formBox,formStyle,modalStyle } from "./style";
 
 const SingleDay = () => {
@@ -53,7 +56,7 @@ const SingleDay = () => {
     if(!token) return <NotFoundPage/>
     return (
         <Box sx={mainContainer}>
-            <Typography variant="h3" sx={title}>{coverageDay.date} {coverageDay.letterDay} day</Typography>
+            <Typography variant="h3" sx={title}>{coverageDay.date.slice(0,10)} {coverageDay.letterDay} day</Typography>
             <Box sx={formBox}>
                 <form onSubmit={updateDay} style={formStyle}>
                     <FormControl fullWidth>
@@ -73,8 +76,12 @@ const SingleDay = () => {
                             <MenuItem value="F">F</MenuItem>
                         </Select>
                     </FormControl>
-                    <Button type="submit" variant="outlined">Update</Button>
-                    <Button variant="outlined" color="error" onClick={() => handleModalOpen()}>Delete</Button>
+                    <IconButton type="submit">
+                        <CheckBoxIcon color="primary"/>
+                    </IconButton>
+                    <IconButton color="error" onClick={() => handleModalOpen()}>
+                        <DeleteIcon color="error"/>
+                    </IconButton>
                 </form>
             </Box>
             <Modal
@@ -84,10 +91,10 @@ const SingleDay = () => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={modalStyle}>
-                <Typography id="modal-modal-title" variant="h6" align="center">
-                    Are you sure you want to delete this day?
-                </Typography>
-                <Button fullWidth variant="outlined" color="error" onClick={() => deleteDay()}>Delete</Button>
+                    <Typography id="modal-modal-title" variant="h6" align="center">
+                        Are you sure you want to delete this day?
+                    </Typography>
+                    <Button fullWidth variant="outlined" color="error" onClick={() => deleteDay()}>Delete</Button>
                 </Box>
             </Modal>
         </Box>
