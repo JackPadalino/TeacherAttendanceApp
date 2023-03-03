@@ -55,15 +55,15 @@ const CoveragesPage = () => {
                 </Box>
                 {coverageDay &&
                     <Box sx={{display:"flex"}}>
-                        <Box sx={{display:"flex",flexDirection:"column",gap:"10px",width:"25%",height:"300px",paddingRight:"20px",borderRight:"1px solid lightgrey"}}>
+                        <Box sx={{display:"flex",flexDirection:"column",gap:"10px",width:"17%",height:"300px",paddingRight:"20px",borderRight:"1px solid lightgrey"}}>
                             <Typography variant="h4"><Link to={'/single-day'} style={{textDecoration:"none"}}>{coverageDay.letterDay} Day</Link></Typography>
                             <TeacherSelect/>
                         </Box>
-                        <Box sx={{display:"flex",flexWrap:"wrap",alignItems:"flex-start",gap:"20px",width:"75%",paddingLeft:"20px"}}>
+                        <Box sx={{display:"flex",flexWrap:"wrap",alignItems:"flex-start",width:"80%",paddingLeft:"20px",rowGap:"20px"}}>
                             
                             {allAbsentUsers.map((user) => {
                                 return (
-                                    <Box key={user.id} sx={{display:"flex",flexDirection:"column",justifyContent:"center",overflow:"auto"}}>
+                                    <Box key={user.id} sx={{display:"flex",flexDirection:"column",justifyContent:"center",overflow:"auto",width:"33%"}}>
                                             <Box sx={{display:"flex",justifyContent:"center",gap:"10px"}}>
                                                 <Typography sx={{fontFamily:'Montserrat',fontSize:"25px"}}>{user.fullName}</Typography>
                                                 <IconButton size="small" value={user.id} onClick={deleteAbsence}>
