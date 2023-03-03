@@ -54,7 +54,8 @@ export const pageRightBox = {
 };
 
 export const letterDay = {
-    textDecoration:"none"
+    textDecoration:"none",
+    color:"blue"
 };
 
 export const teacherBox = {
