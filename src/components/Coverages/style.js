@@ -1,7 +1,7 @@
 export const mainContainer = {
     display: "flex",
     flexDirection: "column",
-    gap:"30px",
+    gap:"50px",
     //placeSelf: "center",
     //placeItems: "center",
     //placeContent: "center center",
@@ -12,7 +12,7 @@ export const mainContainer = {
 export const titleDateContainer = {
     display:"flex",
     flexDirection:"column",
-    gap:"20px",
+    gap:"30px",
     alignItems:"center"
 };
 

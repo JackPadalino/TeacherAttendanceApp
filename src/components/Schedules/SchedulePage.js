@@ -3,9 +3,8 @@ import { useSelector } from "react-redux";
 import { NotFoundPage } from "..";
 import { TeacherSelect,LetterDaysSelect } from '.';
 import { Box,Container,Typography,List,ListItem,ListItemIcon,ListItemText} from '@mui/material';
-import ScheduleIcon from '@mui/icons-material/Schedule';
 import SchoolIcon from '@mui/icons-material/School';
-import { mainContainer,title,selectContainer,listItemStyle } from "./style";
+import { mainContainer,titleTeacherDayContainer,title,selectContainer,listItemStyle } from "./style";
 
 const SchedulePage = () => {
     const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -17,10 +16,12 @@ const SchedulePage = () => {
             <Box
                 sx={mainContainer}
             >
-                <Typography variant="h3" sx={title}>Teacher Schedules</Typography>
-                <Box sx={selectContainer}>
-                    <TeacherSelect/>
-                    <LetterDaysSelect/>
+                <Box sx={titleTeacherDayContainer}>
+                    <Typography variant="h3" sx={title}>Teacher Schedules</Typography>
+                    <Box sx={selectContainer}>
+                        <TeacherSelect/>
+                        <LetterDaysSelect/>
+                    </Box>
                 </Box>
                 {scheduleAbsentUser.id && <Box key={scheduleAbsentUser.id}>
                     <List>
