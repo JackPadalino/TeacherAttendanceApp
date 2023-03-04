@@ -50,7 +50,7 @@ export const pageRightBox = {
     alignItems:"flex-start",
     width:"80%",
     paddingLeft:"20px",
-    rowGap:"20px"
+    rowGap:"40px"
 };
 
 export const letterDay = {
