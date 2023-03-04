@@ -76,13 +76,14 @@ const SingleDay = () => {
                             <MenuItem value="F">F</MenuItem>
                         </Select>
                     </FormControl>
-                    <IconButton type="submit">
+                    {/* <IconButton type="submit">
                         <CheckBoxIcon color="primary"/>
-                    </IconButton>
-                    <IconButton color="error" onClick={() => handleModalOpen()}>
-                        <DeleteIcon color="error"/>
-                    </IconButton>
+                    </IconButton> */}
+                    <Button type="submit" variant='contained'>Save</Button>
                 </form>
+                <IconButton color="error" onClick={() => handleModalOpen()}>
+                    <DeleteIcon color="error"/>
+                </IconButton>
             </Box>
             <Modal
                 open={modalOpen}
