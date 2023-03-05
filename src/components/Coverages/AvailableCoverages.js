@@ -4,14 +4,14 @@ import { useSelector,useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { NotFoundPage } from "..";
 import{ setAllUsers } from '../../store/userSlice';
-import { setAllCoverages } from "../../store/coverageSlice";
+import { setAllCoverages,setTodaysCoverages } from "../../store/coverageSlice";
 
 const AvailableCoverages = () => {
     const dispatch = useDispatch();
     const { classId,school,period,letterDay } = useParams();
     const [token, setToken] = useState(window.localStorage.getItem("token"));
     const { allUsers } = useSelector((state) => state.user);
-    const { allAbsentUsers,coverageDay } = useSelector((state) => state.coverage);
+    const { allAbsentUsers,coverageDay,todaysCoverages } = useSelector((state) => state.coverage);
     const [thisClass,setThisClass] = useState({});
     const [thisClassUserIds,setThisClassUserIds] = useState([]);
     const [teamMeetingUserIds,setTeamMeetingUserIds] = useState([]);
@@ -78,8 +78,10 @@ const AvailableCoverages = () => {
             userIds:coveringUserIds
         };
         await axios.post('/api/coverages',body);
-        await axios.get("/api/coverages")
-            .then((updatedCoverages)=>dispatch(setAllCoverages(updatedCoverages.data)));
+        const updatedCoverages = await axios.get("/api/coverages");
+        dispatch(setAllCoverages(updatedCoverages.data));
+        const todaysCoverages = updatedCoverages.data.filter((coverage)=>coverage.dayId===coverageDay.id);
+        dispatch(setTodaysCoverages(todaysCoverages));
         await axios.get('/api/users')
             .then((updatedUsers) => dispatch(setAllUsers(updatedUsers.data)));
         setUpdatedMessage(true);

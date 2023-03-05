@@ -8,6 +8,7 @@ const initialState = {
     allAbsentUsers: [],
     coveredClasses:[],
     allCoverages:[],
+    todaysCoverages:[]
 };
 
 export const coverageSlice = createSlice({
@@ -41,6 +42,12 @@ export const coverageSlice = createSlice({
     },
     setAllCoverages:(state,action)=>{
       state.allCoverages = action.payload;
+    },
+    setTodaysCoverages:(state,action)=>{
+      state.todaysCoverages = action.payload
+    },
+    resetTodaysCoverages:(state,action)=>{
+      state.todaysCoverages = initialState.todaysCoverages;
     }
   },
 });
@@ -55,6 +62,8 @@ export const {
   resetAllAbsentUsers,
   setCoveredClasses,
   setAllCoverages,
+  setTodaysCoverages,
+  resetTodaysCoverages
 } = coverageSlice.actions;
 
 export default coverageSlice.reducer;

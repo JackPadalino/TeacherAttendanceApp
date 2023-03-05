@@ -9,7 +9,8 @@ import {
     resetNewCoverageDate,
     setAllAbsentUsers,
     resetAllAbsentUsers,
-    setNewThing
+    setTodaysCoverages,
+    resetTodaysCoverages
 } from "../../store/coverageSlice";
 import { Box,TextField } from '@mui/material';
 import dayjs from 'dayjs';
@@ -23,7 +24,7 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 
 const DateSelect = () => {
     const dispatch = useDispatch();
-    const { selectedCalendarDate,coverageDay } = useSelector((state) => state.coverage);
+    const { selectedCalendarDate,allCoverages } = useSelector((state) => state.coverage);
 
     const handleDateChange = async(selectedDate) => {
         dispatch(setSelectedCalendarDate(selectedDate));
@@ -35,18 +36,20 @@ const DateSelect = () => {
 
         const foundDay = await axios.get(`/api/day/${dateStr}`);
         if(foundDay.data){
-            console.log({"found day":foundDay.data})
-            dispatch(setCoverageDay(foundDay.data));
             dispatch(resetNewCoverageDate());
+            dispatch(setCoverageDay(foundDay.data));
             const absences = await axios.get(`/api/attendance/absences/${newDate}`);
             const userPromises = absences.data.map(async (absence) => await axios.get(`/api/users/${absence.user.id}`));
             const userResponses = await Promise.all(userPromises);
             const userAbsences = userResponses.map(response => response.data);
             dispatch(setAllAbsentUsers(userAbsences));
+            const todaysCoverages = allCoverages.filter((coverage)=>coverage.dayId===foundDay.data.id);
+            dispatch(setTodaysCoverages(todaysCoverages));
         }else{
             dispatch(setNewCoverageDate(newDate));
             dispatch(resetCoverageDay());
             dispatch(resetAllAbsentUsers());
+            dispatch(resetTodaysCoverages());
         };
     };
 

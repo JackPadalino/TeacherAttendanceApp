@@ -19,14 +19,15 @@ import {
     pageRightBox,
     teacherBox,
     teacherNameDelete,
-    teacherName
+    teacherName,
+    classTitle,
+    coveringTeacher
 } from "./style";
 
 const CoveragesPage = () => {
     const dispatch = useDispatch()
-    const { coverageDay,allAbsentUsers,allCoverages } = useSelector((state) => state.coverage);
+    const { coverageDay,allAbsentUsers,todaysCoverages,todaysCoveredClassesIds } = useSelector((state) => state.coverage);
     const [token, setToken] = useState(window.localStorage.getItem("token"));
-    const todaysCoverages = useRef([]);
 
     const deleteAbsence = async(event) => {
         await axios.delete(`/api/attendance/absences/${coverageDay.id}/${event.currentTarget.value}`);
@@ -37,9 +38,8 @@ const CoveragesPage = () => {
         dispatch(setAllAbsentUsers(userAbsences)); // setting the global list of absent users in Redux store
     };
 
-    useEffect(() => {
-        todaysCoverages.current = allCoverages.filter((coverage)=>coverage.dayId===coverageDay?.id);
-    }, []);
+    console.log({"Today's coverages":todaysCoverages});
+    console.log({"Today's covered classes IDs":todaysCoveredClassesIds});
     
     if(!token) return <NotFoundPage/>
     return (
@@ -73,9 +73,15 @@ const CoveragesPage = () => {
                                                 return (
                                                     eachClass.letterDays.includes(coverageDay.letterDay) && 
                                                     <Box key={eachClass.id}>
-                                                        <Typography sx={{fontFamily:'Montserrat'}} align="center">
-                                                            <Link to={`/coverages/${eachClass.id}/${eachClass.school}/${eachClass.period}/${coverageDay.letterDay}`}>{eachClass.name} - {eachClass.period}</Link>
+                                                        <Typography sx={classTitle} align="center">
+                                                            <Link to={`/coverages/${eachClass.id}/${eachClass.school}/${eachClass.period}/${coverageDay.letterDay}`} style={{textDecoration:"none",color:"blue"}}>{eachClass.name} - {eachClass.period}</Link>
                                                         </Typography>
+                                                        {todaysCoverages.map((eachCoverage)=>{
+                                                                return (
+                                                                    eachCoverage.class.id===eachClass.id &&
+                                                                    <Typography sx={coveringTeacher} align="center">{eachCoverage.user.fullName}</Typography>
+                                                                )
+                                                            })}
                                                     </Box>
                                                 )
                                             })}
