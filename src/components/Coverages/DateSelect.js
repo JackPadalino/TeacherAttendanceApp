@@ -12,6 +12,10 @@ import {
 } from "../../store/coverageSlice";
 import { TextField } from '@mui/material';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+dayjs.extend(utc);
+dayjs.extend(timezone);
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
@@ -42,23 +46,27 @@ const DateSelect = () => {
     //     };
     // };
 
-    const handleDateChange = async(newValue) => {
+    const handleDateChange = async(selectedDate) => {
         dispatch(setDateSelected(true));
-        setStartDate(newValue);
-        const date1 = newValue.toDate().toISOString().slice(0,10);
-        const date2 = "T00:00:00.000Z";
-        const dateStr=date1+date2;
-        const foundDay = await axios.get(`/api/day/${dateStr}`);
+        const newDate = selectedDate.hour(0).minute(0).second(0);
+        // let dateStr = newValue.toDate();
+        // dateStr.setTime(dateStr.getTime() - (dateStr.getTimezoneOffset() * 60000));
+        // dateStr = dateStr.toISOString().substr(0, 10);
+        // dateStr = dayjs.tz(dateStr,"America/New_York");
+        setStartDate(newDate);
+
+        const foundDay = await axios.get(`/api/day/${newDate}`);
         if(foundDay.data.id){
+            console.log(foundDay.data);
             dispatch(setCoverageDay(foundDay.data));
             dispatch(resetNewCoverageDate());
-            const absences = await axios.get(`/api/attendance/absences/${dateStr}`);
+            const absences = await axios.get(`/api/attendance/absences/${newDate}`);
             const userPromises = absences.data.map(async (absence) => await axios.get(`/api/users/${absence.user.id}`));
             const userResponses = await Promise.all(userPromises);
             const userAbsences = userResponses.map(response => response.data);
             dispatch(setAllAbsentUsers(userAbsences));
         }else{
-            dispatch(setNewCoverageDate(dateStr));
+            dispatch(setNewCoverageDate(newDate));
             dispatch(resetCoverageDay());
             dispatch(resetAllAbsentUsers());
         };
