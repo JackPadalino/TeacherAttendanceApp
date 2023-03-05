@@ -4,9 +4,9 @@ import { useSelector,useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { NotFoundPage } from "..";
 import{ setAllUsers } from '../../store/userSlice';
+import { setAllCoverages } from "../../store/coverageSlice";
 
 const AvailableCoverages = () => {
-    console.log('available coverages function called!');
     const dispatch = useDispatch();
     const { classId,school,period,letterDay } = useParams();
     const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -79,8 +79,10 @@ const AvailableCoverages = () => {
             userIds:coveringUserIds
         };
         await axios.post('/api/coverages',body);
-        const updatedUsers = await axios.get('/api/users')
-            .then(dispatch(setAllUsers(updatedUsers.data)));
+        await axios.get("/api/coverages")
+            .then((updatedCoverages)=>dispatch(setAllCoverages(updatedCoverages.data)));
+        await axios.get('/api/users')
+            .then((updatedUsers) => dispatch(setAllUsers(updatedUsers.data)));
         setUpdatedMessage(true);
     };
 
@@ -96,8 +98,6 @@ const AvailableCoverages = () => {
         setCoveringUserIds(updatedCoverageUserIds);
     };
 
-    console.log(allAvailableUsers);
-
     if(!token) return <NotFoundPage/>
     return (
         <>
@@ -110,8 +110,8 @@ const AvailableCoverages = () => {
                         (user.role==='teacher' || user.role==='gangster') && <div key={user.id}>
                             <div style={{display:'flex'}}>
                                 {thisClassUserIds.includes(user.id) && <p style={{'color':'red'}}><i>{user.firstName} {user.lastName} - Co-teacher - Total coverages: {user.coverages.length}</i></p>}
-                                {teamMeetingUserIds.includes(user.id) && <p style={{'color':'green'}}><i>{user.firstName} {user.lastName} - In a team meeting - Total coverages:{user.coverages.length}</i></p>}
-                                {!thisClassUserIds.includes(user.id) && !teamMeetingUserIds.includes(user.id) && <p>{user.firstName} {user.lastName} - Total coverages:{user.coverages.length}</p>}
+                                {teamMeetingUserIds.includes(user.id) && <p style={{'color':'green'}}><i>{user.firstName} {user.lastName} - In a team meeting - Total coverages: {user.coverages.length}</i></p>}
+                                {!thisClassUserIds.includes(user.id) && !teamMeetingUserIds.includes(user.id) && <p>{user.firstName} {user.lastName} - Total coverages: {user.coverages.length}</p>}
                                 {coveringUserIds.includes(user.id) ?
                                 <input type='checkbox' value={user.id} onChange={handleCoveringUsersChange} checked={true}/> :
                                 <input type='checkbox' value={user.id} onChange={handleCoveringUsersChange}/>}

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useRef,useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector,useDispatch } from "react-redux";
 import { DateSelect,LetterDaySelect,TeacherSelect } from './';
@@ -24,8 +24,9 @@ import {
 
 const CoveragesPage = () => {
     const dispatch = useDispatch()
-    const { coverageDay,allAbsentUsers,dateSelected } = useSelector((state) => state.coverage);
+    const { coverageDay,allAbsentUsers,dateSelected,allCoverages } = useSelector((state) => state.coverage);
     const [token, setToken] = useState(window.localStorage.getItem("token"));
+    const todaysCoverages = useRef([]);
 
     const deleteAbsence = async(event) => {
         await axios.delete(`/api/attendance/absences/${coverageDay.id}/${event.currentTarget.value}`);
@@ -36,6 +37,10 @@ const CoveragesPage = () => {
         dispatch(setAllAbsentUsers(userAbsences)); // setting the global list of absent users in Redux store
     };
 
+    useEffect(() => {
+        todaysCoverages.current = allCoverages.filter((coverage)=>coverage.dayId===coverageDay?.id);
+    }, []);
+    
     if(!token) return <NotFoundPage/>
     return (
         <Box sx={mainContainer}>
