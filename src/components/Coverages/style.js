@@ -76,3 +76,12 @@ export const teacherName = {
     fontFamily:'Montserrat',
     fontSize:"20px"
 };
+
+export const classTitle = {
+    fontFamily:'Montserrat'
+};
+
+export const coveringTeacher = {
+    fontFamily:'Montserrat',
+    color:"green"
+};
