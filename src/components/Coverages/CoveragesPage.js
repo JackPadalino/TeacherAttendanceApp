@@ -24,7 +24,7 @@ import {
 
 const CoveragesPage = () => {
     const dispatch = useDispatch()
-    const { coverageDay,allAbsentUsers,dateSelected,allCoverages } = useSelector((state) => state.coverage);
+    const { coverageDay,allAbsentUsers,allCoverages } = useSelector((state) => state.coverage);
     const [token, setToken] = useState(window.localStorage.getItem("token"));
     const todaysCoverages = useRef([]);
 
@@ -46,13 +46,13 @@ const CoveragesPage = () => {
         <Box sx={mainContainer}>
             <Box sx={titleDateContainer}>
                 <Typography variant="h3" sx={title}>Absences/Coverages</Typography>
-                {!coverageDay && dateSelected && <Typography sx={dateNotFound}>No information about this date. Please select a letter day to get started.</Typography>}
+                {Object.keys(coverageDay).length===0 && <Typography sx={dateNotFound}>No information about this date. Please select a letter day to get started.</Typography>}
                 
                 <Box sx={letterDaySelect}>
-                    <DateSelect/> {!coverageDay && dateSelected && <LetterDaySelect/>}
+                    <DateSelect/> {Object.keys(coverageDay).length===0 && <LetterDaySelect/>}
                 </Box>
             </Box>
-            {coverageDay &&
+            {Object.keys(coverageDay).length > 0 &&
                 <Box sx={pageLeftRightBox}>
                     <Box sx={pageLeftBox}>
                         <Typography variant="h4"><Link to={'/single-day'} style={letterDay}>{coverageDay.letterDay} Day</Link></Typography>

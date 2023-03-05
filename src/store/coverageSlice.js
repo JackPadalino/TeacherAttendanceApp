@@ -1,22 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
+import dayjs from 'dayjs';
 
 const initialState = {
-    coverageDay:null,
-    newCoverageDate:null,
-    dateSelected:false,
+    selectedCalendarDate:{},
+    coverageDay:{},
+    newCoverageDate:{},
     allAbsentUsers: [],
     coveredClasses:[],
-    allCoverages:[]
+    allCoverages:[],
 };
 
 export const coverageSlice = createSlice({
   name: "coverage",
   initialState,
   reducers: {
+    setSelectedCalendarDate:(state,action)=>{
+      state.selectedCalendarDate = action.payload;
+    },
     setCoverageDay: (state,action) => {
       state.coverageDay = action.payload;
     },
     resetCoverageDay: (state,action) => {
+      console.log('reset coverage day function called')
       state.coverageDay = initialState.coverageDay
     },
     setNewCoverageDate: (state,action) => {
@@ -24,9 +29,6 @@ export const coverageSlice = createSlice({
     },
     resetNewCoverageDate: (state,action) => {
       state.newCoverageDate = initialState.newCoverageDay
-    },
-    setDateSelected:(state,action) => {
-      state.dateSelected = action.payload;
     },
     setAllAbsentUsers: (state, action) => {
       state.allAbsentUsers = action.payload;
@@ -44,15 +46,15 @@ export const coverageSlice = createSlice({
 });
 
 export const {
+  setSelectedCalendarDate,
   setCoverageDay,
   resetCoverageDay,
   setNewCoverageDate,
   resetNewCoverageDate,
-  setDateSelected,
   setAllAbsentUsers,
   resetAllAbsentUsers,
   setCoveredClasses,
-  setAllCoverages
+  setAllCoverages,
 } = coverageSlice.actions;
 
 export default coverageSlice.reducer;

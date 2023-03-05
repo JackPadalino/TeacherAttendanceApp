@@ -12,13 +12,12 @@ const LetterDaySelect = () => {
     const handleLetterDayChange = async(event)=>{
         event.preventDefault();
         selectedLetterDay.current = event.target.value;
-        console.log(selectedLetterDay.current)
     };
 
     const createNewDay = async(event) => {
         event.preventDefault();
         const body = {
-            date:new Date(newCoverageDate),
+            date:newCoverageDate,
             letterDay:selectedLetterDay.current
         };
         await axios.post('/api/day',body);

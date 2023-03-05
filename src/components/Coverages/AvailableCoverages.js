@@ -66,7 +66,6 @@ const AvailableCoverages = () => {
         setCoveringUserIds(userIds);
     };
 
-    
     useEffect(() => {
         fetchAvailableCoverages();
         fetchCoverages();
