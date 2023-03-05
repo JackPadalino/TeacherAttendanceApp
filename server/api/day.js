@@ -10,7 +10,8 @@ router.get('/:date',async(req, res, next) => {
         const foundDate = await Day.findOne({
             where:{
                 date:req.params.date
-            }
+            },
+            include:[Coverage]
         });
         if(foundDate){
             day = foundDate;

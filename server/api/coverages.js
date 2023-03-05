@@ -1,7 +1,7 @@
 const express = require("express");
 const { Sequelize } = require("sequelize");
 const router = express.Router();
-const { User,Class,UserClass,Coverage } = require("../db");
+const { User,Class,UserClass,Coverage,Day } = require("../db");
 
 // POST localhost:3000/api/coverages
 router.post('/',async(req, res, next) => {
@@ -53,7 +53,13 @@ router.delete('/:classId/:userId/:dayId',async(req, res, next) => {
 // GET localhost:3000/api/coverages
 router.get('/',async(req, res, next) => {
     try {
-        const coverages = await Coverage.findAll();
+        const coverages = await Coverage.findAll({
+            include:[
+                Day,
+                User,
+                Class
+            ]
+        });
         res.send(coverages);
     }catch(error){
         next(error);
