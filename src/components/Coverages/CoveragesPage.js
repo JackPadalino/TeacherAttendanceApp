@@ -55,7 +55,7 @@ const CoveragesPage = () => {
             {Object.keys(coverageDay).length > 0 &&
                 <Box sx={pageLeftRightBox}>
                     <Box sx={pageLeftBox}>
-                        <Typography variant="h4"><Link to={'/single-day'} style={letterDay}>{coverageDay.letterDay} Day</Link></Typography>
+                        <Typography variant="h4"><Link to={'/single-day'} style={letterDay} className="letterDay">{coverageDay.letterDay} Day</Link></Typography>
                         <TeacherSelect/>
                     </Box>
                     <Box sx={pageRightBox}>
@@ -74,7 +74,7 @@ const CoveragesPage = () => {
                                                     eachClass.letterDays.includes(coverageDay.letterDay) && 
                                                     <Box key={eachClass.id}>
                                                         <Typography sx={classTitle} align="center">
-                                                            <Link to={`/coverages/${eachClass.id}/${eachClass.school}/${eachClass.period}/${coverageDay.letterDay}`} style={{textDecoration:"none",color:"blue"}}>{eachClass.name} - {eachClass.period}</Link>
+                                                            <Link to={`/coverages/${eachClass.id}/${eachClass.school}/${eachClass.period}/${coverageDay.letterDay}`} style={{textDecoration:"none",color:"#1976D2"}}>{eachClass.name} - {eachClass.period}</Link>
                                                         </Typography>
                                                         {todaysCoverages.map((eachCoverage)=>{
                                                                 return (
