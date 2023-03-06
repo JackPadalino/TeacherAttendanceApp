@@ -55,7 +55,8 @@ export const pageRightBox = {
 
 export const letterDay = {
     textDecoration:"none",
-    color:"blue"
+    fontSize:"30px",
+    color:"#1976d2",
 };
 
 export const teacherBox = {
@@ -74,14 +75,16 @@ export const teacherNameDelete = {
 
 export const teacherName = {
     fontFamily:'Montserrat',
-    fontSize:"20px"
+    fontSize:"30px"
 };
 
 export const classTitle = {
-    fontFamily:'Montserrat'
+    fontFamily:'Montserrat',
+    fontSize:"22px"
 };
 
 export const coveringTeacher = {
     fontFamily:'Montserrat',
-    color:"green"
+    fontSize:"15px",
+    color:"#008C48"
 };
