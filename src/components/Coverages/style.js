@@ -83,5 +83,6 @@ export const classTitle = {
 
 export const coveringTeacher = {
     fontFamily:'Montserrat',
+    fontSize:"15px",
     color:"green"
 };
