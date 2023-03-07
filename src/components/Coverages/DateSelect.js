@@ -59,7 +59,7 @@ const DateSelect = () => {
                     <DesktopDatePicker
                         label="Date"
                         inputFormat="MM/DD/YYYY"
-                        value={Object.keys(selectedCalendarDate).length > 0 ? selectedCalendarDate : dayjs()}
+                        value={Object.keys(selectedCalendarDate).length > 0 ? selectedCalendarDate : null}
                         onChange={handleDateChange}
                         renderInput={(params) => <TextField {...params} />}
                     />
