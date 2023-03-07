@@ -50,6 +50,17 @@ router.delete('/:classId/:userId/:dayId',async(req, res, next) => {
     };
 });
 
+// DELETE localhost:3000/api/coverages/:coverageId
+router.delete('/:coverageId',async(req, res, next) => {
+    try {
+        const foundCoverage = await Coverage.findByPk(req.params.coverageId);
+        if(foundCoverage) await foundCoverage.destroy();
+        res.sendStatus(200);
+    }catch(error){
+        next(error);
+    };
+});
+
 // GET localhost:3000/api/coverages
 router.get('/',async(req, res, next) => {
     try {
