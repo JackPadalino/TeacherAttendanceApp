@@ -64,7 +64,6 @@ const AvailableCoverages = () => {
         thisClassCoverages.current = todaysCoverages.filter(coverage=>coverage.classId===classId && coverage.dayId===coverageDay.id);
         const userIds = thisClassCoverages.current.flatMap(eachCoverage => eachCoverage.userId);
         setCoveringUserIds(userIds);
-        console.log({"Today's coverages":todaysCoverages,"This class coverages":thisClassCoverages.current});
     };
 
     useEffect(() => {
@@ -73,15 +72,18 @@ const AvailableCoverages = () => {
     }, [allUsers]);
 
     const updateCoverages = async (event) => {
-        //thisClassCoverages.current.forEach(async(coverage)=>await axios.delete(`/api/coverages/${coverage.id}`));
+        // deleting all coverages for this class today
         const deletedCoveragePromises = thisClassCoverages.current.map((coverage)=> axios.delete(`/api/coverages/${coverage.id}`));
         await Promise.all(deletedCoveragePromises);
 
+        // creating new coverages if teachers have been selected
         if(coveringUserIds.length > 0){
             const newCoveragePromises = coveringUserIds.map((id)=>axios.post('/api/coverages',{classId:classId,dayId:coverageDay.id,userId:id}));
             await Promise.all(newCoveragePromises);
             
         };
+
+        // updating the front end
         const [coveragesResponse, usersResponse] = await axios.all([
             axios.get('/api/coverages'),
             axios.get('/api/users'),
@@ -97,7 +99,7 @@ const AvailableCoverages = () => {
         setUpdatedMessage(true);
     };
 
-    // adding a letter day to the letterDays array if not present or removing if present
+    // creating/updating a list of user id's when teachers are selected/deselected
     const handleCoveringUsersChange =(event)=>{
         let updatedCoveringUserIds;
         const newUserId = event.target.value;
