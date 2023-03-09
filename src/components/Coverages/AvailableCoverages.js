@@ -4,16 +4,17 @@ import { useSelector,useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { NotFoundPage } from "..";
 import{ setAllUsers } from '../../store/userSlice';
+import { setAllCoverages,setTodaysCoverages } from "../../store/coverageSlice";
 
 const AvailableCoverages = () => {
-    console.log('available coverages function called!');
     const dispatch = useDispatch();
     const { classId,school,period,letterDay } = useParams();
     const [token, setToken] = useState(window.localStorage.getItem("token"));
     const { allUsers } = useSelector((state) => state.user);
-    const { allAbsentUsers,coverageDay } = useSelector((state) => state.coverage);
+    const { allAbsentUsers,coverageDay,allCoverages,todaysCoverages } = useSelector((state) => state.coverage);
     const [thisClass,setThisClass] = useState({});
     const [thisClassUserIds,setThisClassUserIds] = useState([]);
+    const thisClassCoverages = useRef([]);
     const [teamMeetingUserIds,setTeamMeetingUserIds] = useState([]);
     const [allAvailableUsers,setAllAvailableUsers] = useState([]);
     const [coveringUserIds,setCoveringUserIds] = useState([]);
@@ -60,43 +61,55 @@ const AvailableCoverages = () => {
     
     // creating an array of ID's of teachers covering this class on this letter day
     const fetchCoverages = async() =>{
-        const response = await axios.get('/api/coverages');
-        const thisClassCoverages = response.data.filter(coverage=>coverage.classId===classId && coverage.dayId===coverageDay.id);
-        const userIds = thisClassCoverages.flatMap(eachCoverage => eachCoverage.userId);
+        thisClassCoverages.current = todaysCoverages.filter(coverage=>coverage.classId===classId && coverage.dayId===coverageDay.id);
+        const userIds = thisClassCoverages.current.flatMap(eachCoverage => eachCoverage.userId);
         setCoveringUserIds(userIds);
     };
 
-    
     useEffect(() => {
         fetchAvailableCoverages();
         fetchCoverages();
     }, [allUsers]);
 
-    const updateCoverages = async(event) => {
-        const body = {
-            classId,
-            dayId:coverageDay.id,
-            userIds:coveringUserIds
+    const updateCoverages = async (event) => {
+        // deleting all coverages for this class today
+        const deletedCoveragePromises = thisClassCoverages.current.map((coverage)=> axios.delete(`/api/coverages/${coverage.id}`));
+        await Promise.all(deletedCoveragePromises);
+
+        // creating new coverages if teachers have been selected
+        if(coveringUserIds.length > 0){
+            const newCoveragePromises = coveringUserIds.map((id)=>axios.post('/api/coverages',{classId:classId,dayId:coverageDay.id,userId:id}));
+            await Promise.all(newCoveragePromises);
+            
         };
-        await axios.post('/api/coverages',body);
-        const updatedUsers = await axios.get('/api/users')
-            .then(dispatch(setAllUsers(updatedUsers.data)));
+
+        // updating the front end
+        const [coveragesResponse, usersResponse] = await axios.all([
+            axios.get('/api/coverages'),
+            axios.get('/api/users'),
+        ]);
+        const { data: coverages } = coveragesResponse;
+        const todaysCoverages = coverages.filter(
+            (coverage) => coverage.dayId === coverageDay.id
+        );
+        const { data: users } = usersResponse;
+        dispatch(setAllCoverages(coverages));
+        dispatch(setTodaysCoverages(todaysCoverages));
+        dispatch(setAllUsers(users));
         setUpdatedMessage(true);
     };
 
-    // adding a letter day to the letterDays array if not present or removing if present
+    // creating/updating a list of user id's when teachers are selected/deselected
     const handleCoveringUsersChange =(event)=>{
-        let updatedCoverageUserIds;
+        let updatedCoveringUserIds;
         const newUserId = event.target.value;
         if(!coveringUserIds.includes(newUserId)){
-            updatedCoverageUserIds = [...coveringUserIds,newUserId];
+            updatedCoveringUserIds = [...coveringUserIds,newUserId];
         }else{
-            updatedCoverageUserIds = coveringUserIds.filter(userId=>userId!==newUserId);
+            updatedCoveringUserIds = coveringUserIds.filter(userId=>userId!==newUserId);
         };
-        setCoveringUserIds(updatedCoverageUserIds);
+        setCoveringUserIds(updatedCoveringUserIds);
     };
-
-    console.log(allAvailableUsers);
 
     if(!token) return <NotFoundPage/>
     return (
@@ -110,8 +123,8 @@ const AvailableCoverages = () => {
                         (user.role==='teacher' || user.role==='gangster') && <div key={user.id}>
                             <div style={{display:'flex'}}>
                                 {thisClassUserIds.includes(user.id) && <p style={{'color':'red'}}><i>{user.firstName} {user.lastName} - Co-teacher - Total coverages: {user.coverages.length}</i></p>}
-                                {teamMeetingUserIds.includes(user.id) && <p style={{'color':'green'}}><i>{user.firstName} {user.lastName} - In a team meeting - Total coverages:{user.coverages.length}</i></p>}
-                                {!thisClassUserIds.includes(user.id) && !teamMeetingUserIds.includes(user.id) && <p>{user.firstName} {user.lastName} - Total coverages:{user.coverages.length}</p>}
+                                {teamMeetingUserIds.includes(user.id) && <p style={{'color':'green'}}><i>{user.firstName} {user.lastName} - In a team meeting - Total coverages: {user.coverages.length}</i></p>}
+                                {!thisClassUserIds.includes(user.id) && !teamMeetingUserIds.includes(user.id) && <p>{user.firstName} {user.lastName} - Total coverages: {user.coverages.length}</p>}
                                 {coveringUserIds.includes(user.id) ?
                                 <input type='checkbox' value={user.id} onChange={handleCoveringUsersChange} checked={true}/> :
                                 <input type='checkbox' value={user.id} onChange={handleCoveringUsersChange}/>}

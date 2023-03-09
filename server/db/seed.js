@@ -1,3 +1,9 @@
+const dayjs = require('dayjs');
+var utc = require('dayjs/plugin/utc');
+var timezone = require('dayjs/plugin/timezone');
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
 const {
     db,
     User,
@@ -538,37 +544,37 @@ const seed = async () => {
 
     //-------------create all days here-------------//
     const dayList = [
-        {date:new Date('2022-12-16'),letterDay:'A'},
-        {date:new Date('2022-12-19'),letterDay:'B'},
-        {date:new Date('2022-12-20'),letterDay:'A'},
-        {date:new Date('2022-12-21'),letterDay:'D'},
-        {date:new Date('2022-12-22'),letterDay:'E'},
-        {date:new Date('2022-12-23'),letterDay:'F'}
+        {date:dayjs.tz('2023-02-24',"America/New_York"),letterDay:'A'},
+        {date:dayjs.tz('2023-02-27',"America/New_York"),letterDay:'B'},
+        {date:dayjs.tz('2023-02-28',"America/New_York"),letterDay:'A'},
+        {date:dayjs.tz('2023-03-01',"America/New_York"),letterDay:'D'},
+        {date:dayjs.tz('2023-03-02',"America/New_York"),letterDay:'E'},
+        {date:dayjs.tz('2023-03-03',"America/New_York"),letterDay:'F'},
     ];
 
     const [
-        December162022,
-        December192022,
-        December202022,
-        December212022,
-        December222022,
-        December232022,
+        February242023,
+        February272023,
+        February282023,
+        March012023,
+        March022023,
+        March032023,
     ] = await Promise.all(dayList.map((day) => Day.create(day)));
 
     //-------------create all asbences here-------------//
     const absenceList = [
         // December 16 2022 absences
-        {userId:JackPadalino.id,dayId:December162022.id},
-        {userId:ShiraCollado.id,dayId:December162022.id},
+        {userId:JackPadalino.id,dayId:February242023.id},
+        {userId:ShiraCollado.id,dayId:February242023.id},
         // December 19 2022 absences
-        {userId:ChakaBaker.id,dayId:December192022.id},
-        {userId:LisaLyons.id,dayId:December192022.id},
+        {userId:ChakaBaker.id,dayId:February272023.id},
+        {userId:LisaLyons.id,dayId:February272023.id},
         // December 20 2022 absences
-        {userId:TeahWatson.id,dayId:December202022.id},
-        {userId:RitaReinoso.id,dayId:December202022.id},
+        {userId:TeahWatson.id,dayId:February282023.id},
+        {userId:RitaReinoso.id,dayId:February282023.id},
         // December 21 2022 absences
         //{userId:ChikudiRichardson.id,dayId:December212022.id},
-        {userId:VirginiaFord.id,dayId:December212022.id},
+        {userId:VirginiaFord.id,dayId:March012023.id},
     ];
 
     await Promise.all(absenceList.map((absence) => Absence.create(absence)));

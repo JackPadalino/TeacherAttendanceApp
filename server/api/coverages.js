@@ -1,7 +1,7 @@
 const express = require("express");
 const { Sequelize } = require("sequelize");
 const router = express.Router();
-const { User,Class,UserClass,Coverage } = require("../db");
+const { User,Class,UserClass,Coverage,Day } = require("../db");
 
 // POST localhost:3000/api/coverages
 router.post('/',async(req, res, next) => {
@@ -9,23 +9,12 @@ router.post('/',async(req, res, next) => {
         const coverageData = {
             classId:req.body.classId,
             dayId:req.body.dayId,
-            userIds:req.body.userIds,
+            userId:req.body.userId,
         };
-        const foundCoverages = await Coverage.findAll({
-            where:{
-                classId:coverageData.classId,
-                dayId:coverageData.dayId
-            }
-        });
-        foundCoverages.forEach(async(coverage)=>{
-            await coverage.destroy();
-        });
-        coverageData.userIds.forEach(async(userId)=>{
-            await Coverage.create({
-                classId:coverageData.classId,
-                dayId:coverageData.dayId,
-                userId:userId
-            });
+        await Coverage.create({
+            classId:coverageData.classId,
+            dayId:coverageData.dayId,
+            userId:coverageData.userId
         });
         res.sendStatus(200);
     }catch(error){
@@ -33,16 +22,27 @@ router.post('/',async(req, res, next) => {
     };
 });
 
-// DELETE localhost:3000/api/coverages
-router.delete('/:classId/:userId/:dayId',async(req, res, next) => {
+// // DELETE localhost:3000/api/coverages
+// router.delete('/:classId/:userId/:dayId',async(req, res, next) => {
+//     try {
+//         const foundCoverage = await Coverage.findOne({
+//             where:{
+//                 classId:req.params.classId,
+//                 userId:req.params.userId,
+//                 dayId:req.params.dayId
+//             }
+//         });
+//         if(foundCoverage) await foundCoverage.destroy();
+//         res.sendStatus(200);
+//     }catch(error){
+//         next(error);
+//     };
+// });
+
+// DELETE localhost:3000/api/coverages/:coverageId
+router.delete('/:coverageId',async(req, res, next) => {
     try {
-        const foundCoverage = await Coverage.findOne({
-            where:{
-                classId:req.params.classId,
-                userId:req.params.userId,
-                dayId:req.params.dayId
-            }
-        });
+        const foundCoverage = await Coverage.findByPk(req.params.coverageId);
         if(foundCoverage) await foundCoverage.destroy();
         res.sendStatus(200);
     }catch(error){
@@ -53,7 +53,13 @@ router.delete('/:classId/:userId/:dayId',async(req, res, next) => {
 // GET localhost:3000/api/coverages
 router.get('/',async(req, res, next) => {
     try {
-        const coverages = await Coverage.findAll();
+        const coverages = await Coverage.findAll({
+            include:[
+                Day,
+                User,
+                Class
+            ]
+        });
         res.send(coverages);
     }catch(error){
         next(error);

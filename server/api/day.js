@@ -12,12 +12,7 @@ router.get('/:date',async(req, res, next) => {
                 date:req.params.date
             }
         });
-        if(foundDate){
-            day = foundDate;
-        }else{
-            day = {}; // sending back an empty object if day does not exist
-        };
-        res.send(day);
+        res.send(foundDate);
     }catch(error){
         next(error);
     };
