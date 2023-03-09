@@ -27,7 +27,7 @@ import {
 
 const CoveragesPage = () => {
     const dispatch = useDispatch()
-    const { coverageDay,allAbsentUsers,todaysCoverages,todaysCoveredClassesIds } = useSelector((state) => state.coverage);
+    const { coverageDay,allAbsentUsers,allCoverages,todaysCoverages,todaysCoveredClassesIds } = useSelector((state) => state.coverage);
     const [token, setToken] = useState(window.localStorage.getItem("token"));
 
     const deleteAbsence = async(event) => {
@@ -46,7 +46,7 @@ const CoveragesPage = () => {
         const userPromises = absences.data.map(absence => axios.get(`/api/users/${absence.user.id}`));
         const userResponses = await Promise.all(userPromises);
         const userAbsences = userResponses.map(response => response.data);
-        dispatch(setAllAbsentUsers(userAbsences)); // setting the global list of absent users in Redux store
+        dispatch(setAllAbsentUsers(userAbsences));
 
         // updating front end
         const updatedCoverages = await axios.get("/api/coverages");

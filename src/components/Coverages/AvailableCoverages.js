@@ -11,9 +11,10 @@ const AvailableCoverages = () => {
     const { classId,school,period,letterDay } = useParams();
     const [token, setToken] = useState(window.localStorage.getItem("token"));
     const { allUsers } = useSelector((state) => state.user);
-    const { allAbsentUsers,coverageDay,todaysCoverages } = useSelector((state) => state.coverage);
+    const { allAbsentUsers,coverageDay,allCoverages,todaysCoverages } = useSelector((state) => state.coverage);
     const [thisClass,setThisClass] = useState({});
     const [thisClassUserIds,setThisClassUserIds] = useState([]);
+    const thisClassCoverages = useRef([]);
     const [teamMeetingUserIds,setTeamMeetingUserIds] = useState([]);
     const [allAvailableUsers,setAllAvailableUsers] = useState([]);
     const [coveringUserIds,setCoveringUserIds] = useState([]);
@@ -60,10 +61,10 @@ const AvailableCoverages = () => {
     
     // creating an array of ID's of teachers covering this class on this letter day
     const fetchCoverages = async() =>{
-        const response = await axios.get('/api/coverages');
-        const thisClassCoverages = response.data.filter(coverage=>coverage.classId===classId && coverage.dayId===coverageDay.id);
-        const userIds = thisClassCoverages.flatMap(eachCoverage => eachCoverage.userId);
+        thisClassCoverages.current = todaysCoverages.filter(coverage=>coverage.classId===classId && coverage.dayId===coverageDay.id);
+        const userIds = thisClassCoverages.current.flatMap(eachCoverage => eachCoverage.userId);
         setCoveringUserIds(userIds);
+        console.log({"Today's coverages":todaysCoverages,"This class coverages":thisClassCoverages.current});
     };
 
     useEffect(() => {
@@ -71,32 +72,41 @@ const AvailableCoverages = () => {
         fetchCoverages();
     }, [allUsers]);
 
-    const updateCoverages = async(event) => {
-        const body = {
-            classId,
-            dayId:coverageDay.id,
-            userIds:coveringUserIds
+    const updateCoverages = async (event) => {
+        //thisClassCoverages.current.forEach(async(coverage)=>await axios.delete(`/api/coverages/${coverage.id}`));
+        const deletedCoveragePromises = thisClassCoverages.current.map((coverage)=> axios.delete(`/api/coverages/${coverage.id}`));
+        await Promise.all(deletedCoveragePromises);
+
+        if(coveringUserIds.length > 0){
+            const newCoveragePromises = coveringUserIds.map((id)=>axios.post('/api/coverages',{classId:classId,dayId:coverageDay.id,userId:id}));
+            await Promise.all(newCoveragePromises);
+            
         };
-        await axios.post('/api/coverages',body);
-        const updatedCoverages = await axios.get("/api/coverages");
-        dispatch(setAllCoverages(updatedCoverages.data));
-        const todaysCoverages = updatedCoverages.data.filter((coverage)=>coverage.dayId===coverageDay.id);
+        const [coveragesResponse, usersResponse] = await axios.all([
+            axios.get('/api/coverages'),
+            axios.get('/api/users'),
+        ]);
+        const { data: coverages } = coveragesResponse;
+        const todaysCoverages = coverages.filter(
+            (coverage) => coverage.dayId === coverageDay.id
+        );
+        const { data: users } = usersResponse;
+        dispatch(setAllCoverages(coverages));
         dispatch(setTodaysCoverages(todaysCoverages));
-        await axios.get('/api/users')
-            .then((updatedUsers) => dispatch(setAllUsers(updatedUsers.data)));
+        dispatch(setAllUsers(users));
         setUpdatedMessage(true);
     };
 
     // adding a letter day to the letterDays array if not present or removing if present
     const handleCoveringUsersChange =(event)=>{
-        let updatedCoverageUserIds;
+        let updatedCoveringUserIds;
         const newUserId = event.target.value;
         if(!coveringUserIds.includes(newUserId)){
-            updatedCoverageUserIds = [...coveringUserIds,newUserId];
+            updatedCoveringUserIds = [...coveringUserIds,newUserId];
         }else{
-            updatedCoverageUserIds = coveringUserIds.filter(userId=>userId!==newUserId);
+            updatedCoveringUserIds = coveringUserIds.filter(userId=>userId!==newUserId);
         };
-        setCoveringUserIds(updatedCoverageUserIds);
+        setCoveringUserIds(updatedCoveringUserIds);
     };
 
     if(!token) return <NotFoundPage/>
