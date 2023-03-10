@@ -3,7 +3,8 @@ import React, { useState,useEffect,useRef } from 'react';
 import { useNavigate,useParams,Link } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
 import { NotFoundPage } from "..";
-import { setCoverageDay,resetCoverageDay,setAllAbsentUsers } from "../../store/coverageSlice";
+import { setAllUsers } from "../../store/userSlice";
+import { setCoverageDay,resetCoverageDay,setAllAbsentUsers,setAllCoverages,resetTodaysCoverages } from "../../store/coverageSlice";
 import { Box,Typography,Button,InputLabel,Select,MenuItem,FormControl,Modal} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
@@ -13,7 +14,7 @@ import { mainContainer,title,formBox,formStyle,modalStyle } from "./style";
 const SingleDay = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { coverageDay } = useSelector((state) => state.coverage);
+    const { coverageDay,todaysCoverages } = useSelector((state) => state.coverage);
     const [token, setToken] = useState(window.localStorage.getItem("token"));
     
     const [modalOpen, setModalOpen] = useState(false);
@@ -27,9 +28,22 @@ const SingleDay = () => {
         setLetterDay(event.target.value);
     };
 
+    // function to delete all coverages for this day if letter day is changed or if day is deleted
+    const deleteCoverages = async()=>{
+        const coveragePromises = todaysCoverages.map((coverage)=> axios.delete(`/api/coverages/${coverage.id}`));
+        await Promise.all(coveragePromises);
+        // updating front end
+        const {data:updatedCoverages} = await axios.get("/api/coverages");
+        const {data:updatedUsers} = await axios.get("/api/users");
+        dispatch(setAllCoverages(updatedCoverages));
+        dispatch(resetTodaysCoverages());
+        dispatch(setAllUsers(updatedUsers));
+    };
+
     const updateDay = async(event) =>{
         event.preventDefault();
         try{
+            deleteCoverages();
             const body = {
                 date,
                 letterDay
@@ -43,6 +57,7 @@ const SingleDay = () => {
     };
 
     const deleteDay = async()=> {
+        deleteCoverages();
         const absences = await axios.get(`/api/attendance/absences/${coverageDay.date}`);
         const userPromises = absences.data.map(absence => axios.get(`/api/users/${absence.user.id}`));
         const userResponses = await Promise.all(userPromises);
