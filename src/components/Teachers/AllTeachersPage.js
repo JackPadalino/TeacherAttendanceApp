@@ -3,58 +3,17 @@ import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { NotFoundPage } from "..";
 import CreateTeacherForm from './CreateTeacherForm';
-import { Box,Modal,Button,Typography} from '@mui/material';
-
-const pageStyle = {
-    display:'flex',
-    flexDirection:'column',
-    gap:'20px'
-};
-
-const headingStyle={
-    marginBottom:'0px'
-};
-
-const buttonStyle={
-    all:'unset',
-    cursor:'pointer',
-    textDecoration:'underline',
-    color:'blue'
-};
-
-const parentModalStyle = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 200,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    pt: 5,
-    px: 2,
-    pb: 5,
-    display:'flex',
-    justifyContent:'center',
-    alignItems:"center",
-  };
-
-const childModalStyle = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 300,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    pt: 5,
-    px: 2,
-    pb: 5,
-    display:'flex',
-    justifyContent:'center',
-    alignItems:"center",
-  };
+import { Box,Container,Typography,Modal,List,ListItem,ListItemIcon,Button,ListItemText} from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import Avatar from '@mui/material/Avatar';
+import { 
+    mainContainer,
+    headingStyle,
+    teacherName,
+    buttonStyle,
+    parentModalStyle,
+    childModalStyle
+ } from "./style";
 
 const AllTeachersPage = () => {
     const { allUsers } = useSelector((state) => state.user);
@@ -73,7 +32,7 @@ const AllTeachersPage = () => {
     
     if(!token) return <NotFoundPage/>
     return (
-        <div style={pageStyle}>
+        <Box sx={mainContainer}>
             <Modal
                 open={parentModalOpen}
                 onClose={handleParentModal}
@@ -94,20 +53,27 @@ const AllTeachersPage = () => {
                     <Typography variant="h5">New teacher added!</Typography>
                 </Box>
             </Modal>
-            <div>
-                <h1 style={headingStyle}>All teachers</h1>
-                <button style={buttonStyle} onClick={handleParentModal}>Add a teacher</button>
-            </div>
-            <div>
+            <Box>
+                <Typography variant="h3" sx={headingStyle}>All Teachers</Typography>
+                
+                
+            </Box>
+            <Box>
+                {/* <Avatar sx={{ bgcolor: "white",width:30,height:30,border: '1px solid #1976d2' }}>
+                    <AddIcon sx={{cursor:"pointer",color:"#1976d2"}} onClick={handleParentModal}/>
+                </Avatar> */}
+                <Button sx={buttonStyle} variant="outlined" size="small" onClick={handleParentModal}>Add a teacher</Button>
                 {allUsers.map((user) => {
                     return (
-                        <div key={user.id}>
-                            <Link to={`/teachers/${user.id}`}>{user.firstName} {user.lastName}</Link>
-                        </div>  
+                        <Box key={user.id}>
+                            <Typography sx={teacherName}>
+                                <Link to={`/teachers/${user.id}`}>{user.firstName} {user.lastName}</Link>
+                            </Typography>
+                        </Box>  
                     );
                 })}
-            </div>
-        </div>
+            </Box>
+        </Box>
     );
 };
 
