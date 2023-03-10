@@ -9,9 +9,9 @@
     "test": "JWT=shhhhh mocha",
     "test:dev": "DATABASE_URL=postgres://localhost/ams_att_db npm run test -- --watch",
     "test:dev:quiet": "QUIET=true npm run test:dev",
-    "start": "DATABASE_URL=postgresql://JackPadalino:v2_3zxgf_XaEQ9HdsGzsKk3bTm2SJLZV@db.bit.io:5432/JackPadalino/ams_att_db?ssl=true JWT=felix nodemon server/index.js --ignore dist/ --ignore src/ & npm run build:dev",
+    "start": "NODE_ENV=DB_URL NODE_ENV=JWT nodemon server/index.js --ignore dist/ --ignore src/ & npm run build:dev",
     "seed": "node server/db/seed.js",
-    "seed-bit":"DATABASE_URL=postgresql://JackPadalino:v2_3zxgf_XaEQ9HdsGzsKk3bTm2SJLZV@db.bit.io:5432/JackPadalino/ams_att_db?ssl=true node server/db/seed.js"
+    "seed-bit":"NODE_ENV=DB_URL node server/db/seed.js"
   },
   "keywords": [],
   "author": "",
