@@ -62,7 +62,7 @@ const AllTeachersPage = () => {
                 {/* <Avatar sx={{ bgcolor: "white",width:30,height:30,border: '1px solid #1976d2' }}>
                     <AddIcon sx={{cursor:"pointer",color:"#1976d2"}} onClick={handleParentModal}/>
                 </Avatar> */}
-                <Button sx={buttonStyle} variant="outlined" size="small" onClick={handleParentModal}>Add a teacher</Button>
+                <Button sx={buttonStyle} variant="outlined" size="small" onClick={handleParentModal}><AddIcon/>Add a teacher</Button>
                 {allUsers.map((user) => {
                     return (
                         <Box key={user.id}>

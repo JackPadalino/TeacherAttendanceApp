@@ -3,27 +3,24 @@ import { Link } from 'react-router-dom';
 import { NotFoundPage } from "../..";
 import { useSelector } from "react-redux";
 import CreateClassForm from "./CreateClassForm";
-
-const pageStyle = {
-    display:'flex',
-    flexDirection:'column',
-    gap:'20px'
-};
-
-const headingStyle={
-    marginBottom:'0px'
-};
-
-const buttonStyle={
-    all:'unset',
-    cursor:'pointer',
-    textDecoration:'underline',
-    color:'blue'
-};
+import { Box,Container,Typography,Modal,List,ListItem,ListItemIcon,Button,ListItemText} from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import Avatar from '@mui/material/Avatar';
+import { 
+    mainContainer,
+    headingStyle,
+    className,
+    buttonStyle,
+    parentModalStyle,
+    childModalStyle
+ } from "./style";
 
 const AllClassesPage = () => {
     const [token, setToken] = useState(window.localStorage.getItem("token"));
     const { allClasses } = useSelector((state) => state.class);
+    const [parentModalOpen,setParentModalOpen] = useState(false);
+    const [successModalOpen,setSuccessModalOpen] = useState(false);
+
     const [showForm,setShowForm] = useState(false);
     const [showButton,setShowButton] = useState(true);
 
@@ -31,25 +28,59 @@ const AllClassesPage = () => {
         setShowForm(true);
         setShowButton(false);
     };
+
+    // functions for handling modals
+    const handleParentModal = () => {
+        setParentModalOpen(parentModalOpen ? false : true);
+    };
+
+    const handleSuccessModal = () => {
+        setSuccessModalOpen(successModalOpen ? false : true);
+    };
     
     if(!token) return <NotFoundPage/>
     return (
-        <div style={pageStyle}>
-            <div>
-                <h1 style={headingStyle}>All classes</h1>
+        <Box sx={mainContainer}>
+            <Modal
+                open={parentModalOpen}
+                onClose={handleParentModal}
+                aria-labelledby="parent-modal-title"
+                aria-describedby="parent-modal-description"
+            >
+                <Box sx={parentModalStyle}>
+                    {/* <CreateTeacherForm handleParentModal={handleParentModal} handleSuccessModal={handleSuccessModal}/> */}
+                    <Typography variant="h5">This is a modal!</Typography>
+                </Box>
+            </Modal>
+            <Modal
+                open={successModalOpen}
+                onClose={handleSuccessModal}
+                aria-labelledby="parent-modal-title"
+                aria-describedby="parent-modal-description"
+                >
+                <Box sx={childModalStyle}>
+                    <Typography variant="h5">New class added!</Typography>
+                </Box>
+            </Modal>
+            <Box>
+            <Typography variant="h3" sx={headingStyle}>All Classes</Typography>
                 {showButton && <button style={buttonStyle} onClick={showHideButton}>Add a class</button>}
                 {showForm && <CreateClassForm setShowForm={setShowForm} setShowButton={setShowButton}/>}
-            </div>
-            <div>
+            </Box>
+            <Box>
+            <Button sx={buttonStyle} variant="outlined" size="small" onClick={handleParentModal}><AddIcon/>Add a class</Button>
                 {allClasses.map((eachClass) => {
                     return (
-                        eachClass.name!=='Team meeting' && <div key={eachClass.id}>
-                            <Link to={`/classes/${eachClass.id}`}>{eachClass.name}</Link>
-                        </div>  
+                        eachClass.name!=='Team meeting' && 
+                        <Box key={eachClass.id}>
+                            <Typography sx={className}>
+                                <Link to={`/classes/${eachClass.id}`}>{eachClass.name}</Link>
+                            </Typography>
+                        </Box>  
                     );
                 })}
-            </div>
-        </div>
+            </Box>
+        </Box>
     );
 };
 

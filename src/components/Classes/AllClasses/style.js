@@ -10,11 +10,10 @@ export const mainContainer = {
 };
 
 export const headingStyle={
-    fontFamily:"Montserrat",
     marginBottom:'0px'
 };
 
-export const teacherName = {
+export const className = {
     fontFamily:'Montserrat',
     fontSize:"22px"
 };
