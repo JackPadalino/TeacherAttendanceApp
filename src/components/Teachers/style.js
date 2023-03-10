@@ -23,7 +23,7 @@ export const buttonStyle={
     cursor:'pointer',
     fontFamily:"Montserrat",
     borderRadius:3,
-    marginBottom:"30px"
+    //marginBottom:"30px"
 };
 
 export const parentModalStyle = {

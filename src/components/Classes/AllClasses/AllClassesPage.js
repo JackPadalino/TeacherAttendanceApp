@@ -63,12 +63,14 @@ const AllClassesPage = () => {
                 </Box>
             </Modal>
             <Box>
-            <Typography variant="h3" sx={headingStyle}>All Classes</Typography>
-                {showButton && <button style={buttonStyle} onClick={showHideButton}>Add a class</button>}
-                {showForm && <CreateClassForm setShowForm={setShowForm} setShowButton={setShowButton}/>}
+                <Button sx={buttonStyle} variant="outlined" size="small" onClick={handleParentModal}><AddIcon/>Add a class</Button>
             </Box>
             <Box>
-            <Button sx={buttonStyle} variant="outlined" size="small" onClick={handleParentModal}><AddIcon/>Add a class</Button>
+                <Typography variant="h3" sx={headingStyle}>All Classes</Typography>
+                {/* {showButton && <button style={buttonStyle} onClick={showHideButton}>Add a class</button>}
+                {showForm && <CreateClassForm setShowForm={setShowForm} setShowButton={setShowButton}/>} */}
+            </Box>
+            <Box>
                 {allClasses.map((eachClass) => {
                     return (
                         eachClass.name!=='Team meeting' && 

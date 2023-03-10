@@ -62,7 +62,7 @@ const CoveragesPage = () => {
         <Box sx={mainContainer}>
             <Box sx={titleDateContainer}>
                 <Typography variant="h3" sx={title}>Absences/Coverages</Typography>
-                {Object.keys(coverageDay).length===0 && <Typography sx={dateNotFound}>No information about this date. Please select a letter day to get started.</Typography>}
+                {Object.keys(coverageDay).length===0 && <Typography sx={dateNotFound}>No information about this date. Please select a date/letter day to get started.</Typography>}
                 
                 <Box sx={letterDaySelect}>
                     <DateSelect/> {Object.keys(coverageDay).length===0 && <LetterDaySelect/>}

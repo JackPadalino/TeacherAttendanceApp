@@ -1,10 +1,22 @@
 import axios from 'axios';
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useRef } from 'react';
 import { useNavigate,useParams } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
 import { NotFoundPage } from "..";
 import { ClassSelect,AddExtraPeriodForm } from ".";
 import { setAllUsers } from "../../store/userSlice";
+import { 
+    Box,
+    Container,
+    Typography,
+    TextField,
+    List,
+    ListItem,
+    ListItemIcon,
+    Button,
+    ListItemText
+} from '@mui/material';
+import SchoolIcon from '@mui/icons-material/School';
 
 const formStyle = {
     display:'flex',
@@ -136,46 +148,54 @@ const SingleTeacherPage = () => {
     if(!token) return <NotFoundPage/>
     if(loading) return <p>Loading...</p>
     return (
-        <>
-            <h1>Teacher profile</h1>
+        <Box>
             <form onSubmit={updateTeacher} style={formStyle}>
-                <div>
-                    <h3>Personal info.</h3>
-                    <input value={firstName} onChange={handleFirstNameChange}/>
-                    <input value={lastName} onChange={handleLastNameChange}/>
-                    <input value={phoneNumber} onChange={handlePhoneNumberChange}/>
-                </div>
-                <div>
-                    <h3>Schedule</h3>
-                    <ul>
+                <Box>
+                    <Typography variant="h3" sx={{fontFamily:"Montserrat",marginBottom:'0px'}}>{firstName} {lastName}</Typography>
+                    <Typography variant="h5" sx={{fontFamily:"Montserrat",marginBottom:'0px'}}>Schedule</Typography>
+                    <List>
                         {classes.map((eachClass) => {
                             return (
-                                <div key={eachClass.id}>
-                                    <li>{eachClass.name} - {eachClass.period} - {eachClass.letterDays}</li>
-                                </div>  
+                                <ListItem key={eachClass.id}>
+                                    <ListItemIcon>
+                                        <SchoolIcon />
+                                    </ListItemIcon>
+                                    <ListItemText sx={{fontFamily:"Montserrat"}} primary={`${eachClass.name} - ${eachClass.period} - ${eachClass.letterDays}`}/>
+                                </ListItem>
                             );
                         })}
-                    </ul>
-                </div>
-                <div>
+                    </List>
+                    <List>
+                        
+
+                    </List>
+                    
+                </Box>
+                <Box>
+                    
+                </Box>
+                <Box>
+                    <TextField id="outlined-basic" label="First name" variant="outlined" value={firstName} onChange={handleFirstNameChange}/>
+                    <TextField id="outlined-basic" label="Last name" variant="outlined" value={lastName} onChange={handleLastNameChange}/>
+                    <TextField id="outlined-basic" label="Phone number" variant="outlined" value={phoneNumber} onChange={handlePhoneNumberChange}/>
                     <ClassSelect handleClassChange={handleClassChange}/>
-                </div>
-                <div>
+                </Box>
+                <Box>
                     <AddExtraPeriodForm 
                     handleClassNameChange={handleClassNameChange} 
                     handleSchoolChange={handleSchoolChange} 
                     handlePeriodChange={handlePeriodChange} 
                     handleLetterDaysChange={handleLetterDaysChange}
                     />
-                </div>
-                <button type='submit' style={{width:'56px'}}>Update</button>
+                </Box>
+                <Button type='submit' style={{width:'56px'}}>Update</Button>
             </form>
             {userUpdatedMessage && <p style={{ color: "green", marginTop: "10px" }}>Teacher successfully updated.</p>}
             {!confirmDeleteMessage && <button onClick={() => confirmDelete()}>Delete</button>}
             {confirmDeleteMessage && <p style={{color:'red'}}>Are you sure you want to delete this teacher?</p>}
             {confirmDeleteMessage && <button onClick={() => confirmDelete()}>Cancel</button>}
             {confirmDeleteMessage && <button onClick={() => deleteTeacher()}>Delete</button>}
-        </>
+        </Box>
     );
 };
 
