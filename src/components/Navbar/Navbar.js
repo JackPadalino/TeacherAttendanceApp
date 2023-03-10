@@ -39,7 +39,7 @@ const Navbar = () => {
       </div>}
       <div style={navRight}>
         {!user.id && <Link style={linkStyle} to="/login">Login</Link>}
-        {user.id && <AddIcon
+        {/* {user.id && <AddIcon
           id="demo-positioned-button"
           aria-controls={addMenuOpen ? 'demo-positioned-menu' : undefined}
           aria-haspopup="true"
@@ -64,7 +64,7 @@ const Navbar = () => {
           >
             <MenuItem ><Link to="/teachers" style={linkStyle}>Add new teacher</Link></MenuItem>
             <MenuItem ><Link to="/classes" style={linkStyle}>Add new class</Link></MenuItem>
-          </Menu>
+          </Menu> */}
         {user.id && <button onClick={logout} style={buttonStyle}>Logout</button>}
       </div>
     </div>
