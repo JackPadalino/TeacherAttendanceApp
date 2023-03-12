@@ -19,7 +19,11 @@ import {
     InputLabel,
     Select,
     FormControl,
-    MenuItem
+    MenuItem,
+    FormGroup,
+    FormLabel,
+    FormControlLabel,
+    Checkbox
 } from '@mui/material';
 import SchoolIcon from '@mui/icons-material/School';
 import {
@@ -156,9 +160,9 @@ const SingleTeacherPage = () => {
     if(!token) return <NotFoundPage/>
     if(loading) return <p>Loading...</p>
     return (
-        <Box>
+        <Box sx={singleTeacherMainContainer}>
             <form onSubmit={updateTeacher} style={formStyle}>
-                <Box sx={singleTeacherMainContainer}>
+                <Box>
                     <Box>
                         <Typography variant="h3" sx={{fontFamily:"Montserrat",marginBottom:'0px'}}>{firstName} {lastName}</Typography>
                     </Box>
@@ -251,20 +255,17 @@ const SingleTeacherPage = () => {
                     </FormControl>
                 </Box>
                 <Box>
-                    
-                    <label>Letter days</label>
-                    <input type="checkbox" name="A day" value="A" onChange={handleLetterDaysChange}/>
-                    <label htmlFor="A day">A</label>
-                    <input type="checkbox" name="B day" value="B" onChange={handleLetterDaysChange}/>
-                    <label htmlFor="B day">B</label>
-                    <input type="checkbox" name="C day" value="C" onChange={handleLetterDaysChange}/>
-                    <label htmlFor="C day">C</label>
-                    <input type="checkbox" name="D day" value="D" onChange={handleLetterDaysChange}/>
-                    <label htmlFor="D day">D</label>
-                    <input type="checkbox" name="E day" value="E" onChange={handleLetterDaysChange}/>
-                    <label htmlFor="E day">E</label>
-                    <input type="checkbox" name="F day" value="F" onChange={handleLetterDaysChange}/>
-                    <label htmlFor="F day">F</label>
+                    <FormControl>
+                        <FormLabel>Letter Days</FormLabel>
+                        <Box>
+                            <FormControlLabel control={<Checkbox value="A" onChange={handleLetterDaysChange}/>} label="A" />
+                            <FormControlLabel control={<Checkbox value="B" onChange={handleLetterDaysChange}/>} label="B" />
+                            <FormControlLabel control={<Checkbox value="C" onChange={handleLetterDaysChange}/>} label="C" />
+                            <FormControlLabel control={<Checkbox value="D" onChange={handleLetterDaysChange}/>} label="D" />
+                            <FormControlLabel control={<Checkbox value="E" onChange={handleLetterDaysChange}/>} label="E" />
+                            <FormControlLabel control={<Checkbox value="F" onChange={handleLetterDaysChange}/>} label="F" />
+                        </Box>
+                    </FormControl>
                 </Box>
                 <Button type='submit' style={{width:'56px'}}>Update</Button>
                 {/* <Grid container spacing={2}>
