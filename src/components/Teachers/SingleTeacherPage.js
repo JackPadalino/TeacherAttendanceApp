@@ -17,6 +17,9 @@ import {
     ListItemText
 } from '@mui/material';
 import SchoolIcon from '@mui/icons-material/School';
+import {
+    singleTeacherMainContainer
+} from "./style";
 
 const formStyle = {
     display:'flex',
@@ -150,29 +153,25 @@ const SingleTeacherPage = () => {
     return (
         <Box>
             <form onSubmit={updateTeacher} style={formStyle}>
-                <Box>
-                    <Typography variant="h3" sx={{fontFamily:"Montserrat",marginBottom:'0px'}}>{firstName} {lastName}</Typography>
-                    <Typography variant="h5" sx={{fontFamily:"Montserrat",marginBottom:'0px'}}>Schedule</Typography>
-                    <List>
-                        {classes.map((eachClass) => {
-                            return (
-                                <ListItem key={eachClass.id}>
-                                    <ListItemIcon>
-                                        <SchoolIcon />
-                                    </ListItemIcon>
-                                    <ListItemText sx={{fontFamily:"Montserrat"}} primary={`${eachClass.name} - ${eachClass.period} - ${eachClass.letterDays}`}/>
-                                </ListItem>
-                            );
-                        })}
-                    </List>
-                    <List>
-                        
-
-                    </List>
-                    
-                </Box>
-                <Box>
-                    
+                <Box sx={singleTeacherMainContainer}>
+                    <Box>
+                        <Typography variant="h3" sx={{fontFamily:"Montserrat",marginBottom:'0px'}}>{firstName} {lastName}</Typography>
+                    </Box>
+                    <Box>
+                        <Typography variant="h5" sx={{fontFamily:"Montserrat",marginBottom:'0px'}}>Schedule</Typography>
+                        <List>
+                            {classes.map((eachClass) => {
+                                return (
+                                    <ListItem key={eachClass.id}>
+                                        <ListItemIcon>
+                                            <SchoolIcon />
+                                        </ListItemIcon>
+                                        <ListItemText sx={{fontFamily:"Montserrat"}} primary={`${eachClass.name} - ${eachClass.period} - ${eachClass.letterDays}`}/>
+                                    </ListItem>
+                                );
+                            })}
+                        </List>
+                    </Box>
                 </Box>
                 <Box>
                     <TextField id="outlined-basic" label="First name" variant="outlined" value={firstName} onChange={handleFirstNameChange}/>

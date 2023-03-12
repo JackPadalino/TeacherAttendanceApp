@@ -59,3 +59,14 @@ export const childModalStyle = {
     justifyContent:'center',
     alignItems:"center",
   };
+
+export const singleTeacherMainContainer = {
+    display: "flex",
+    flexDirection: "column",
+    gap:"50px",
+    //placeSelf: "center",
+    //placeItems: "center",
+    //placeContent: "center center",
+    position: "relative",
+    top: "5vh",
+};
