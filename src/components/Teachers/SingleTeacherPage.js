@@ -7,6 +7,7 @@ import { ClassSelect,AddExtraPeriodForm } from ".";
 import { setAllUsers } from "../../store/userSlice";
 import { 
     Box,
+    Grid,
     Container,
     Typography,
     TextField,
@@ -14,7 +15,11 @@ import {
     ListItem,
     ListItemIcon,
     Button,
-    ListItemText
+    ListItemText,
+    InputLabel,
+    Select,
+    FormControl,
+    MenuItem
 } from '@mui/material';
 import SchoolIcon from '@mui/icons-material/School';
 import {
@@ -176,18 +181,106 @@ const SingleTeacherPage = () => {
                 <Box>
                     <TextField id="outlined-basic" label="First name" variant="outlined" value={firstName} onChange={handleFirstNameChange}/>
                     <TextField id="outlined-basic" label="Last name" variant="outlined" value={lastName} onChange={handleLastNameChange}/>
-                    <TextField id="outlined-basic" label="Phone number" variant="outlined" value={phoneNumber} onChange={handlePhoneNumberChange}/>
-                    <ClassSelect handleClassChange={handleClassChange}/>
+                    {/* <TextField id="outlined-basic" label="Phone number" variant="outlined" value={phoneNumber} onChange={handlePhoneNumberChange}/> */}
                 </Box>
                 <Box>
-                    <AddExtraPeriodForm 
-                    handleClassNameChange={handleClassNameChange} 
-                    handleSchoolChange={handleSchoolChange} 
-                    handlePeriodChange={handlePeriodChange} 
-                    handleLetterDaysChange={handleLetterDaysChange}
-                    />
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">Add a class</InputLabel>
+                        <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                label="Class"
+                                onChange={handleClassChange}
+                        >
+                            {allClasses.map((eachClass) => {
+                                return (
+                                    eachClass.name!=='Team meeting' && 
+                                    <MenuItem key={eachClass.id} value={eachClass.id}>
+                                        {eachClass.name} {eachClass.letterDays}
+                                    </MenuItem>
+                                );
+                            })}
+                        </Select>
+                    </FormControl>
+                </Box>
+                <Box>
+                    <FormControl fullWidth>
+                        <InputLabel id="lunch/team meeting select label">Add a lunch/team meeting</InputLabel>
+                        <Select
+                            labelId="lunch/team meeting select label"
+                            id="lunch/team meeting select"
+                            label="Class name"
+                            onChange={handleClassNameChange}
+                        >
+                            <MenuItem value='Lunch'>Lunch</MenuItem>
+                            <MenuItem value='Team meeting'>Team meeting</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box>
+                <Box>
+                    <FormControl fullWidth>
+                        <InputLabel id="school select label">School</InputLabel>
+                        <Select
+                            labelId="school select label"
+                            id="school select"
+                            label="School"
+                            onChange={handleSchoolChange}
+                        >
+                            <MenuItem value='MS'>MS</MenuItem>
+                            <MenuItem value='HS'>HS</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box>
+                <Box>
+                    <FormControl fullWidth>
+                        <InputLabel id="period select label">Period</InputLabel>
+                        <Select
+                            labelId="period select label"
+                            id="period select"
+                            label="Period"
+                            onChange={handlePeriodChange}
+                        >
+                            <MenuItem value='1'>1</MenuItem>
+                            <MenuItem value='2'>2</MenuItem>
+                            <MenuItem value='3'>3</MenuItem>
+                            <MenuItem value='4'>4</MenuItem>
+                            <MenuItem value='5'>5</MenuItem>
+                            <MenuItem value='6'>6</MenuItem>
+                            <MenuItem value='7'>7</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box>
+                <Box>
+                    
+                    <label>Letter days</label>
+                    <input type="checkbox" name="A day" value="A" onChange={handleLetterDaysChange}/>
+                    <label htmlFor="A day">A</label>
+                    <input type="checkbox" name="B day" value="B" onChange={handleLetterDaysChange}/>
+                    <label htmlFor="B day">B</label>
+                    <input type="checkbox" name="C day" value="C" onChange={handleLetterDaysChange}/>
+                    <label htmlFor="C day">C</label>
+                    <input type="checkbox" name="D day" value="D" onChange={handleLetterDaysChange}/>
+                    <label htmlFor="D day">D</label>
+                    <input type="checkbox" name="E day" value="E" onChange={handleLetterDaysChange}/>
+                    <label htmlFor="E day">E</label>
+                    <input type="checkbox" name="F day" value="F" onChange={handleLetterDaysChange}/>
+                    <label htmlFor="F day">F</label>
                 </Box>
                 <Button type='submit' style={{width:'56px'}}>Update</Button>
+                {/* <Grid container spacing={2}>
+                    <Grid item xs={8}>
+                        <Item>xs=8</Item>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Item>xs=4</Item>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Item>xs=4</Item>
+                    </Grid>
+                    <Grid item xs={8}>
+                        <Item>xs=8</Item>
+                    </Grid>
+                </Grid> */}
             </form>
             {userUpdatedMessage && <p style={{ color: "green", marginTop: "10px" }}>Teacher successfully updated.</p>}
             {!confirmDeleteMessage && <button onClick={() => confirmDelete()}>Delete</button>}
