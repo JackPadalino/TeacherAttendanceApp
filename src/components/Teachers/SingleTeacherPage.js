@@ -22,6 +22,7 @@ import {
     MenuItem,
     FormGroup,
     FormLabel,
+    Item,
     FormControlLabel,
     Checkbox
 } from '@mui/material';
@@ -182,106 +183,90 @@ const SingleTeacherPage = () => {
                         </List>
                     </Box>
                 </Box>
-                <Box>
-                    <TextField id="outlined-basic" label="First name" variant="outlined" value={firstName} onChange={handleFirstNameChange}/>
-                    <TextField id="outlined-basic" label="Last name" variant="outlined" value={lastName} onChange={handleLastNameChange}/>
-                    {/* <TextField id="outlined-basic" label="Phone number" variant="outlined" value={phoneNumber} onChange={handlePhoneNumberChange}/> */}
-                </Box>
-                <Box>
-                    <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Add a class</InputLabel>
-                        <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                label="Class"
-                                onChange={handleClassChange}
-                        >
-                            {allClasses.map((eachClass) => {
-                                return (
-                                    eachClass.name!=='Team meeting' && 
-                                    <MenuItem key={eachClass.id} value={eachClass.id}>
-                                        {eachClass.name} {eachClass.letterDays}
-                                    </MenuItem>
-                                );
-                            })}
-                        </Select>
-                    </FormControl>
-                </Box>
-                <Box>
-                    <FormControl fullWidth>
-                        <InputLabel id="lunch/team meeting select label">Add a lunch/team meeting</InputLabel>
-                        <Select
-                            labelId="lunch/team meeting select label"
-                            id="lunch/team meeting select"
-                            label="Class name"
-                            onChange={handleClassNameChange}
-                        >
-                            <MenuItem value='Lunch'>Lunch</MenuItem>
-                            <MenuItem value='Team meeting'>Team meeting</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Box>
-                <Box>
-                    <FormControl fullWidth>
-                        <InputLabel id="school select label">School</InputLabel>
-                        <Select
-                            labelId="school select label"
-                            id="school select"
-                            label="School"
-                            onChange={handleSchoolChange}
-                        >
-                            <MenuItem value='MS'>MS</MenuItem>
-                            <MenuItem value='HS'>HS</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Box>
-                <Box>
-                    <FormControl fullWidth>
-                        <InputLabel id="period select label">Period</InputLabel>
-                        <Select
-                            labelId="period select label"
-                            id="period select"
-                            label="Period"
-                            onChange={handlePeriodChange}
-                        >
-                            <MenuItem value='1'>1</MenuItem>
-                            <MenuItem value='2'>2</MenuItem>
-                            <MenuItem value='3'>3</MenuItem>
-                            <MenuItem value='4'>4</MenuItem>
-                            <MenuItem value='5'>5</MenuItem>
-                            <MenuItem value='6'>6</MenuItem>
-                            <MenuItem value='7'>7</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Box>
-                <Box>
-                    <FormControl>
-                        <FormLabel>Letter Days</FormLabel>
+                <Box sx={{width:"50%"}}>
                         <Box>
-                            <FormControlLabel control={<Checkbox value="A" onChange={handleLetterDaysChange}/>} label="A" />
-                            <FormControlLabel control={<Checkbox value="B" onChange={handleLetterDaysChange}/>} label="B" />
-                            <FormControlLabel control={<Checkbox value="C" onChange={handleLetterDaysChange}/>} label="C" />
-                            <FormControlLabel control={<Checkbox value="D" onChange={handleLetterDaysChange}/>} label="D" />
-                            <FormControlLabel control={<Checkbox value="E" onChange={handleLetterDaysChange}/>} label="E" />
-                            <FormControlLabel control={<Checkbox value="F" onChange={handleLetterDaysChange}/>} label="F" />
+                            <TextField sx={{width:"50%"}} id="outlined-basic" label="First name" variant="outlined" value={firstName} onChange={handleFirstNameChange}/>
+                            <TextField sx={{width:"50%"}} id="outlined-basic" label="Last name" variant="outlined" value={lastName} onChange={handleLastNameChange}/>
+                            {/* <TextField id="outlined-basic" label="Phone number" variant="outlined" value={phoneNumber} onChange={handlePhoneNumberChange}/> */}
                         </Box>
-                    </FormControl>
+                        <Box>
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-label">Add a class</InputLabel>
+                                <Select
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        label="Class"
+                                        onChange={handleClassChange}
+                                >
+                                    {allClasses.map((eachClass) => {
+                                        return (
+                                            eachClass.name!=='Team meeting' && 
+                                            <MenuItem key={eachClass.id} value={eachClass.id}>
+                                                {eachClass.name} {eachClass.letterDays}
+                                            </MenuItem>
+                                        );
+                                    })}
+                                </Select>
+                            </FormControl>
+                        </Box>
+                        <Box>
+                            <FormControl sx={{width:"33%"}}>
+                                <InputLabel id="lunch/team meeting select label">Lunch/Meeting</InputLabel>
+                                <Select
+                                    labelId="lunch/team meeting select label"
+                                    id="lunch/team meeting select"
+                                    label="Class name"
+                                    onChange={handleClassNameChange}
+                                >
+                                    <MenuItem value='Lunch'>Lunch</MenuItem>
+                                    <MenuItem value='Team meeting'>Team meeting</MenuItem>
+                                </Select>
+                            </FormControl>
+                            <FormControl sx={{width:"33%"}}>
+                                <InputLabel id="school select label">School</InputLabel>
+                                <Select
+                                    labelId="school select label"
+                                    id="school select"
+                                    label="School"
+                                    onChange={handleSchoolChange}
+                                >
+                                    <MenuItem value='MS'>MS</MenuItem>
+                                    <MenuItem value='HS'>HS</MenuItem>
+                                </Select>
+                            </FormControl>
+                            <FormControl sx={{width:"34%"}}>
+                                <InputLabel id="period select label">Period</InputLabel>
+                                <Select
+                                    labelId="period select label"
+                                    id="period select"
+                                    label="Period"
+                                    onChange={handlePeriodChange}
+                                >
+                                    <MenuItem value='1'>1</MenuItem>
+                                    <MenuItem value='2'>2</MenuItem>
+                                    <MenuItem value='3'>3</MenuItem>
+                                    <MenuItem value='4'>4</MenuItem>
+                                    <MenuItem value='5'>5</MenuItem>
+                                    <MenuItem value='6'>6</MenuItem>
+                                    <MenuItem value='7'>7</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Box>
+                        <Box>
+                            <FormControl>
+                                <FormLabel>Letter Days</FormLabel>
+                                <Box>
+                                    <FormControlLabel control={<Checkbox value="A" onChange={handleLetterDaysChange}/>} label="A" />
+                                    <FormControlLabel control={<Checkbox value="B" onChange={handleLetterDaysChange}/>} label="B" />
+                                    <FormControlLabel control={<Checkbox value="C" onChange={handleLetterDaysChange}/>} label="C" />
+                                    <FormControlLabel control={<Checkbox value="D" onChange={handleLetterDaysChange}/>} label="D" />
+                                    <FormControlLabel control={<Checkbox value="E" onChange={handleLetterDaysChange}/>} label="E" />
+                                    <FormControlLabel control={<Checkbox value="F" onChange={handleLetterDaysChange}/>} label="F" />
+                                </Box>
+                            </FormControl>
+                        </Box>
+                    <Button type='submit' style={{width:'56px'}}>Update</Button>
                 </Box>
-                <Button type='submit' style={{width:'56px'}}>Update</Button>
-                {/* <Grid container spacing={2}>
-                    <Grid item xs={8}>
-                        <Item>xs=8</Item>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Item>xs=4</Item>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Item>xs=4</Item>
-                    </Grid>
-                    <Grid item xs={8}>
-                        <Item>xs=8</Item>
-                    </Grid>
-                </Grid> */}
             </form>
             {userUpdatedMessage && <p style={{ color: "green", marginTop: "10px" }}>Teacher successfully updated.</p>}
             {!confirmDeleteMessage && <button onClick={() => confirmDelete()}>Delete</button>}
