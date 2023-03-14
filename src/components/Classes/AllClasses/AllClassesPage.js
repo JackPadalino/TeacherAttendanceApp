@@ -21,14 +21,6 @@ const AllClassesPage = () => {
     const [parentModalOpen,setParentModalOpen] = useState(false);
     const [successModalOpen,setSuccessModalOpen] = useState(false);
 
-    const [showForm,setShowForm] = useState(false);
-    const [showButton,setShowButton] = useState(true);
-
-    const showHideButton = () =>{
-        setShowForm(true);
-        setShowButton(false);
-    };
-
     // functions for handling modals
     const handleParentModal = () => {
         setParentModalOpen(parentModalOpen ? false : true);
@@ -48,8 +40,7 @@ const AllClassesPage = () => {
                 aria-describedby="parent-modal-description"
             >
                 <Box sx={parentModalStyle}>
-                    {/* <CreateTeacherForm handleParentModal={handleParentModal} handleSuccessModal={handleSuccessModal}/> */}
-                    <Typography variant="h5">This is a modal!</Typography>
+                    <CreateClassForm handleParentModal={handleParentModal} handleSuccessModal={handleSuccessModal}/>
                 </Box>
             </Modal>
             <Modal

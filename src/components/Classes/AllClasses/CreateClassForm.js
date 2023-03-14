@@ -10,14 +10,13 @@ const formStyle = {
     gap:'10px'
 };
 
-const CreateClassForm = ({setShowForm,setShowButton}) => {
+const CreateClassForm = ({handleParentModal,handleSuccessModal}) => {
     const dispatch = useDispatch();
     const [className,setClassName] = useState('');
     const [school,setSchool] = useState('');
     const [grade,setGrade] = useState('');
     const [period,setPeriod] = useState('');
     const [letterDays,setLetterDays] = useState([]);
-    const [successMessage,setSuccessMessage] = useState(false);
     
     const addClass = async(event) =>{
         event.preventDefault();
@@ -31,9 +30,8 @@ const CreateClassForm = ({setShowForm,setShowButton}) => {
         await axios.post(`/api/classes`,body);
         const allClasses = await axios.get('/api/classes');
         dispatch(setAllClasses(allClasses.data));
-        setSuccessMessage(true);
-        setShowForm(false);
-        setShowButton(true);
+        handleParentModal();
+        handleSuccessModal();
     };
 
     const handleNameChange = (event) =>{
@@ -120,7 +118,6 @@ const CreateClassForm = ({setShowForm,setShowButton}) => {
                     </div>
                     <button style={{width:'60px'}}>Submit</button>
                 </form>
-                {successMessage && <p style={{ color: "green", marginTop: "10px" }}>Class '{className}' successfully created.</p>}
             </div>
         </>
     );
