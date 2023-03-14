@@ -13,9 +13,7 @@ const SchedulePage = () => {
     if(!token) return <NotFoundPage/>
     return (
         <Container component="main">
-            <Box
-                sx={mainContainer}
-            >
+            <Box sx={mainContainer}>
                 <Box sx={titleTeacherDayContainer}>
                     <Typography variant="h3" sx={title}>Teacher Schedules</Typography>
                     <Box sx={selectContainer}>
@@ -23,7 +21,8 @@ const SchedulePage = () => {
                         <LetterDaysSelect/>
                     </Box>
                 </Box>
-                {scheduleAbsentUser.id && <Box key={scheduleAbsentUser.id}>
+                {scheduleAbsentUser.id && 
+                <Box key={scheduleAbsentUser.id}>
                     <List>
                         {scheduleAbsentUser.classes.map((eachClass) =>{
                             return (

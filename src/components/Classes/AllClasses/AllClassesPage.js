@@ -62,13 +62,9 @@ const AllClassesPage = () => {
                     <Typography variant="h5">New class added!</Typography>
                 </Box>
             </Modal>
-            <Box>
-                <Button sx={buttonStyle} variant="outlined" size="small" onClick={handleParentModal}><AddIcon/>Add a class</Button>
-            </Box>
-            <Box>
+            <Box sx={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
                 <Typography variant="h3" sx={headingStyle}>All Classes</Typography>
-                {/* {showButton && <button style={buttonStyle} onClick={showHideButton}>Add a class</button>}
-                {showForm && <CreateClassForm setShowForm={setShowForm} setShowButton={setShowButton}/>} */}
+                <Button variant="contained" size="small" onClick={handleParentModal}><AddIcon/>Add a class</Button>
             </Box>
             <Box>
                 {allClasses.map((eachClass) => {

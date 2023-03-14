@@ -65,13 +65,16 @@ const CoveragesPage = () => {
                 {Object.keys(coverageDay).length===0 && <Typography sx={dateNotFound}>No information about this date. Please select a date/letter day to get started.</Typography>}
                 
                 <Box sx={letterDaySelect}>
-                    <DateSelect/> {Object.keys(coverageDay).length===0 && <LetterDaySelect/>}
+                    <DateSelect/> {Object.keys(coverageDay).length===0 ?
+                    <LetterDaySelect/> :
+                    <Box sx={{display:"flex",alignItems:"center"}}>
+                        <Typography variant="h4"><Link to={'/single-day'} style={letterDay} className="letterDay">{coverageDay.letterDay} Day</Link></Typography>
+                    </Box>}
                 </Box>
             </Box>
             {Object.keys(coverageDay).length > 0 &&
                 <Box sx={pageLeftRightBox}>
                     <Box sx={pageLeftBox}>
-                        <Typography variant="h4"><Link to={'/single-day'} style={letterDay} className="letterDay">{coverageDay.letterDay} Day</Link></Typography>
                         <TeacherSelect/>
                     </Box>
                     <Box sx={pageRightBox}>

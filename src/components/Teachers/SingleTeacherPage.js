@@ -32,7 +32,8 @@ import SchoolIcon from '@mui/icons-material/School';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
     singleTeacherMainContainer,
-    singleTeacherModal
+    singleTeacherModal,
+    updateSingleTeacherForm
 } from "./style";
 
 
@@ -195,7 +196,7 @@ const SingleTeacherPage = () => {
                 </List>
             </Box>
             <Box>
-                <form onSubmit={updateTeacher} style={{display:"flex",flexDirection:"column",gap:"20px",width:"50%"}}>
+                <form onSubmit={updateTeacher} style={updateSingleTeacherForm}>
                     <Box>
                         <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Personal info.</Typography>
                         <TextField sx={{width:"50%"}} id="outlined-basic" label="First name" variant="outlined" value={firstName} onChange={handleFirstNameChange}/>

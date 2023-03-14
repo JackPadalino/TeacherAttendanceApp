@@ -1,17 +1,15 @@
 export const mainContainer = {
     display: "flex",
     flexDirection: "column",
-    gap:"50px",
+    gap:"15px",
     //placeSelf: "center",
     //placeItems: "center",
     //placeContent: "center center",
     position: "relative",
-    top: "5vh",
 };
 
 export const headingStyle={
     fontFamily:"Montserrat",
-    marginBottom:'0px'
 };
 
 export const className = {

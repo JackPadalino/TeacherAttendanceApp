@@ -1,29 +1,21 @@
 export const mainContainer = {
     display: "flex",
     flexDirection: "column",
-    gap:"50px",
+    gap:"15px",
     //placeSelf: "center",
     //placeItems: "center",
     //placeContent: "center center",
     position: "relative",
-    top: "5vh",
 };
 
 export const headingStyle={
     fontFamily:"Montserrat",
-    marginBottom:'0px'
+
 };
 
 export const teacherName = {
     fontFamily:'Montserrat',
     fontSize:"22px"
-};
-
-export const buttonStyle={
-    cursor:'pointer',
-    fontFamily:"Montserrat",
-    borderRadius:3,
-    //marginBottom:"30px"
 };
 
 export const parentModalStyle = {
@@ -68,7 +60,6 @@ export const singleTeacherMainContainer = {
     //placeItems: "center",
     //placeContent: "center center",
     position: "relative",
-    top: "5vh",
 };
 
 export const singleTeacherModal = {
@@ -87,3 +78,10 @@ export const singleTeacherModal = {
     justifyContent:"center",
     gap:"20px"
   };
+
+export const updateSingleTeacherForm = {
+    display:"flex",
+    flexDirection:"column",
+    gap:"20px",
+    width:"50%"
+};

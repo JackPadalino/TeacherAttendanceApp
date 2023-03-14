@@ -3,7 +3,8 @@ export const navStyle={
     justifyContent:"space-between",
     alignItems:"center",
     borderBottom:'1px solid orange',
-    paddingBottom:'5px'
+    paddingBottom:'5px',
+    marginBottom:"50px"
   };
   
   export const navCenter={

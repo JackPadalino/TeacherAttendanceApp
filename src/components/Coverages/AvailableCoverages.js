@@ -5,6 +5,30 @@ import { useParams } from 'react-router-dom';
 import { NotFoundPage } from "..";
 import{ setAllUsers } from '../../store/userSlice';
 import { setAllCoverages,setTodaysCoverages } from "../../store/coverageSlice";
+import { 
+    Box,
+    Grid,
+    Container,
+    Typography,
+    TextField,
+    List,
+    ListItem,
+    ListItemIcon,
+    Button,
+    ListItemText,
+    InputLabel,
+    Select,
+    FormControl,
+    MenuItem,
+    FormGroup,
+    FormLabel,
+    Item,
+    FormControlLabel,
+    Checkbox,
+    IconButton,
+    Modal
+} from '@mui/material';
+import SchoolIcon from '@mui/icons-material/School';
 
 const AvailableCoverages = () => {
     const dispatch = useDispatch();
@@ -113,34 +137,43 @@ const AvailableCoverages = () => {
 
     if(!token) return <NotFoundPage/>
     return (
-        <>
-            <h1>Available coverages for {thisClass.school} {thisClass.name}{thisClass.grade} - Period {thisClass.period} - {letterDay} day</h1>
-            <button onClick={updateCoverages}>Update coverages</button>
-            {updatedMessage && <p style={{ color: "green", marginTop: "10px" }}>Coverages for this class have been updated.</p>}
-            <div>
+        <Box sx={{display:"flex",flexDirection:"column",gap:"15px"}}>
+            <Box sx={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Available coverages for {thisClass.school} {thisClass.name}{thisClass.grade} - Period {thisClass.period} - {letterDay} day</Typography>
+                <Button variant="contained" size="small" onClick={updateCoverages}>Update coverages</Button>
+            </Box>
+            {updatedMessage && <Typography style={{fontfamily:"Montserrat", color: "green", marginTop: "10px" }}>Coverages for this class have been updated.</Typography>}
+            <Box>
                 {allAvailableUsers.map((user) => {
                     return (
-                        (user.role==='teacher' || user.role==='gangster') && <div key={user.id}>
-                            <div style={{display:'flex'}}>
-                                {thisClassUserIds.includes(user.id) && <p style={{'color':'red'}}><i>{user.firstName} {user.lastName} - Co-teacher - Total coverages: {user.coverages.length}</i></p>}
-                                {teamMeetingUserIds.includes(user.id) && <p style={{'color':'green'}}><i>{user.firstName} {user.lastName} - In a team meeting - Total coverages: {user.coverages.length}</i></p>}
-                                {!thisClassUserIds.includes(user.id) && !teamMeetingUserIds.includes(user.id) && <p>{user.firstName} {user.lastName} - Total coverages: {user.coverages.length}</p>}
+                        (user.role==='teacher' || user.role==='gangster') && 
+                        <Box key={user.id}>
+                            <Box sx={{display:'flex',alignItems:"center"}}>
+                                {thisClassUserIds.includes(user.id) && <Typography sx={{fontFamily:"Montserrat",color:'red'}}><i>{user.firstName} {user.lastName} - Co-teacher - Total coverages: {user.coverages.length}</i></Typography>}
+                                {teamMeetingUserIds.includes(user.id) && <Typography sx={{fontFamily:"Montserrat",color:'green'}}><i>{user.firstName} {user.lastName} - In a team meeting - Total coverages: {user.coverages.length}</i></Typography>}
+                                {!thisClassUserIds.includes(user.id) && !teamMeetingUserIds.includes(user.id) && <Typography sx={{fontFamily:"Montserrat"}}>{user.firstName} {user.lastName} - Total coverages: {user.coverages.length}</Typography>}
                                 {coveringUserIds.includes(user.id) ?
-                                <input type='checkbox' value={user.id} onChange={handleCoveringUsersChange} checked={true}/> :
-                                <input type='checkbox' value={user.id} onChange={handleCoveringUsersChange}/>}
-                            </div>
-                            <ul>
+                                <Checkbox type='checkbox' value={user.id} onChange={handleCoveringUsersChange} checked={true}/> :
+                                <Checkbox type='checkbox' value={user.id} onChange={handleCoveringUsersChange}/>}
+                            </Box>
+                            <List>
                                 {user.classes.map((eachClass)=>{
                                     return (
-                                        eachClass.letterDays.includes(letterDay) && <li key={eachClass.id}>{eachClass.name} - P{eachClass.period}</li>
+                                        eachClass.letterDays.includes(letterDay) && 
+                                        <ListItem key={eachClass.id}>
+                                            <ListItemIcon>
+                                                <SchoolIcon />
+                                            </ListItemIcon>
+                                            <ListItemText>{eachClass.name} - P{eachClass.period}</ListItemText>
+                                        </ListItem>
                                     )
                                 })}
-                            </ul>
-                        </div>
+                            </List>
+                        </Box>
                     )
                 })}
-            </div>
-        </>
+            </Box>
+        </Box>
     );
 };
 

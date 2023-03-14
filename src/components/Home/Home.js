@@ -14,7 +14,6 @@ const Home = () => {
             placeItems: "center center",
             placeContent: "center center",
             position: "relative",
-            top: "5vh",
           }}
         >
           <Typography 

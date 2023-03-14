@@ -6,7 +6,6 @@ export const mainBox = {
     placeItems: "center center",
     placeContent: "center center",
     position: "relative",
-    top: "5vh"
 };
 
 export const avatar = {
