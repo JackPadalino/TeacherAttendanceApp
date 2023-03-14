@@ -14,12 +14,10 @@ export const title = {
 };
 
 export const formBox = {
-    width:300
-};
-
-export const formStyle = {
     display:"flex",
-    gap:"10px"
+    flexDirection:"column",
+    gap:"10px",
+    width:200
 };
 
 export const modalStyle = {
@@ -32,7 +30,6 @@ export const modalStyle = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-
     display:"flex",
     flexDirection:"column",
     justifyContent:"center",

@@ -9,7 +9,7 @@ import { Box,Typography,Button,InputLabel,Select,MenuItem,FormControl,Modal} fro
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import IconButton from "@mui/material/IconButton";
-import { mainContainer,title,formBox,formStyle,modalStyle } from "./style";
+import { mainContainer,title,formBox,modalStyle } from "./style";
 
 const SingleDay = () => {
     const navigate = useNavigate();
@@ -72,8 +72,8 @@ const SingleDay = () => {
     return (
         <Box sx={mainContainer}>
             <Typography variant="h3" sx={title}>{coverageDay.date.slice(0,10)} {coverageDay.letterDay} day</Typography>
-            <Box sx={formBox}>
-                <form onSubmit={updateDay} style={formStyle}>
+            <Box>
+                <form onSubmit={updateDay} style={formBox}>
                     <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">Letter day</InputLabel>
                         <Select
@@ -94,11 +94,14 @@ const SingleDay = () => {
                     {/* <IconButton type="submit">
                         <CheckBoxIcon color="primary"/>
                     </IconButton> */}
-                    <Button type="submit" variant='contained'>Save</Button>
+                    <Box>
+                        <Button type="submit" variant='contained'>Save</Button>
+                        <IconButton color="error" onClick={() => handleModalOpen()}>
+                            <DeleteIcon color="error"/>
+                        </IconButton>
+                    </Box>
                 </form>
-                <IconButton color="error" onClick={() => handleModalOpen()}>
-                    <DeleteIcon color="error"/>
-                </IconButton>
+                
             </Box>
             <Modal
                 open={modalOpen}

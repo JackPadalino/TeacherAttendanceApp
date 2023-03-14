@@ -24,18 +24,17 @@ import {
     FormLabel,
     Item,
     FormControlLabel,
-    Checkbox
+    Checkbox,
+    IconButton,
+    Modal
 } from '@mui/material';
 import SchoolIcon from '@mui/icons-material/School';
+import DeleteIcon from '@mui/icons-material/Delete';
 import {
-    singleTeacherMainContainer
+    singleTeacherMainContainer,
+    singleTeacherModal
 } from "./style";
 
-const formStyle = {
-    display:'flex',
-    flexDirection:'column',
-    gap:'10px'
-};
 
 const SingleTeacherPage = () => {
     const { id } = useParams();
@@ -62,6 +61,8 @@ const SingleTeacherPage = () => {
     const [loading,setLoading] = useState(false);
     const [userUpdatedMessage,setUserUpdatedMessage] = useState(false);
     const [confirmDeleteMessage,setConfirmDeleteMessage] = useState(false);
+    // variables for modal
+    const [modalOpen, setModalOpen] = useState(false);
         
     // fetching user information
     const fetchUser = async() =>{
@@ -148,9 +149,6 @@ const SingleTeacherPage = () => {
     };
 
     // functions for deleting a teacher instance
-    const confirmDelete = () =>{
-        confirmDeleteMessage ? setConfirmDeleteMessage(false) : setConfirmDeleteMessage(true);
-    };
     const deleteTeacher = async()=> {
         await axios.delete(`/api/users/${id}`);
         const updatedUsers = await axios.get('/api/users');
@@ -158,124 +156,138 @@ const SingleTeacherPage = () => {
         navigate('/teachers');
     };
 
+    const handleModalOpen = () => setModalOpen(true);
+    const handleModalClose = () => setModalOpen(false);
+
     if(!token) return <NotFoundPage/>
     if(loading) return <p>Loading...</p>
     return (
         <Box sx={singleTeacherMainContainer}>
-            <form onSubmit={updateTeacher} style={formStyle}>
-                <Box>
-                    <Box>
-                        <Typography variant="h3" sx={{fontFamily:"Montserrat"}}>{firstName} {lastName}</Typography>
-                    </Box>
-                    <Box>
-                        <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Schedule</Typography>
-                        <List>
-                            {classes.map((eachClass) => {
-                                return (
-                                    <ListItem key={eachClass.id}>
-                                        <ListItemIcon>
-                                            <SchoolIcon />
-                                        </ListItemIcon>
-                                        <ListItemText sx={{fontFamily:"Montserrat"}} primary={`${eachClass.name} - ${eachClass.period} - ${eachClass.letterDays}`}/>
-                                    </ListItem>
-                                );
-                            })}
-                        </List>
-                    </Box>
+            <Modal
+                open={modalOpen}
+                onClose={handleModalClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={singleTeacherModal}>
+                    <Typography id="modal-modal-title" variant="h6" align="center">
+                        Are you sure you want to delete this teacher?
+                    </Typography>
+                    <Button fullWidth variant="outlined" color="error" onClick={() => deleteTeacher()}>Delete</Button>
                 </Box>
-                <Box sx={{display:"flex",flexDirection:"column",gap:"20px",width:"50%"}}>
-                        <Box>
-                            <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Personal info.</Typography>
-                            <TextField sx={{width:"50%"}} id="outlined-basic" label="First name" variant="outlined" value={firstName} onChange={handleFirstNameChange}/>
-                            <TextField sx={{width:"50%"}} id="outlined-basic" label="Last name" variant="outlined" value={lastName} onChange={handleLastNameChange}/>
-                            {/* <TextField id="outlined-basic" label="Phone number" variant="outlined" value={phoneNumber} onChange={handlePhoneNumberChange}/> */}
-                        </Box>
-                        <Box>
-                            <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Add a new class</Typography>
-                            <FormControl fullWidth>
-                                <InputLabel id="add a class label">Class name</InputLabel>
-                                <Select
-                                        labelId="add a class label"
-                                        id="demo-simple-select"
-                                        label="Class name"
-                                        onChange={handleClassChange}
-                                >
-                                    {allClasses.map((eachClass) => {
-                                        return (
-                                            eachClass.name!=='Team meeting' && 
-                                            <MenuItem key={eachClass.id} value={eachClass.id}>
-                                                {eachClass.name} {eachClass.letterDays}
-                                            </MenuItem>
-                                        );
-                                    })}
-                                </Select>
-                            </FormControl>
-                        </Box>
-                        <Box>
-                            <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Add a lunch period/team meeting</Typography>
-                            <FormControl sx={{width:"33.33%"}}>
-                                <InputLabel id="lunch/team meeting select label">Lunch/Meeting</InputLabel>
-                                <Select
-                                    labelId="lunch/team meeting select label"
-                                    id="lunch/team meeting select"
+            </Modal>
+            <Box>
+                <Typography variant="h3" sx={{fontFamily:"Montserrat"}}>{firstName} {lastName}</Typography>
+            </Box>
+            <Box>
+                <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Schedule</Typography>
+                <List>
+                    {classes.map((eachClass) => {
+                        return (
+                            <ListItem key={eachClass.id}>
+                                <ListItemIcon>
+                                    <SchoolIcon />
+                                </ListItemIcon>
+                                <ListItemText sx={{fontFamily:"Montserrat"}} primary={`${eachClass.name} - ${eachClass.period} - ${eachClass.letterDays}`}/>
+                            </ListItem>
+                        );
+                    })}
+                </List>
+            </Box>
+            <Box>
+                <form onSubmit={updateTeacher} style={{display:"flex",flexDirection:"column",gap:"20px",width:"50%"}}>
+                    <Box>
+                        <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Personal info.</Typography>
+                        <TextField sx={{width:"50%"}} id="outlined-basic" label="First name" variant="outlined" value={firstName} onChange={handleFirstNameChange}/>
+                        <TextField sx={{width:"50%"}} id="outlined-basic" label="Last name" variant="outlined" value={lastName} onChange={handleLastNameChange}/>
+                        {/* <TextField id="outlined-basic" label="Phone number" variant="outlined" value={phoneNumber} onChange={handlePhoneNumberChange}/> */}
+                    </Box>
+                    <Box>
+                        <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Add a new class</Typography>
+                        <FormControl fullWidth>
+                            <InputLabel id="add a class label">Class name</InputLabel>
+                            <Select
+                                    labelId="add a class label"
+                                    id="demo-simple-select"
                                     label="Class name"
-                                    onChange={handleClassNameChange}
-                                >
-                                    <MenuItem value='Lunch'>Lunch</MenuItem>
-                                    <MenuItem value='Team meeting'>Team meeting</MenuItem>
-                                </Select>
-                            </FormControl>
-                            <FormControl sx={{width:"33.33%"}}>
-                                <InputLabel id="school select label">School</InputLabel>
-                                <Select
-                                    labelId="school select label"
-                                    id="school select"
-                                    label="School"
-                                    onChange={handleSchoolChange}
-                                >
-                                    <MenuItem value='MS'>MS</MenuItem>
-                                    <MenuItem value='HS'>HS</MenuItem>
-                                </Select>
-                            </FormControl>
-                            <FormControl sx={{width:"33.33%"}}>
-                                <InputLabel id="period select label">Period</InputLabel>
-                                <Select
-                                    labelId="period select label"
-                                    id="period select"
-                                    label="Period"
-                                    onChange={handlePeriodChange}
-                                >
-                                    <MenuItem value='1'>1</MenuItem>
-                                    <MenuItem value='2'>2</MenuItem>
-                                    <MenuItem value='3'>3</MenuItem>
-                                    <MenuItem value='4'>4</MenuItem>
-                                    <MenuItem value='5'>5</MenuItem>
-                                    <MenuItem value='6'>6</MenuItem>
-                                    <MenuItem value='7'>7</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </Box>
-                        <Box>
-                            <FormControl>
-                                <FormLabel>Letter Days</FormLabel>
-                                <Box>
-                                    <FormControlLabel control={<Checkbox value="A" onChange={handleLetterDaysChange}/>} label="A" />
-                                    <FormControlLabel control={<Checkbox value="B" onChange={handleLetterDaysChange}/>} label="B" />
-                                    <FormControlLabel control={<Checkbox value="C" onChange={handleLetterDaysChange}/>} label="C" />
-                                    <FormControlLabel control={<Checkbox value="D" onChange={handleLetterDaysChange}/>} label="D" />
-                                    <FormControlLabel control={<Checkbox value="E" onChange={handleLetterDaysChange}/>} label="E" />
-                                    <FormControlLabel control={<Checkbox value="F" onChange={handleLetterDaysChange}/>} label="F" />
-                                </Box>
-                            </FormControl>
-                        </Box>
-                    <Button type='submit' style={{width:'56px'}}>Update</Button>
-                </Box>
-            </form>
-            {userUpdatedMessage && <p style={{ color: "green", marginTop: "10px" }}>Teacher successfully updated.</p>}
-            {!confirmDeleteMessage && <button onClick={() => confirmDelete()}>Delete</button>}
-            {confirmDeleteMessage && <p style={{color:'red'}}>Are you sure you want to delete this teacher?</p>}
-            {confirmDeleteMessage && <button onClick={() => confirmDelete()}>Cancel</button>}
-            {confirmDeleteMessage && <button onClick={() => deleteTeacher()}>Delete</button>}
+                                    onChange={handleClassChange}
+                            >
+                                {allClasses.map((eachClass) => {
+                                    return (
+                                        eachClass.name!=='Team meeting' && 
+                                        <MenuItem key={eachClass.id} value={eachClass.id}>
+                                            {eachClass.name} {eachClass.letterDays}
+                                        </MenuItem>
+                                    );
+                                })}
+                            </Select>
+                        </FormControl>
+                    </Box>
+                    <Box>
+                        <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Add a lunch period/team meeting</Typography>
+                        <FormControl sx={{width:"33.33%"}}>
+                            <InputLabel id="lunch/team meeting select label">Lunch/Meeting</InputLabel>
+                            <Select
+                                labelId="lunch/team meeting select label"
+                                id="lunch/team meeting select"
+                                label="Class name"
+                                onChange={handleClassNameChange}
+                            >
+                                <MenuItem value='Lunch'>Lunch</MenuItem>
+                                <MenuItem value='Team meeting'>Team meeting</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <FormControl sx={{width:"33.33%"}}>
+                            <InputLabel id="school select label">School</InputLabel>
+                            <Select
+                                labelId="school select label"
+                                id="school select"
+                                label="School"
+                                onChange={handleSchoolChange}
+                            >
+                                <MenuItem value='MS'>MS</MenuItem>
+                                <MenuItem value='HS'>HS</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <FormControl sx={{width:"33.33%"}}>
+                            <InputLabel id="period select label">Period</InputLabel>
+                            <Select
+                                labelId="period select label"
+                                id="period select"
+                                label="Period"
+                                onChange={handlePeriodChange}
+                            >
+                                <MenuItem value='1'>1</MenuItem>
+                                <MenuItem value='2'>2</MenuItem>
+                                <MenuItem value='3'>3</MenuItem>
+                                <MenuItem value='4'>4</MenuItem>
+                                <MenuItem value='5'>5</MenuItem>
+                                <MenuItem value='6'>6</MenuItem>
+                                <MenuItem value='7'>7</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Box>
+                    <Box>
+                        <FormControl>
+                            <FormLabel>Letter Days</FormLabel>
+                            <Box>
+                                <FormControlLabel control={<Checkbox value="A" onChange={handleLetterDaysChange}/>} label="A" />
+                                <FormControlLabel control={<Checkbox value="B" onChange={handleLetterDaysChange}/>} label="B" />
+                                <FormControlLabel control={<Checkbox value="C" onChange={handleLetterDaysChange}/>} label="C" />
+                                <FormControlLabel control={<Checkbox value="D" onChange={handleLetterDaysChange}/>} label="D" />
+                                <FormControlLabel control={<Checkbox value="E" onChange={handleLetterDaysChange}/>} label="E" />
+                                <FormControlLabel control={<Checkbox value="F" onChange={handleLetterDaysChange}/>} label="F" />
+                            </Box>
+                        </FormControl>
+                    </Box>
+                    <Box>
+                        <Button type="submit" variant="contained">Update</Button>
+                        <IconButton color="error" onClick={() => handleModalOpen()}>
+                            <DeleteIcon color="error"/>
+                        </IconButton>
+                    </Box>
+                </form>
+            </Box>
         </Box>
     );
 };
