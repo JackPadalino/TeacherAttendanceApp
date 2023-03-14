@@ -23,7 +23,7 @@ const Home = () => {
               fontFamily:'Montserrat'
             }}
           >
-            Welcome!
+            AMS Attendance
           </Typography>  
         </Box>
       </Container>
