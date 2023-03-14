@@ -4,28 +4,16 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 const Home = () => {
     return (
-      <Container component="main">
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap:"10px",
-            placeSelf: "center center",
-            placeItems: "center center",
-            placeContent: "center center",
-            position: "relative",
-          }}
-        >
+      <Box component="main">
+
           <Typography 
             variant="h3"
-            sx={{
-              fontFamily:'Montserrat'
-            }}
+            sx={{fontFamily:"Montserrat",textAlign: "center"}}
           >
             AMS Attendance
           </Typography>  
-        </Box>
-      </Container>
+
+      </Box>
     );
 };
 

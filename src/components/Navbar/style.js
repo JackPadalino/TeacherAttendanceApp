@@ -7,14 +7,17 @@ export const navStyle={
     marginBottom:"50px"
   };
   
-  export const navCenter={
+export const navLeft={
+    display:'flex'
+};
+
+export const navCenter={
     display:'flex',
-    gap:"20px"
+    gap:"10px"
 };
   
 export const navRight={
-    display:"flex",
-    gap:"10px"
+    display:"flex"
 };
   
 export const linkStyle={
