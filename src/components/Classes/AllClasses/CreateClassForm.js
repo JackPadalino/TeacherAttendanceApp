@@ -3,6 +3,29 @@ import React, { useState } from 'react';
 import { setAllClasses } from "../../../store/classSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { 
+    Box,
+    Grid,
+    Container,
+    Typography,
+    TextField,
+    List,
+    ListItem,
+    ListItemIcon,
+    Button,
+    ListItemText,
+    InputLabel,
+    Select,
+    FormControl,
+    MenuItem,
+    FormGroup,
+    FormLabel,
+    Item,
+    FormControlLabel,
+    Checkbox,
+    IconButton,
+    Modal
+} from '@mui/material';
 
 const formStyle = {
     display:'flex',
@@ -60,66 +83,75 @@ const CreateClassForm = ({handleParentModal,handleSuccessModal}) => {
     };
 
     return (
-        <>
-            <div>
-                <form onSubmit={addClass} style={formStyle}>
-                    <div>
-                        <label htmlFor="class name">Class name</label>
-                        <input name='class name' onChange={handleNameChange}/>
-                    </div>
-                    <div>
-                        <label htmlFor="school">MS/HS</label>
-                        <select name='school' value={school} onChange={handleSchoolChange}>
-                            <option value="-">-</option>
-                            <option value="MS">MS</option>
-                            <option value="HS">HS</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label htmlFor="grade">Grade</label>
-                        <select name='grade' onChange={handleGradeChange}>
-                            <option value="-">-</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label htmlFor="period">Period</label>
-                        <select name='period' onChange={handlePeriodChange}>
-                            <option value="-">-</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>Letter days</label>
-                        <input type="checkbox" name="A day" value="A" onChange={handleLetterDaysChange}/>
-                        <label htmlFor="A day">A</label>
-                        <input type="checkbox" name="B day" value="B" onChange={handleLetterDaysChange}/>
-                        <label htmlFor="B day">B</label>
-                        <input type="checkbox" name="C day" value="C" onChange={handleLetterDaysChange}/>
-                        <label htmlFor="C day">C</label>
-                        <input type="checkbox" name="D day" value="D" onChange={handleLetterDaysChange}/>
-                        <label htmlFor="D day">D</label>
-                        <input type="checkbox" name="E day" value="E" onChange={handleLetterDaysChange}/>
-                        <label htmlFor="E day">E</label>
-                        <input type="checkbox" name="F day" value="F" onChange={handleLetterDaysChange}/>
-                        <label htmlFor="F day">F</label>
-                    </div>
-                    <button style={{width:'60px'}}>Submit</button>
-                </form>
-            </div>
-        </>
+        <Box>
+            <form onSubmit={addClass} style={{display:"flex",flexDirection:"column",gap:"10px"}}>
+                <Box>
+                    <TextField sx={{width:"100%"}} id="outlined-basic" label="Class name" variant="outlined" onChange={handleNameChange}/>
+                </Box>
+                <Box>
+                    <FormControl sx={{width:"33.33%"}}>
+                        <InputLabel id="School select label">School</InputLabel>
+                        <Select
+                            labelId="School select label"
+                            id="school select"
+                            label="School"
+                            onChange={handleSchoolChange}
+                        >
+                            <MenuItem value="MS">MS</MenuItem>
+                            <MenuItem value="HS">HS</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <FormControl sx={{width:"33.33%"}}>
+                        <InputLabel id="Grade select label">Grade</InputLabel>
+                        <Select
+                            labelId="Grade select label"
+                            id="Grade select"
+                            label="Grade"
+                            onChange={handleGradeChange}
+                        >
+                            <MenuItem value="6">6</MenuItem>
+                            <MenuItem value="7">7</MenuItem>
+                            <MenuItem value="8">8</MenuItem>
+                            <MenuItem value="9">9</MenuItem>
+                            <MenuItem value="10">10</MenuItem>
+                            <MenuItem value="11">11</MenuItem>
+                            <MenuItem value="12">12</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <FormControl sx={{width:"33.33%"}}>
+                        <InputLabel id="Period select label">Period</InputLabel>
+                        <Select
+                            labelId="Period select label"
+                            id="Period select"
+                            label="Period"
+                            onChange={handlePeriodChange}
+                        >
+                            <MenuItem value="1">1</MenuItem>
+                            <MenuItem value="2">2</MenuItem>
+                            <MenuItem value="3">3</MenuItem>
+                            <MenuItem value="4">4</MenuItem>
+                            <MenuItem value="5">5</MenuItem>
+                            <MenuItem value="6">6</MenuItem>
+                            <MenuItem value="7">7</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box>
+                <Box>
+                    <FormControl>
+                        <FormLabel>Letter Days</FormLabel>
+                        <Box>
+                            <FormControlLabel control={<Checkbox value="A" onChange={handleLetterDaysChange}/>} label="A" />
+                            <FormControlLabel control={<Checkbox value="B" onChange={handleLetterDaysChange}/>} label="B" />
+                            <FormControlLabel control={<Checkbox value="C" onChange={handleLetterDaysChange}/>} label="C" />
+                            <FormControlLabel control={<Checkbox value="D" onChange={handleLetterDaysChange}/>} label="D" />
+                            <FormControlLabel control={<Checkbox value="E" onChange={handleLetterDaysChange}/>} label="E" />
+                            <FormControlLabel control={<Checkbox value="F" onChange={handleLetterDaysChange}/>} label="F" />
+                        </Box>
+                    </FormControl>
+                </Box>
+                <Button type="submit" variant="contained">Submit</Button>
+            </form>
+        </Box>
     );
 };
 
