@@ -165,10 +165,10 @@ const SingleTeacherPage = () => {
             <form onSubmit={updateTeacher} style={formStyle}>
                 <Box>
                     <Box>
-                        <Typography variant="h3" sx={{fontFamily:"Montserrat",marginBottom:'0px'}}>{firstName} {lastName}</Typography>
+                        <Typography variant="h3" sx={{fontFamily:"Montserrat"}}>{firstName} {lastName}</Typography>
                     </Box>
                     <Box>
-                        <Typography variant="h5" sx={{fontFamily:"Montserrat",marginBottom:'0px'}}>Schedule</Typography>
+                        <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Schedule</Typography>
                         <List>
                             {classes.map((eachClass) => {
                                 return (
@@ -183,19 +183,21 @@ const SingleTeacherPage = () => {
                         </List>
                     </Box>
                 </Box>
-                <Box sx={{width:"50%"}}>
+                <Box sx={{display:"flex",flexDirection:"column",gap:"20px",width:"50%"}}>
                         <Box>
+                            <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Personal info.</Typography>
                             <TextField sx={{width:"50%"}} id="outlined-basic" label="First name" variant="outlined" value={firstName} onChange={handleFirstNameChange}/>
                             <TextField sx={{width:"50%"}} id="outlined-basic" label="Last name" variant="outlined" value={lastName} onChange={handleLastNameChange}/>
                             {/* <TextField id="outlined-basic" label="Phone number" variant="outlined" value={phoneNumber} onChange={handlePhoneNumberChange}/> */}
                         </Box>
                         <Box>
+                            <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Add a new class</Typography>
                             <FormControl fullWidth>
-                                <InputLabel id="demo-simple-select-label">Add a class</InputLabel>
+                                <InputLabel id="add a class label">Class name</InputLabel>
                                 <Select
-                                        labelId="demo-simple-select-label"
+                                        labelId="add a class label"
                                         id="demo-simple-select"
-                                        label="Class"
+                                        label="Class name"
                                         onChange={handleClassChange}
                                 >
                                     {allClasses.map((eachClass) => {
@@ -210,7 +212,8 @@ const SingleTeacherPage = () => {
                             </FormControl>
                         </Box>
                         <Box>
-                            <FormControl sx={{width:"33%"}}>
+                            <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Add a lunch period/team meeting</Typography>
+                            <FormControl sx={{width:"33.33%"}}>
                                 <InputLabel id="lunch/team meeting select label">Lunch/Meeting</InputLabel>
                                 <Select
                                     labelId="lunch/team meeting select label"
@@ -222,7 +225,7 @@ const SingleTeacherPage = () => {
                                     <MenuItem value='Team meeting'>Team meeting</MenuItem>
                                 </Select>
                             </FormControl>
-                            <FormControl sx={{width:"33%"}}>
+                            <FormControl sx={{width:"33.33%"}}>
                                 <InputLabel id="school select label">School</InputLabel>
                                 <Select
                                     labelId="school select label"
@@ -234,7 +237,7 @@ const SingleTeacherPage = () => {
                                     <MenuItem value='HS'>HS</MenuItem>
                                 </Select>
                             </FormControl>
-                            <FormControl sx={{width:"34%"}}>
+                            <FormControl sx={{width:"33.33%"}}>
                                 <InputLabel id="period select label">Period</InputLabel>
                                 <Select
                                     labelId="period select label"
