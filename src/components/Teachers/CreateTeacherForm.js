@@ -48,27 +48,17 @@ const CreateTeacherForm = ({handleParentModal,handleSuccessModal}) => {
     };
 
     return (
-        <>
-            <Box
-                component="form"
-                sx={formStyle}
-                noValidate
-                autoComplete="off"
-                >
+        <Box>
+            <Box component="form" sx={{display:"flex",flexDirection:"column",gap:"10px"}}>
                 <Typography sx={{textAlign: "center"}} variant="h5">Add a teacher</Typography>
-                <TextField id="outlined-basic" label="First name" variant="outlined" onChange={handleFirstNameChange}/>
-                <TextField id="outlined-basic" label="Last name" variant="outlined" onChange={handleLastNameChange}/>
-                {/* <TextField id="outlined-basic" label="Phone number" variant="outlined" /> */}
-                <Button
-                size="small"
-                variant="contained"
-                onClick={addTeacher}
-                >
-                    Submit
-                </Button>
+                <Box sx={{display:"flex"}}>
+                    <TextField id="outlined-basic" label="First name" variant="outlined" onChange={handleFirstNameChange}/>
+                    <TextField id="outlined-basic" label="Last name" variant="outlined" onChange={handleLastNameChange}/>
+                </Box>
+                <Button type="submit" variant="contained" onClick={addTeacher}>Submit</Button>
 
             </Box>
-        </>
+        </Box>
     );
 };
 
