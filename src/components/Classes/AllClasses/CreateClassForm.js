@@ -84,7 +84,8 @@ const CreateClassForm = ({handleParentModal,handleSuccessModal}) => {
 
     return (
         <Box>
-            <form onSubmit={addClass} style={{display:"flex",flexDirection:"column",gap:"10px"}}>
+            <Box component="form" sx={{display:"flex",flexDirection:"column",gap:"10px"}}>
+                <Typography sx={{textAlign: "center"}} variant="h5">Add a class</Typography>
                 <Box>
                     <TextField sx={{width:"100%"}} id="outlined-basic" label="Class name" variant="outlined" onChange={handleNameChange}/>
                 </Box>
@@ -149,8 +150,8 @@ const CreateClassForm = ({handleParentModal,handleSuccessModal}) => {
                         </Box>
                     </FormControl>
                 </Box>
-                <Button type="submit" variant="contained">Submit</Button>
-            </form>
+                <Button type="submit" variant="contained" onClick={addClass}>Submit</Button>
+            </Box>
         </Box>
     );
 };
