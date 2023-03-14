@@ -40,7 +40,7 @@ const Navbar = () => {
       </Box>}
       <Box sx={navRight}>
         {!user.id && <Link style={linkStyle} to="/login">Login</Link>}
-        {user.id && <button onClick={logout} style={buttonStyle}>Logout</button>}
+        {user.id && <button onClick={logout} style={buttonStyle}>Log out</button>}
       </Box>
     </Box>
   );
