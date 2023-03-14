@@ -29,14 +29,14 @@ const LetterDaySelect = () => {
     };
 
     return (
-        <Box sx={{width:200}}>
-            <form onSubmit={createNewDay} style={{display:"flex",gap:"10px"}}>
+        <Box>
+            <form onSubmit={createNewDay} style={{display:"flex",gap:"5px"}}>
                 <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Letter day</InputLabel>
+                    <InputLabel id="demo-simple-select-label">Day</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        label="Letter day"
+                        label="Day"
                         onChange={handleLetterDayChange}
                     >
                         <MenuItem value="A">A</MenuItem>
