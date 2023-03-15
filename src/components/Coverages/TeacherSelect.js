@@ -34,26 +34,24 @@ const TeacherSelect = () => {
     };
 
     return (
-        <Box>
-            <form onSubmit={createAbsence} style={{display:"flex",gap:"10px"}}>
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Teacher</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        label="Teacher"
-                        onChange={handleTeacherChange}
-                    >
-                        {allUsers.map((user) => {
-                            return (
-                                <MenuItem key={user.id} value={user.id}>{user.fullName}</MenuItem>
-                            );
-                        })}
-                    </Select>
-                </FormControl>
-                <Button type="submit" variant="contained">Absent</Button>
-            </form>
-        </Box>
+        <form onSubmit={createAbsence} style={{display:"flex",gap:"5px",width:"300px"}}>
+            <FormControl sx={{width:"200px"}}>
+                <InputLabel id="demo-simple-select-label">Teacher</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label="Teacher"
+                    onChange={handleTeacherChange}
+                >
+                    {allUsers.map((user) => {
+                        return (
+                            <MenuItem key={user.id} value={user.id}>{user.fullName}</MenuItem>
+                        );
+                    })}
+                </Select>
+            </FormControl>
+            <Button type="submit" variant="contained">Absent</Button>
+        </form>
     );
 };
 

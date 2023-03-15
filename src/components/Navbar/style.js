@@ -8,16 +8,19 @@ export const navStyle={
   };
   
 export const navLeft={
-    display:'flex'
+    display:'flex',
+    width:"200px"
 };
 
 export const navCenter={
     display:'flex',
-    gap:"10px"
+    gap:"30px"
 };
   
 export const navRight={
-    display:"flex"
+    display:"flex",
+    justifyContent:"flex-end",
+    width:"200px"
 };
   
 export const linkStyle={
