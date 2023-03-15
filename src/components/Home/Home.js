@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box,Container,Typography,TextField,Button,Grid,Link,FormControlLabel,Avatar} from '@mui/material';
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { Box,Typography} from '@mui/material';
+import { home } from "./style";
 
 const Home = () => {
     return (
@@ -8,7 +8,7 @@ const Home = () => {
 
           <Typography 
             variant="h3"
-            sx={{fontFamily:"Montserrat",textAlign: "center"}}
+            sx={home}
           >
             AMS Attendance
           </Typography>  

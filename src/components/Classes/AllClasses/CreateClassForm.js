@@ -5,33 +5,19 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { 
     Box,
-    Grid,
-    Container,
     Typography,
     TextField,
-    List,
-    ListItem,
-    ListItemIcon,
     Button,
-    ListItemText,
     InputLabel,
     Select,
     FormControl,
     MenuItem,
-    FormGroup,
     FormLabel,
-    Item,
     FormControlLabel,
     Checkbox,
-    IconButton,
-    Modal
 } from '@mui/material';
 
-const formStyle = {
-    display:'flex',
-    flexDirection:'column',
-    gap:'10px'
-};
+import { formStyle } from "./style";
 
 const CreateClassForm = ({handleParentModal,handleSuccessModal}) => {
     const dispatch = useDispatch();
@@ -84,7 +70,7 @@ const CreateClassForm = ({handleParentModal,handleSuccessModal}) => {
 
     return (
         <Box>
-            <Box component="form" sx={{display:"flex",flexDirection:"column",gap:"10px"}}>
+            <Box component="form" sx={formStyle}>
                 <Typography sx={{textAlign: "center"}} variant="h5">Add a class</Typography>
                 <Box>
                     <TextField sx={{width:"100%"}} id="outlined-basic" label="Class name" variant="outlined" onChange={handleNameChange}/>

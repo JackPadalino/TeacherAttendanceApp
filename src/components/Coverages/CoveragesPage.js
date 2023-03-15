@@ -9,7 +9,8 @@ import { setAllUsers } from "../../store/userSlice";
 import { Box,Typography,IconButton } from '@mui/material';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { 
-    mainContainer,
+    coveragePageMain,
+    pageTop,
     titleDateContainer,
     titleLeft,
     title,
@@ -59,8 +60,8 @@ const CoveragesPage = () => {
     
     if(!token) return <NotFoundPage/>
     return (
-        <Box sx={mainContainer}>
-            <Box sx={{display:"flex",flexDirection:"column",gap:"10px"}}>
+        <Box sx={coveragePageMain}>
+            <Box sx={pageTop}>
                 <Box sx={titleDateContainer}>
                     <Box sx={titleLeft}>
                         <DateSelect/> {Object.keys(coverageDay).length===0 ?

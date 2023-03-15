@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { NotFoundPage } from "..";
 import CreateTeacherForm from './CreateTeacherForm';
-import { Box,Container,Typography,Modal,List,ListItem,ListItemIcon,Button,ListItemText} from '@mui/material';
+import { Box,Typography,Modal,Button} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import Avatar from '@mui/material/Avatar';
 import { 
     mainContainer,
+    pageTop,
     headingStyle,
     teacherName,
-    buttonStyle,
     parentModalStyle,
     childModalStyle
  } from "./style";
@@ -53,7 +52,7 @@ const AllTeachersPage = () => {
                     <Typography variant="h5">New teacher added!</Typography>
                 </Box>
             </Modal>
-            <Box sx={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+            <Box sx={pageTop}>
                 <Typography variant="h3" sx={headingStyle}>All Teachers</Typography>
                 <Button variant="contained" size="small" onClick={handleParentModal}><AddIcon/>Add a teacher</Button>
             </Box>

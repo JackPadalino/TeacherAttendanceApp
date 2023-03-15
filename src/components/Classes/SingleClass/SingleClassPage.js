@@ -7,24 +7,12 @@ import { setAllClasses } from "../../../store/classSlice";
 import { SchoolSelect, GradeSelect, PeriodSelect, LetterDaysSelect, TeacherSelect } from ".";
 import { 
     Box,
-    Grid,
-    Container,
     Typography,
     TextField,
     List,
     ListItem,
-    ListItemIcon,
     Button,
     ListItemText,
-    InputLabel,
-    Select,
-    FormControl,
-    MenuItem,
-    FormGroup,
-    FormLabel,
-    Item,
-    FormControlLabel,
-    Checkbox,
     IconButton,
     Modal
 } from '@mui/material';
