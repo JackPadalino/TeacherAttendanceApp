@@ -134,3 +134,11 @@ export const teacherSelectForm = {
     gap:"5px",
     width:"300px"
 };
+
+//~~~~~coverages page mobile view styling~~~~~//
+export const pageTopMobile = {};
+
+export const titleDateContainerMobile = {};
+
+export const titleLeftMobile = {};
+
