@@ -1,20 +1,50 @@
 import React from 'react';
+import { 
+    Box,
+    Grid,
+    Container,
+    Typography,
+    TextField,
+    List,
+    ListItem,
+    ListItemIcon,
+    Button,
+    ListItemText,
+    InputLabel,
+    Select,
+    FormControl,
+    MenuItem,
+    FormGroup,
+    FormLabel,
+    Item,
+    FormControlLabel,
+    Checkbox,
+    IconButton,
+    Modal
+} from '@mui/material';
 
 const GradeSelect = ({grade,handleGradeChange}) => {
     return (
-        <div>
-            <label htmlFor="grade">Grade</label>
-            <select name='grade' value={grade} onChange={handleGradeChange}>
-                <option value="-">-</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-            </select>
-        </div>
+        <Box>
+            <FormControl fullWidth>
+                <InputLabel id="grade label">Grade</InputLabel>
+                <Select
+                        labelId="grade label"
+                        id="grade"
+                        label="Grade"
+                        onChange={handleGradeChange}
+                        value={grade}
+                >
+                    <MenuItem value="6">6</MenuItem>
+                    <MenuItem value="7">7</MenuItem>
+                    <MenuItem value="8">8</MenuItem>
+                    <MenuItem value="9">9</MenuItem>
+                    <MenuItem value="10">10</MenuItem>
+                    <MenuItem value="11">11</MenuItem>
+                    <MenuItem value="12">12</MenuItem>
+                </Select>
+            </FormControl>
+        </Box>
     );
 };
 

@@ -4,7 +4,30 @@ import { useNavigate,useParams } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
 import { NotFoundPage } from "../..";
 import { setAllClasses } from "../../../store/classSlice";
-import { SchoolSelect, GradeSelect, PeriodSelect, LetterDaysSelect, TeacherSelect } from "."
+import { SchoolSelect, GradeSelect, PeriodSelect, LetterDaysSelect, TeacherSelect } from ".";
+import { 
+    Box,
+    Grid,
+    Container,
+    Typography,
+    TextField,
+    List,
+    ListItem,
+    ListItemIcon,
+    Button,
+    ListItemText,
+    InputLabel,
+    Select,
+    FormControl,
+    MenuItem,
+    FormGroup,
+    FormLabel,
+    Item,
+    FormControlLabel,
+    Checkbox,
+    IconButton,
+    Modal
+} from '@mui/material';
 
 const formStyle = {
     display:'flex',
@@ -115,12 +138,9 @@ const SingleClassPage = () => {
     if(loading) return <p>Loading...</p>
     return (
         <>
-            <h1>{className}</h1>
+            <Typography variant="h3" sx={{fontFamily:"Montserrat"}}>{className}</Typography>
             <form onSubmit={updateClass} style={formStyle}>
-                <div>
-                    <label htmlFor="class name">Class name</label>
-                    <input name='class name' value={className} onChange={handleNameChange}/>
-                </div>
+                <TextField id="outlined-basic" label="Class name" variant="outlined" value={className} onChange={handleNameChange}/>
                 <SchoolSelect school={school} handleSchoolChange={handleSchoolChange}/>
                 <GradeSelect grade={grade} handleGradeChange={handleGradeChange}/>
                 <PeriodSelect period={period} handlePeriodChange={handlePeriodChange}/>
