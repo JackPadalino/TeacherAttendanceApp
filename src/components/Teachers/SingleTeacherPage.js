@@ -60,8 +60,6 @@ const SingleTeacherPage = () => {
     const [newExtraPeriodInfoUpdated,setExtraPeriodInfoUpdated] = useState(false);
     // variables for user feedback
     const [loading,setLoading] = useState(false);
-    const [userUpdatedMessage,setUserUpdatedMessage] = useState(false);
-    const [confirmDeleteMessage,setConfirmDeleteMessage] = useState(false);
     // variables for modal
     const [modalOpen, setModalOpen] = useState(false);
         
