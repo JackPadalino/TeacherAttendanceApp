@@ -1,22 +1,17 @@
 export const mainContainer = {
     display: "flex",
     flexDirection: "column",
-    gap:"50px",
-    //placeSelf: "center",
-    //placeItems: "center",
-    //placeContent: "center center",
-    // position: "relative",
+    gap:"50px"
 };
 
 export const titleDateContainer = {
     display:"flex",
     justifyContent:"space-between",
-    //flexDirection:"column",
     gap:"30px",
     alignItems:"center"
 };
 
-export const letterDaySelect = {
+export const titleLeft = {
     display:"flex",
     width:"350px",
     gap:"5px"
@@ -24,17 +19,27 @@ export const letterDaySelect = {
 
 export const title = {
     fontFamily:'Montserrat',
-    
 };
 
-export const dateNotFound = {
-    fontFamily:'Montserrat',
-    color:'red'
+export const titleRight = {
+    width:"350px"
 };
 
-export const pageLeftRightBox = {
+export const pageBottom = {
     display:"flex",
     flexDirection:"column"
+};
+
+export const teacherSelect = {
+    display:"flex",
+    justifyContent:"center"
+};
+
+export const absentTeachers = {
+    display:"flex",
+    rowGap:"30px",
+    flexWrap:"wrap",
+    width:"100%"
 };
 
 export const pageLeftBox = {
