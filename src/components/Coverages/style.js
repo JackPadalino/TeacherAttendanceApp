@@ -31,8 +31,7 @@ export const pageBottom = {
 };
 
 export const teacherSelect = {
-    display:"flex",
-    justifyContent:"center"
+    display:"flex"
 };
 
 export const absentTeachers = {

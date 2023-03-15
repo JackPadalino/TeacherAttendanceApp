@@ -60,23 +60,25 @@ const CoveragesPage = () => {
     if(!token) return <NotFoundPage/>
     return (
         <Box sx={mainContainer}>
-            <Box sx={titleDateContainer}>
-                <Box sx={titleLeft}>
-                    <DateSelect/> {Object.keys(coverageDay).length===0 ?
-                    <LetterDaySelect/> :
-                    <Box sx={{display:"flex",alignItems:"center"}}>
-                        <Typography variant="h4"><Link to={'/single-day'} style={letterDay} className="letterDay">{coverageDay.letterDay} Day</Link></Typography>
-                    </Box>}
+            <Box sx={{display:"flex",flexDirection:"column",gap:"10px"}}>
+                <Box sx={titleDateContainer}>
+                    <Box sx={titleLeft}>
+                        <DateSelect/> {Object.keys(coverageDay).length===0 ?
+                        <LetterDaySelect/> :
+                        <Box sx={{display:"flex",alignItems:"center"}}>
+                            <Typography variant="h4"><Link to={'/single-day'} style={letterDay} className="letterDay">{coverageDay.letterDay} Day</Link></Typography>
+                        </Box>}
+                    </Box>
+                    <Typography variant="h3" sx={title}>Absences/Coverages</Typography>
+                    {/* {Object.keys(coverageDay).length===0 && <Typography sx={dateNotFound}>No information about this date. Please select a date/letter day to get started.</Typography>} */}
+                    <Box sx={titleRight}></Box>
                 </Box>
-                <Typography variant="h3" sx={title}>Absences/Coverages</Typography>
-                {/* {Object.keys(coverageDay).length===0 && <Typography sx={dateNotFound}>No information about this date. Please select a date/letter day to get started.</Typography>} */}
-                <Box sx={titleRight}></Box>
+                {Object.keys(coverageDay).length > 0 && <Box sx={teacherSelect}>
+                    <TeacherSelect/>
+                </Box>}
             </Box>
             {Object.keys(coverageDay).length > 0 &&
             <Box sx={pageBottom}>
-                <Box sx={teacherSelect}>
-                    <TeacherSelect/>
-                </Box>
                 <Box sx={absentTeachers}>
                     {allAbsentUsers.map((user) => {
                         return (
