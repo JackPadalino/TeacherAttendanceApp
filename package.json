@@ -12,7 +12,7 @@
     "start": "DATABASE_URL=postgresql://JackPadalino:v2_3zxgf_XaEQ9HdsGzsKk3bTm2SJLZV@db.bit.io:5432/JackPadalino/ams_att_db?ssl=true NODE_ENV=JWT nodemon server/index.js --ignore dist/ --ignore src/ & npm run build:dev",
     "start-local": "JWT=felix nodemon server/index.js --ignore dist/ --ignore src/ & npm run build:dev",
     "seed": "node server/db/seed.js",
-    "seed-bit":"DATABASE_URL=postgresql://JackPadalino:v2_3zxgf_XaEQ9HdsGzsKk3bTm2SJLZV@db.bit.io:5432/JackPadalino/ams_att_db?ssl=true node server/db/seed.js"
+    "seed-bit": "DATABASE_URL=postgresql://JackPadalino:v2_3zxgf_XaEQ9HdsGzsKk3bTm2SJLZV@db.bit.io:5432/JackPadalino/ams_att_db?ssl=true node server/db/seed.js"
   },
   "keywords": [],
   "author": "",
@@ -36,6 +36,7 @@
     "react-mobile-store-button": "^0.0.6",
     "sequelize": "^6.25.3",
     "style-loader": "^3.3.1",
+    "twilio": "^4.8.0",
     "volleyball": "^1.5.1"
   },
   "devDependencies": {
