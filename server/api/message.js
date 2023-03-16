@@ -27,9 +27,13 @@ router.get('/send',(req, res, next) => {
 // POST localhost:3000/api/message/receive
 router.post('/receive', async(req, res, next) => {
     try {
-        //const message = req.body.Body;
+        const message = req.body.Body;
         const twiml = new MessagingResponse();
-        twiml.message('Hey there! Thanks for testing AMS Attendance App!');
+        if(message!=='1595'){
+            twiml.message('Hey there! Thanks for texting AMS Staff Attendance.Please enter 1595 to request a sick day/day off.');
+        }else{
+            twiml.message(`Your request for today is confirmed. Please be sure to share all sub materials with admin before 8:30AM. Feel better!`);
+        };
         // if(message!=='1595'){
         //     twiml.message('Please enter 1595 to request a sick day/day off.');
         // }else{
