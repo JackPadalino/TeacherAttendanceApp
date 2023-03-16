@@ -160,9 +160,11 @@ const SingleClassPage = () => {
             <Typography variant="h3" sx={{fontFamily:"Montserrat"}}>{className}</Typography>
             <form onSubmit={updateClass} style={formStyle}>
                 <TextField id="outlined-basic" label="Class name" variant="outlined" value={className} onChange={handleNameChange}/>
-                <SchoolSelect school={school} handleSchoolChange={handleSchoolChange}/>
-                <GradeSelect grade={grade} handleGradeChange={handleGradeChange}/>
-                <PeriodSelect period={period} handlePeriodChange={handlePeriodChange}/>
+                <Box sx={{display:"flex"}}>
+                    <SchoolSelect school={school} handleSchoolChange={handleSchoolChange}/>
+                    <GradeSelect grade={grade} handleGradeChange={handleGradeChange}/>
+                    <PeriodSelect period={period} handlePeriodChange={handlePeriodChange}/>
+                </Box>
                 <LetterDaysSelect letterDays={letterDays} handleLetterDaysChange={handleLetterDaysChange}/>
                 <Box>
                     <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Teachers</Typography>

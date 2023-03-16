@@ -9,7 +9,7 @@ import {
 
 const PeriodSelect = ({period,handlePeriodChange}) => {
     return (
-        <Box>
+        <Box sx={{width:"33.33%"}}>
             <FormControl fullWidth>
                 <InputLabel id="period label">Period</InputLabel>
                 <Select

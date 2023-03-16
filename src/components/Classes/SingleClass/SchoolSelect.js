@@ -9,7 +9,7 @@ import {
 
 const SchoolSelect = ({school,handleSchoolChange}) => {
     return (
-        <Box>
+        <Box sx={{width:"33.33%"}}>
             <FormControl fullWidth>
                 <InputLabel id="school label">School</InputLabel>
                 <Select
