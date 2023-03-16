@@ -1,3 +1,10 @@
+
+/**
+ * use this link
+ * https://levelup.gitconnected.com/using-breakpoints-and-media-queries-in-material-ui-47470d3c43d9
+ */
+
+
 import axios from 'axios';
 import React, { useRef,useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -6,10 +13,11 @@ import { DateSelect,LetterDaySelect,TeacherSelect } from './';
 import { NotFoundPage } from "..";
 import { setAllAbsentUsers,setAllCoverages,setTodaysCoverages } from "../../store/coverageSlice";
 import { setAllUsers } from "../../store/userSlice";
-import { Box,Typography,IconButton } from '@mui/material';
+import { Box,Typography,IconButton,useMediaQuery } from '@mui/material';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { 
-    mainContainer,
+    coveragePageMain,
+    pageTop,
     titleDateContainer,
     titleLeft,
     title,
@@ -56,11 +64,11 @@ const CoveragesPage = () => {
         const updatedUsers = await axios.get('/api/users')
         dispatch(setAllUsers(updatedUsers.data));
     };
-    
+
     if(!token) return <NotFoundPage/>
     return (
-        <Box sx={mainContainer}>
-            <Box sx={{display:"flex",flexDirection:"column",gap:"10px"}}>
+        <Box sx={coveragePageMain}>
+            <Box sx={pageTop}>
                 <Box sx={titleDateContainer}>
                     <Box sx={titleLeft}>
                         <DateSelect/> {Object.keys(coverageDay).length===0 ?
@@ -70,7 +78,6 @@ const CoveragesPage = () => {
                         </Box>}
                     </Box>
                     <Typography variant="h3" sx={title}>Absences/Coverages</Typography>
-                    {/* {Object.keys(coverageDay).length===0 && <Typography sx={dateNotFound}>No information about this date. Please select a date/letter day to get started.</Typography>} */}
                     <Box sx={titleRight}></Box>
                 </Box>
                 {Object.keys(coverageDay).length > 0 && <Box sx={teacherSelect}>

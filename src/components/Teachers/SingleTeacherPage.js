@@ -7,8 +7,6 @@ import { ClassSelect,AddExtraPeriodForm } from ".";
 import { setAllUsers } from "../../store/userSlice";
 import { 
     Box,
-    Grid,
-    Container,
     Typography,
     TextField,
     List,
@@ -20,9 +18,7 @@ import {
     Select,
     FormControl,
     MenuItem,
-    FormGroup,
     FormLabel,
-    Item,
     FormControlLabel,
     Checkbox,
     IconButton,
@@ -60,8 +56,6 @@ const SingleTeacherPage = () => {
     const [newExtraPeriodInfoUpdated,setExtraPeriodInfoUpdated] = useState(false);
     // variables for user feedback
     const [loading,setLoading] = useState(false);
-    const [userUpdatedMessage,setUserUpdatedMessage] = useState(false);
-    const [confirmDeleteMessage,setConfirmDeleteMessage] = useState(false);
     // variables for modal
     const [modalOpen, setModalOpen] = useState(false);
         

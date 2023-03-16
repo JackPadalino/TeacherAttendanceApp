@@ -1,15 +1,9 @@
 import axios from 'axios';
-import React, { useRef,useState } from 'react';
+import React, { useRef } from 'react';
 import { setAllUsers,addNewUser } from "../../store/userSlice";
 import { useDispatch } from "react-redux";
-import { Box,Modal,Button,Typography,TextField} from '@mui/material';
-
-const formStyle = {
-    display:'flex',
-    flexDirection:'column',
-    placeItems:'center',
-    gap:"10px"
-};
+import { Box,Button,Typography,TextField} from '@mui/material';
+import { createTeacherForm } from "./style";
 
 const CreateTeacherForm = ({handleParentModal,handleSuccessModal}) => {
     const dispatch = useDispatch();
@@ -49,7 +43,7 @@ const CreateTeacherForm = ({handleParentModal,handleSuccessModal}) => {
 
     return (
         <Box>
-            <Box component="form" sx={{display:"flex",flexDirection:"column",gap:"10px"}}>
+            <Box component="form" sx={createTeacherForm}>
                 <Typography sx={{textAlign: "center"}} variant="h5">Add a teacher</Typography>
                 <Box sx={{display:"flex"}}>
                     <TextField id="outlined-basic" label="First name" variant="outlined" onChange={handleFirstNameChange}/>

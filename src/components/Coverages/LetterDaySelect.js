@@ -3,6 +3,7 @@ import React,{ useRef } from 'react';
 import { useDispatch,useSelector } from "react-redux";
 import { setCoverageDay } from "../../store/coverageSlice";
 import { Box,Button,InputLabel,Select,MenuItem,FormControl} from '@mui/material';
+import { letterDaySelect } from "./style";
 
 const LetterDaySelect = () => {
     const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const LetterDaySelect = () => {
 
     return (
         <Box>
-            <form onSubmit={createNewDay} style={{display:"flex",gap:"5px"}}>
+            <form onSubmit={createNewDay} style={letterDaySelect}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Day</InputLabel>
                     <Select

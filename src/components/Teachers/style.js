@@ -8,9 +8,14 @@ export const mainContainer = {
     position: "relative",
 };
 
+export const pageTop = {
+    display:"flex",
+    justifyContent:"space-between",
+    alignItems:"center"
+};
+
 export const headingStyle={
     fontFamily:"Montserrat",
-
 };
 
 export const teacherName = {
@@ -84,4 +89,10 @@ export const updateSingleTeacherForm = {
     flexDirection:"column",
     gap:"20px",
     width:"50%"
+};
+
+export const createTeacherForm = {
+    display:"flex",
+    flexDirection:"column",
+    gap:"10px"
 };

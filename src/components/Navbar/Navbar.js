@@ -1,24 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link,useNavigate } from "react-router-dom";
 import { resetUser } from "../../store/userSlice";
-import { Box,Typography,TextField,Button,Fab,Menu,MenuItem} from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
+import { Box } from '@mui/material';
 import { navStyle,navLeft,navCenter,navRight,linkStyle,buttonStyle } from "./style";
 
 const Navbar = () => {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const addMenuOpen = Boolean(anchorEl);
-  const handleMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
 
   const logout = () => {
     window.localStorage.removeItem("token");

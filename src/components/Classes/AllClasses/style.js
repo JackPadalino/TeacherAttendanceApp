@@ -57,3 +57,9 @@ export const childModalStyle = {
     justifyContent:'center',
     alignItems:"center",
   };
+
+  export const formStyle = {
+    display:"flex",
+    flexDirection:"column",
+    gap:"10px"
+};

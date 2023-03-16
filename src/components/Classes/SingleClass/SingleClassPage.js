@@ -7,31 +7,22 @@ import { setAllClasses } from "../../../store/classSlice";
 import { SchoolSelect, GradeSelect, PeriodSelect, LetterDaysSelect, TeacherSelect } from ".";
 import { 
     Box,
-    Grid,
-    Container,
     Typography,
     TextField,
     List,
     ListItem,
-    ListItemIcon,
     Button,
     ListItemText,
-    InputLabel,
-    Select,
-    FormControl,
-    MenuItem,
-    FormGroup,
-    FormLabel,
-    Item,
-    FormControlLabel,
-    Checkbox,
     IconButton,
     Modal
 } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { singleClassModal,successModal } from './style';
 
 const formStyle = {
     display:'flex',
     flexDirection:'column',
+    width:"400px",
     gap:'10px'
 };
 
@@ -51,8 +42,9 @@ const SingleClassPage = () => {
 
     const [token, setToken] = useState(window.localStorage.getItem("token"));
     const [loading,setLoading] = useState(true);
-    const [successMessage,setSuccessMessage] = useState(false);
-    const [confirmDeleteMessage,setConfirmDeleteMessage] = useState(false);
+
+    const [modalOpen, setModalOpen] = useState(false);
+    const [successModalOpen, setSuccessModalOpen] = useState(false);
 
     const fetchClass = async() =>{
         setLoading(true);
@@ -91,7 +83,7 @@ const SingleClassPage = () => {
         
         const allClasses = await axios.get(`/api/classes`);
         dispatch(setAllClasses(allClasses.data));
-        setSuccessMessage(true);
+        handleSuccessModalOpen();
     };
 
     const handleNameChange = (event) =>{
@@ -123,10 +115,6 @@ const SingleClassPage = () => {
         setUserId(event.target.value);
     };
 
-    const confirmDelete = () =>{
-        confirmDeleteMessage ? setConfirmDeleteMessage(false) : setConfirmDeleteMessage(true);
-    };
-
     const deleteClass = async()=> {
         await axios.delete(`/api/classes/${id}`);
         const updatedClasses = await axios.get('/api/classes');
@@ -134,10 +122,41 @@ const SingleClassPage = () => {
         navigate('/classes');
     };
 
+    const handleModalOpen = () => setModalOpen(true);
+    const handleModalClose = () => setModalOpen(false);
+
+    const handleSuccessModalOpen = () => setSuccessModalOpen(true);
+    const handleSuccessModalClose = () => setSuccessModalOpen(false);
+
     if(!token) return <NotFoundPage/>
     if(loading) return <p>Loading...</p>
     return (
-        <>
+        <Box>
+            <Modal
+                open={modalOpen}
+                onClose={handleModalClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={singleClassModal}>
+                    <Typography id="modal-modal-title" variant="h6" align="center">
+                        Are you sure you want to delete this class?
+                    </Typography>
+                    <Button fullWidth variant="outlined" color="error" onClick={() => deleteClass()}>Delete</Button>
+                </Box>
+            </Modal>
+            <Modal
+                open={successModalOpen}
+                onClose={handleSuccessModalClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={successModal}>
+                    <Typography id="modal-modal-title" variant="h6" align="center">
+                        This class has been updated!
+                    </Typography>
+                </Box>
+            </Modal>
             <Typography variant="h3" sx={{fontFamily:"Montserrat"}}>{className}</Typography>
             <form onSubmit={updateClass} style={formStyle}>
                 <TextField id="outlined-basic" label="Class name" variant="outlined" value={className} onChange={handleNameChange}/>
@@ -145,25 +164,27 @@ const SingleClassPage = () => {
                 <GradeSelect grade={grade} handleGradeChange={handleGradeChange}/>
                 <PeriodSelect period={period} handlePeriodChange={handlePeriodChange}/>
                 <LetterDaysSelect letterDays={letterDays} handleLetterDaysChange={handleLetterDaysChange}/>
-                <div>
-                    <label htmlFor='teachers'>Teachers</label>
-                    <ul name='teachers'>
+                <Box>
+                    <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Teachers</Typography>
+                    <List>
                         {users.map((user) => {
-                        return (
-                            <li key={user.id} value={user.id}>{user.fullName}</li>
-                            );
-                        })}
-                    </ul>
-                </div>
+                            return (
+                                <ListItem key={user.id} value={user.id}>
+                                    <ListItemText sx={{fontFamily:"Montserrat"}} primary={user.fullName}/>
+                                </ListItem>
+                                );
+                            })}
+                    </List>
+                </Box>
                 <TeacherSelect handleTeacherChange={handleTeacherChange}/>
-                <button type='submit' style={{width:'56px'}}>Update</button>
+                <Box>
+                    <Button type="submit" variant="contained">Update</Button>
+                    <IconButton color="error" onClick={handleModalOpen}>
+                        <DeleteIcon color="error"/>
+                    </IconButton>
+                </Box>
             </form>
-            {successMessage && <p style={{ color: "green", marginTop: "10px" }}>Class '{className}' successfully updated.</p>}
-            {!confirmDeleteMessage && <button onClick={() => confirmDelete()}>Delete</button>}
-            {confirmDeleteMessage && <p style={{color:'red'}}>Are you sure you want to delete this class?</p>}
-            {confirmDeleteMessage && <button onClick={() => confirmDelete()}>Cancel</button>}
-            {confirmDeleteMessage && <button onClick={() => deleteClass()}>Delete</button>}
-        </>
+        </Box>
     );
 };
 

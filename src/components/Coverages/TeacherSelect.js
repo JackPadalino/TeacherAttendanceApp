@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { setAllAbsentUsers } from "../../store/coverageSlice";
 import { Box,Button,InputLabel,Select,MenuItem,FormControl} from '@mui/material';
+import { teacherSelectForm } from "./style";
 
 const TeacherSelect = () => {
     const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const TeacherSelect = () => {
     };
 
     return (
-        <form onSubmit={createAbsence} style={{display:"flex",gap:"5px",width:"300px"}}>
+        <form onSubmit={createAbsence} style={teacherSelectForm}>
             <FormControl sx={{width:"200px"}}>
                 <InputLabel id="demo-simple-select-label">Teacher</InputLabel>
                 <Select

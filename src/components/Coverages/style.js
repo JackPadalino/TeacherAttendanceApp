@@ -1,7 +1,13 @@
-export const mainContainer = {
+export const coveragePageMain = {
     display: "flex",
     flexDirection: "column",
     gap:"50px"
+};
+
+export const pageTop = {
+    display:"flex",
+    flexDirection:"column",
+    gap:"10px"
 };
 
 export const titleDateContainer = {
@@ -95,3 +101,44 @@ export const coveringTeacher = {
     fontSize:"15px",
     color:"#008C48"
 };
+
+export const availableCoveragesMain = {
+    display:"flex",
+    flexDirection:"column",
+    gap:"15px"
+};
+
+export const updateCoveragesButtonContainer = {
+    display:"flex",
+    justifyContent:"space-between",
+    alignItems:"center"
+};
+
+export const updateSuccessful = {
+    fontfamily:"Montserrat",
+    color: "green",
+    marginTop: "10px"
+};
+
+export const dateSelect = {
+    width:"200px"
+};
+
+export const letterDaySelect = {
+    display:"flex",
+    gap:"5px"
+};
+
+export const teacherSelectForm = {
+    display:"flex",
+    gap:"5px",
+    width:"300px"
+};
+
+//~~~~~coverages page mobile view styling~~~~~//
+export const pageTopMobile = {};
+
+export const titleDateContainerMobile = {};
+
+export const titleLeftMobile = {};
+

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../store/userSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Box,Container,Typography,TextField,Button,Grid,Link,FormControlLabel,Avatar} from '@mui/material';
+import { Box,Container,Typography,TextField,Button,Avatar} from '@mui/material';
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { mainBox,avatar,loggedInMessage } from "./style";
 
@@ -92,9 +92,6 @@ const Login = () => {
             Login
           </Button>
         </Box>
-        {/* <div className="registerAccount">
-            <Link to="/register">Need an account?</Link>
-        </div> */}
     </Container>
   );
 };

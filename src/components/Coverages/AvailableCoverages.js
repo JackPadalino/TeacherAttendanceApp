@@ -7,28 +7,20 @@ import{ setAllUsers } from '../../store/userSlice';
 import { setAllCoverages,setTodaysCoverages } from "../../store/coverageSlice";
 import { 
     Box,
-    Grid,
-    Container,
     Typography,
-    TextField,
     List,
     ListItem,
     ListItemIcon,
     Button,
     ListItemText,
-    InputLabel,
-    Select,
-    FormControl,
-    MenuItem,
-    FormGroup,
-    FormLabel,
-    Item,
-    FormControlLabel,
     Checkbox,
-    IconButton,
-    Modal
 } from '@mui/material';
 import SchoolIcon from '@mui/icons-material/School';
+import { 
+    availableCoveragesMain,
+    updateCoveragesButtonContainer,
+    updateSuccessful
+} from "./style";
 
 const AvailableCoverages = () => {
     const dispatch = useDispatch();
@@ -137,12 +129,12 @@ const AvailableCoverages = () => {
 
     if(!token) return <NotFoundPage/>
     return (
-        <Box sx={{display:"flex",flexDirection:"column",gap:"15px"}}>
-            <Box sx={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+        <Box sx={availableCoveragesMain}>
+            <Box sx={updateCoveragesButtonContainer}>
                 <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Available coverages for {thisClass.school} {thisClass.name}{thisClass.grade} - Period {thisClass.period} - {letterDay} day</Typography>
                 <Button variant="contained" size="small" onClick={updateCoverages}>Update coverages</Button>
             </Box>
-            {updatedMessage && <Typography style={{fontfamily:"Montserrat", color: "green", marginTop: "10px" }}>Coverages for this class have been updated.</Typography>}
+            {updatedMessage && <Typography style={updateSuccessful}>Coverages for this class have been updated.</Typography>}
             <Box>
                 {allAvailableUsers.map((user) => {
                     return (

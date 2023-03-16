@@ -1,13 +1,12 @@
 import axios from 'axios';
-import React, { useState,useEffect,useRef } from 'react';
-import { useNavigate,useParams,Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
 import { NotFoundPage } from "..";
 import { setAllUsers } from "../../store/userSlice";
 import { setCoverageDay,resetCoverageDay,setAllAbsentUsers,setAllCoverages,resetTodaysCoverages } from "../../store/coverageSlice";
 import { Box,Typography,Button,InputLabel,Select,MenuItem,FormControl,Modal} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import IconButton from "@mui/material/IconButton";
 import { mainContainer,title,formBox,modalStyle } from "./style";
 
@@ -91,9 +90,6 @@ const SingleDay = () => {
                             <MenuItem value="F">F</MenuItem>
                         </Select>
                     </FormControl>
-                    {/* <IconButton type="submit">
-                        <CheckBoxIcon color="primary"/>
-                    </IconButton> */}
                     <Box>
                         <Button type="submit" variant='contained'>Save</Button>
                         <IconButton color="error" onClick={() => handleModalOpen()}>

@@ -1,33 +1,33 @@
 import React from 'react';
+import { 
+    Box,
+    FormControl,
+    FormLabel,
+    FormControlLabel,
+    Checkbox,
+} from '@mui/material';
 
 const LetterDaysSelect = ({letterDays,handleLetterDaysChange}) => {
     return (
-        <div>
-            <label>Letter days</label>
-            {letterDays.includes('A') ? <input type="checkbox" name="A day" value="A" onChange={handleLetterDaysChange} checked={true}/> :
-            <input type="checkbox" name="A day" value="A" onChange={handleLetterDaysChange}/>}
-            <label htmlFor="A day">A</label>
-
-            {letterDays.includes('B') ? <input type="checkbox" name="B day" value="B" onChange={handleLetterDaysChange} checked={true}/> :
-            <input type="checkbox" name="B day" value="B" onChange={handleLetterDaysChange}/>}
-            <label htmlFor="B day">B</label>
-
-            {letterDays.includes('C') ? <input type="checkbox" name="C day" value="C" onChange={handleLetterDaysChange} checked={true}/> :
-            <input type="checkbox" name="C day" value="C" onChange={handleLetterDaysChange}/>}
-            <label htmlFor="C day">C</label>
-
-            {letterDays.includes('D') ? <input type="checkbox" name="D day" value="D" onChange={handleLetterDaysChange} checked={true}/> :
-            <input type="checkbox" name="D day" value="D" onChange={handleLetterDaysChange}/>}
-            <label htmlFor="D day">D</label>
-
-            {letterDays.includes('E') ? <input type="checkbox" name="E day" value="E" onChange={handleLetterDaysChange} checked={true}/> :
-            <input type="checkbox" name="E day" value="E" onChange={handleLetterDaysChange}/>}
-            <label htmlFor="E day">E</label>
-
-            {letterDays.includes('F') ? <input type="checkbox" name="F day" value="F" onChange={handleLetterDaysChange} checked={true}/> :
-            <input type="checkbox" name="F day" value="F" onChange={handleLetterDaysChange}/>}
-            <label htmlFor="F day">F</label>
-        </div>
+        <Box>
+            <FormControl>
+                <FormLabel>Letter Days</FormLabel>
+                <Box>
+                    {letterDays.includes('A') ? <FormControlLabel control={<Checkbox defaultChecked value="A" onChange={handleLetterDaysChange}/>} label="A" /> :
+                    <FormControlLabel control={<Checkbox value="A" onChange={handleLetterDaysChange}/>} label="A"/>}
+                    {letterDays.includes('B') ? <FormControlLabel control={<Checkbox defaultChecked value="B" onChange={handleLetterDaysChange}/>} label="B" /> :
+                    <FormControlLabel control={<Checkbox value="B" onChange={handleLetterDaysChange}/>} label="B"/>}
+                    {letterDays.includes('C') ? <FormControlLabel control={<Checkbox defaultChecked value="C" onChange={handleLetterDaysChange}/>} label="C" /> :
+                    <FormControlLabel control={<Checkbox value="C" onChange={handleLetterDaysChange}/>} label="C"/>}
+                    {letterDays.includes('D') ? <FormControlLabel control={<Checkbox defaultChecked value="D" onChange={handleLetterDaysChange}/>} label="D" /> :
+                    <FormControlLabel control={<Checkbox value="D" onChange={handleLetterDaysChange}/>} label="D"/>}
+                    {letterDays.includes('E') ? <FormControlLabel control={<Checkbox defaultChecked value="E" onChange={handleLetterDaysChange}/>} label="E" /> :
+                    <FormControlLabel control={<Checkbox value="E" onChange={handleLetterDaysChange}/>} label="E"/>}
+                    {letterDays.includes('F') ? <FormControlLabel control={<Checkbox defaultChecked value="F" onChange={handleLetterDaysChange}/>} label="F" /> :
+                    <FormControlLabel control={<Checkbox value="F" onChange={handleLetterDaysChange}/>} label="F"/>}
+                </Box>
+            </FormControl>
+        </Box>
     );
 };
 
