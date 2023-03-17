@@ -1,0 +1,12 @@
+.pageTop{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .pageTop {
+    display: none;
+  }
+}

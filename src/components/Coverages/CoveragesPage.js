@@ -14,6 +14,7 @@ import { NotFoundPage } from "..";
 import { setAllAbsentUsers,setAllCoverages,setTodaysCoverages } from "../../store/coverageSlice";
 import { setAllUsers } from "../../store/userSlice";
 import { Box,Typography,IconButton,useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { 
     coveragePageMain,
@@ -31,12 +32,15 @@ import {
     teacherName,
     classTitle,
     coveringTeacher
-} from "./style";
+} from "./style"; 
+import "./style.css";
 
 const CoveragesPage = () => {
     const dispatch = useDispatch()
     const { coverageDay,allAbsentUsers,todaysCoverages } = useSelector((state) => state.coverage);
     const [token, setToken] = useState(window.localStorage.getItem("token"));
+    const theme = useTheme();
+    const mobileView = useMediaQuery(theme.breakpoints.down('sm'),{noSsr:true});
 
     const deleteAbsence = async(event) => {
         // deleting the coverages associated with this absence first
@@ -68,7 +72,7 @@ const CoveragesPage = () => {
     if(!token) return <NotFoundPage/>
     return (
         <Box sx={coveragePageMain}>
-            <Box sx={pageTop}>
+            {!mobileView && <Box sx={pageTop}>
                 <Box sx={titleDateContainer}>
                     <Box sx={titleLeft}>
                         <DateSelect/> {Object.keys(coverageDay).length===0 ?
@@ -83,7 +87,7 @@ const CoveragesPage = () => {
                 {Object.keys(coverageDay).length > 0 && <Box sx={teacherSelect}>
                     <TeacherSelect/>
                 </Box>}
-            </Box>
+            </Box>}
             {Object.keys(coverageDay).length > 0 &&
             <Box sx={pageBottom}>
                 <Box sx={absentTeachers}>
