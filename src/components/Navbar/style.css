@@ -1,0 +1,53 @@
+.desktopMenu{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    border-bottom:1px solid orange;
+    padding-bottom:5px;
+    margin-bottom:50px;
+}
+
+.menuDrawer{
+    padding-top:50px;
+}
+
+.navLeft{
+    display:flex;
+    width:200px;
+}
+
+.navCenter{
+    display:flex;
+    gap:30px;
+}
+  
+.navRight{
+    display:flex;
+    justify-content:flex-end;
+    width:200px;
+}
+
+.navLink{
+    text-decoration:none;
+    font-family:Montserrat;
+    color:black;
+}
+
+.logoutButton{
+    all:unset;
+    cursor:pointer;
+    font-family:Montserrat;
+    color:black;
+}
+
+@media only screen and (max-width: 600px) {
+    .desktopMenu{
+        display:none;
+    }
+  }
+
+@media only screen and (min-width: 600px) {
+    .mobileMenu {
+        display:none;
+    }
+}

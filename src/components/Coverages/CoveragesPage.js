@@ -72,7 +72,7 @@ const CoveragesPage = () => {
     if(!token) return <NotFoundPage/>
     return (
         <Box sx={coveragePageMain}>
-            {!mobileView && <Box sx={pageTop}>
+            <Box sx={pageTop}>
                 <Box sx={titleDateContainer}>
                     <Box sx={titleLeft}>
                         <DateSelect/> {Object.keys(coverageDay).length===0 ?
@@ -87,7 +87,7 @@ const CoveragesPage = () => {
                 {Object.keys(coverageDay).length > 0 && <Box sx={teacherSelect}>
                     <TeacherSelect/>
                 </Box>}
-            </Box>}
+            </Box>
             {Object.keys(coverageDay).length > 0 &&
             <Box sx={pageBottom}>
                 <Box sx={absentTeachers}>
