@@ -30,26 +30,46 @@ const Navbar = () => {
       className="menuDrawer"
     >
       <List>
-        <ListItem>
+      <ListItem>
           <ListItemButton>
-            <Link className="navLink" to="/schedules">Schedules</Link>
+            <Link className="navLink" to="/home">AMS</Link>
           </ListItemButton>
         </ListItem>
+        {user.id &&
+        <Box>
+          <ListItem>
+            <ListItemButton>
+              <Link className="navLink" to="/schedules">Schedules</Link>
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <Link className="navLink" to="/coverages">Absences/Coverages</Link>
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <Link className="navLink" to="/teachers">Teachers</Link>
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <Link className="navLink" to="/classes">Classes</Link>
+            </ListItemButton>
+          </ListItem>
+        </Box>}
+        {!user.id && 
         <ListItem>
           <ListItemButton>
-            <Link className="navLink" to="/coverages">Absences/Coverages</Link>
+            <Link className="navLink" to="/login">Login</Link>
           </ListItemButton>
-        </ListItem>
+        </ListItem>}
+        {user.id && 
         <ListItem>
           <ListItemButton>
-            <Link className="navLink" to="/teachers">Teachers</Link>
+            <button onClick={logout} className="logoutButton">Log out</button>
           </ListItemButton>
-        </ListItem>
-        <ListItem>
-          <ListItemButton>
-            <Link className="navLink" to="/classes">Classes</Link>
-          </ListItemButton>
-        </ListItem>
+        </ListItem>}
       </List>
     </Box>
   );
