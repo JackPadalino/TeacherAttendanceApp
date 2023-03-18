@@ -1,0 +1,70 @@
+@media only screen and (min-width: 600px) {
+    .mainContainer{
+        display: flex;
+        flex-direction: column;
+        gap:50px;
+        place-self: center;
+        place-items: center;
+        /* placeContent: center center; */
+        position: relative;
+    }
+    
+    .titleTeacherDayContainer{
+        display:flex;
+        flex-direction:column;
+        gap:30px;
+        align-items:center;
+    }
+    
+    .title{
+        font-family:Montserrat;
+        font-size:50px;
+    }
+    
+    .selectContainer{
+        display:flex;
+        gap:10px;
+    }
+    
+    .listItem{
+        font-family:Montserrat;
+        padding:0px;
+        margin:5px;
+        font-size: 25px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .mainContainer{
+        display: flex;
+        flex-direction: column;
+        gap:25px;
+        /* place-self: center;
+        place-items: center; */
+        /* placeContent: center center; */
+        position: relative;
+    }
+    
+    .titleTeacherDayContainer{
+        display:flex;
+        flex-direction:column;
+        gap:30px;
+    }
+    
+    .title{
+        font-family:Montserrat;
+    }
+    
+    .selectContainer{
+        display:flex;
+        flex-direction: column;
+        gap:10px;
+    }
+    
+    .listItem{
+        font-family:Montserrat;
+        padding:0px;
+        margin:5px;
+        font-size: 20px;
+    }
+  }

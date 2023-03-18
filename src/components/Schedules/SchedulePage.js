@@ -4,7 +4,7 @@ import { NotFoundPage } from "..";
 import { TeacherSelect,LetterDaysSelect } from '.';
 import { Box,Container,Typography,List,ListItem,ListItemIcon,ListItemText} from '@mui/material';
 import SchoolIcon from '@mui/icons-material/School';
-import { mainContainer,titleTeacherDayContainer,title,selectContainer,listItemStyle } from "./style";
+import "./style.css";
 
 const SchedulePage = () => {
     const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -13,10 +13,10 @@ const SchedulePage = () => {
     if(!token) return <NotFoundPage/>
     return (
         <Container component="main">
-            <Box sx={mainContainer}>
-                <Box sx={titleTeacherDayContainer}>
-                    <Typography variant="h3" sx={title}>Teacher Schedules</Typography>
-                    <Box sx={selectContainer}>
+            <Box className="mainContainer">
+                <Box className="titleTeacherDayContainer">
+                    <h1 className="title">Teacher Schedules</h1>
+                    <Box className="selectContainer">
                         <TeacherSelect/>
                         <LetterDaysSelect/>
                     </Box>
@@ -31,10 +31,7 @@ const SchedulePage = () => {
                                     <ListItemIcon>
                                         <SchoolIcon />
                                     </ListItemIcon>
-                                    <ListItemText
-                                        primary={`${eachClass.name} - ${eachClass.period}`}
-                                        primaryTypographyProps={listItemStyle}
-                                        />
+                                    <p className="listItem">{`${eachClass.name} - ${eachClass.period}`}</p>
                                 </ListItem>
                             )
                         })}
