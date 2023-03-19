@@ -17,3 +17,7 @@ This application was created using the following Languages, Technologies, and Li
 ### `Twilio API`
 
 ### `Many More!`
+
+## Ongoing work
+
+Currently working on updating the mobile view of this application!
