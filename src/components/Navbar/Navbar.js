@@ -32,7 +32,7 @@ const Navbar = () => {
       <List>
       <ListItem>
           <ListItemButton>
-            <Link className="navLink" to="/home">AMS</Link>
+            <Link className="navLink" to="/">AMS</Link>
           </ListItemButton>
         </ListItem>
         {user.id &&
