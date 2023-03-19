@@ -6,17 +6,12 @@ Single page application designed to streamline staff attendance and coverage ass
 
 This application was created using the following Languages, Technologies, and Libraries:
 
-### `ExpressJS`
-
-### `ReactJS`
-
-### `ReactRouter`
-
-### `Reduxjs/Toolkit`
-
-### `Twilio API`
-
-### `Many More!`
+- ExpressJS
+- ReactJS
+- ReactRouter
+- Redux
+- Twilio API
+- Many more!
 
 ## Ongoing work
 
