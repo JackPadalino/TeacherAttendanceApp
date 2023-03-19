@@ -15,7 +15,7 @@ const SchedulePage = () => {
         <Container component="main">
             <Box className="mainContainer">
                 <Box className="titleTeacherDayContainer">
-                    <h1 className="title">Teacher Schedules</h1>
+                    <h1 className="title">Schedules</h1>
                     <Box className="selectContainer">
                         <TeacherSelect/>
                         <LetterDaysSelect/>

@@ -1,0 +1,15 @@
+.title{
+    font-family:Montserrat;
+}
+
+.homeContainer{
+    height:100vh;
+    display:flex;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 900px){
+    .homeContainer{
+        padding-top:50px;
+    }
+}
