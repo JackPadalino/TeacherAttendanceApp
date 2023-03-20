@@ -6,7 +6,7 @@ const Home = () => {
     return (
       <Box component="main" className="homeContainer">
         <Box>
-          <Typography variant="h3" className="title">AMS Attendance</Typography>
+          <h1 className="title">AMS Attendance</h1>
         </Box>
       </Box>
     );

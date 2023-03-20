@@ -55,7 +55,7 @@ const DateSelect = () => {
     };
 
     return (
-        <Box sx={dateSelect}>
+        <Box className="dateSelect">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DesktopDatePicker
                     label="Date"

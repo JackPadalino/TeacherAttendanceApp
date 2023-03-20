@@ -10,23 +10,23 @@ import { setAllUsers } from "../../store/userSlice";
 import { Box,Typography,IconButton,useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import { 
-    pageTop,
-    titleDateContainer,
-    titleLeft,
-    title,
-    titleRight,
-    pageBottom,
-    teacherSelect,
-    absentTeachers,
-    letterDay,
-    teacherBox,
-    teacherNameDelete,
-    teacherName,
-    classTitle,
-    coveringTeacher
-} from "./style"; 
-// import "./style.css";
+// import { 
+//     pageTop,
+//     titleDateContainer,
+//     titleLeft,
+//     title,
+//     titleRight,
+//     pageBottom,
+//     teacherSelect,
+//     absentTeachers,
+//     letterDay,
+//     teacherBox,
+//     teacherNameDelete,
+//     teacherName,
+//     classTitle,
+//     coveringTeacher
+// } from "./style"; 
+import "./style.css";
 
 const CoveragesPage = () => {
     const dispatch = useDispatch()
@@ -64,61 +64,60 @@ const CoveragesPage = () => {
 
     if(!token) return <NotFoundPage/>
     return (
-        <div className="coveragePageMain">
-            <div className="pageTop">
-                <div style={titleDateContainer}>
-                    <div style={titleLeft}>
+        <Box className="coveragePageMain">
+            <Box className="pageTop">
+                <Box className="titleDateContainer">
+                    <Box className="titleLeft">
                         <DateSelect/> {Object.keys(coverageDay).length===0 ?
                         <LetterDaySelect/> :
-                        <div style={{display:"flex",alignItems:"center"}}>
-                            <h1><Link to={'/single-day'} style={letterDay}>{coverageDay.letterDay} Day</Link></h1>
-                        </div>}
-                    </div>
-                    <h1 style={title}>Absences/Coverages</h1>
-                    <div style={titleRight}></div>
-                </div>
+
+                        <h1><Link to={'/single-day'} className="letterDay">{coverageDay.letterDay} Day</Link></h1>}
+                    </Box>
+                    <h1 className="title">Absences/Coverages</h1>
+                    <Box className="titleRight"></Box>
+                </Box>
                 {Object.keys(coverageDay).length > 0 && 
-                <div style={teacherSelect}>
+                <Box className="teacherSelect">
                     <TeacherSelect/>
-                </div>}
-            </div>
+                </Box>}
+            </Box>
             {Object.keys(coverageDay).length > 0 &&
-            <div style={pageBottom}>
-                <div style={absentTeachers}>
+            <Box className="pageBottom">
+                <Box className="absentTeachers">
                     {allAbsentUsers.map((user) => {
                         return (
-                            <div key={user.id} style={teacherBox}>
-                                <div style={teacherNameDelete}>
-                                    <Typography style={teacherName}>{user.fullName}</Typography>
+                            <Box key={user.id} className="teacherBox">
+                                <Box className="teacherNameDelete">
+                                    <Typography className="teacherName">{user.fullName}</Typography>
                                     <IconButton size="small" value={user.id} onClick={deleteAbsence}>
                                         <HighlightOffIcon fontSize="small" />   
                                     </IconButton>
-                                </div>
-                                <div>
+                                </Box>
+                                <Box>
                                     {user.classes.map((eachClass) =>{
                                         return (
                                             eachClass.letterDays.includes(coverageDay.letterDay) && 
-                                            <div key={eachClass.id}>
-                                                <Typography style={classTitle} align="center">
+                                            <Box key={eachClass.id}>
+                                                <Typography className="classTitle" align="center">
                                                     <Link to={`/coverages/${eachClass.id}/${eachClass.school}/${eachClass.period}/${coverageDay.letterDay}`} style={{textDecoration:"none",color:"#1976D2"}}>{eachClass.name} - {eachClass.period}</Link>
                                                 </Typography>
                                                 {todaysCoverages.map((eachCoverage)=>{
                                                     return (
                                                         eachCoverage.class.id===eachClass.id &&
-                                                        <Typography sx={coveringTeacher} align="center">{eachCoverage.user.fullName}</Typography>
+                                                        <Typography className="coveringTeacher" align="center">{eachCoverage.user.fullName}</Typography>
                                                     )
                                                 })}
-                                            </div>
+                                            </Box>
                                         )
                                     })}
-                                </div>
-                            </div>  
+                                </Box>
+                            </Box>  
                         );
                     })}
-                </div>
-            </div>}
+                </Box>
+            </Box>}
 
-        </div>
+        </Box>
     );
 };
 

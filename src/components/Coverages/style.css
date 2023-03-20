@@ -22,16 +22,19 @@
     display:flex;
     width:350px;
     gap:5px;
-};
+}
 
 .letterDay{
     text-decoration:none;
-    color:blue;
+    font-family:Montserrat;
+    color:#1976d2;
     cursor:pointer;
 }
 
 .title{
     font-family:Montserrat;
+    font-size: 50px;
+
 }
 
 .titleRight{
@@ -45,7 +48,7 @@
 .pageBottom{
     display:flex;
     flex-direction:column;
-};
+}
 
 .absentTeachers{
     display:flex;
@@ -59,7 +62,8 @@
     display:flex;
     flex-direction:column;
     overflow:auto;
-};
+    border:1px solid red;
+}
 
 .teacherNameDelete{
     display:flex;

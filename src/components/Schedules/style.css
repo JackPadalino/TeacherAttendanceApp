@@ -12,14 +12,15 @@
     .titleTeacherDayContainer{
         display:flex;
         flex-direction:column;
-        gap:30px;
+        gap:15px;
         align-items:center;
     }
     
     .title{
         font-family:Montserrat;
-        margin:0px;
         font-size:50px;
+        padding:0px;
+        margin:0px;
         text-align: center;
     }
     
@@ -50,14 +51,15 @@
     .titleTeacherDayContainer{
         display:flex;
         flex-direction:column;
-        gap:30px;
+        gap:15px;
         align-items:center;
     }
     
     .title{
         font-family:Montserrat;
-        margin:0px;
         font-size:50px;
+        padding:0px;
+        margin:0px;
         text-align: center;
     }
     
