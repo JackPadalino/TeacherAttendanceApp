@@ -23,6 +23,12 @@ export const titleLeft = {
     gap:"5px"
 };
 
+export const letterDay = {
+    textDecoration:"none",
+    fontSize:"30px",
+    color:"#1976d2",
+};
+
 export const title = {
     fontFamily:'Montserrat',
 };
@@ -64,12 +70,6 @@ export const pageRightBox = {
     width:"80%",
     paddingLeft:"20px",
     rowGap:"40px"
-};
-
-export const letterDay = {
-    textDecoration:"none",
-    fontSize:"30px",
-    color:"#1976d2",
 };
 
 export const teacherBox = {
