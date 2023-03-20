@@ -64,41 +64,42 @@ const CoveragesPage = () => {
 
     if(!token) return <NotFoundPage/>
     return (
-        <Box className="coveragePageMain">
-            <Box sx={pageTop}>
-                <Box sx={titleDateContainer}>
-                    <Box sx={titleLeft}>
+        <div className="coveragePageMain">
+            <div className="pageTop">
+                <div style={titleDateContainer}>
+                    <div style={titleLeft}>
                         <DateSelect/> {Object.keys(coverageDay).length===0 ?
                         <LetterDaySelect/> :
-                        <Box sx={{display:"flex",alignItems:"center"}}>
-                            <Typography variant="h4"><Link to={'/single-day'}>{coverageDay.letterDay} Day</Link></Typography>
-                        </Box>}
-                    </Box>
-                    <Typography variant="h3" sx={title}>Absences/Coverages</Typography>
-                    <Box sx={titleRight}></Box>
-                </Box>
-                {Object.keys(coverageDay).length > 0 && <Box sx={teacherSelect}>
+                        <div style={{display:"flex",alignItems:"center"}}>
+                            <h1><Link to={'/single-day'} style={letterDay}>{coverageDay.letterDay} Day</Link></h1>
+                        </div>}
+                    </div>
+                    <h1 style={title}>Absences/Coverages</h1>
+                    <div style={titleRight}></div>
+                </div>
+                {Object.keys(coverageDay).length > 0 && 
+                <div style={teacherSelect}>
                     <TeacherSelect/>
-                </Box>}
-            </Box>
+                </div>}
+            </div>
             {Object.keys(coverageDay).length > 0 &&
-            <Box sx={pageBottom}>
-                <Box sx={absentTeachers}>
+            <div style={pageBottom}>
+                <div style={absentTeachers}>
                     {allAbsentUsers.map((user) => {
                         return (
-                            <Box key={user.id} sx={teacherBox}>
-                                <Box sx={teacherNameDelete}>
-                                    <Typography sx={teacherName}>{user.fullName}</Typography>
+                            <div key={user.id} style={teacherBox}>
+                                <div style={teacherNameDelete}>
+                                    <Typography style={teacherName}>{user.fullName}</Typography>
                                     <IconButton size="small" value={user.id} onClick={deleteAbsence}>
                                         <HighlightOffIcon fontSize="small" />   
                                     </IconButton>
-                                </Box>
-                                <Box>
+                                </div>
+                                <div>
                                     {user.classes.map((eachClass) =>{
                                         return (
                                             eachClass.letterDays.includes(coverageDay.letterDay) && 
-                                            <Box key={eachClass.id}>
-                                                <Typography sx={classTitle} align="center">
+                                            <div key={eachClass.id}>
+                                                <Typography style={classTitle} align="center">
                                                     <Link to={`/coverages/${eachClass.id}/${eachClass.school}/${eachClass.period}/${coverageDay.letterDay}`} style={{textDecoration:"none",color:"#1976D2"}}>{eachClass.name} - {eachClass.period}</Link>
                                                 </Typography>
                                                 {todaysCoverages.map((eachCoverage)=>{
@@ -107,17 +108,17 @@ const CoveragesPage = () => {
                                                         <Typography sx={coveringTeacher} align="center">{eachCoverage.user.fullName}</Typography>
                                                     )
                                                 })}
-                                            </Box>
+                                            </div>
                                         )
                                     })}
-                                </Box>
-                            </Box>  
+                                </div>
+                            </div>  
                         );
                     })}
-                </Box>
-            </Box>}
+                </div>
+            </div>}
 
-        </Box>
+        </div>
     );
 };
 
