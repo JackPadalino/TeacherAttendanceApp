@@ -1,3 +1,4 @@
+// coverages page
 export const coveragePageMain = {
     display: "flex",
     flexDirection: "column",
@@ -31,53 +32,27 @@ export const titleRight = {
     width:"350px"
 };
 
+export const teacherSelect = {
+    display:"flex"
+};
+
 export const pageBottom = {
     display:"flex",
     flexDirection:"column"
 };
 
-export const teacherSelect = {
-    display:"flex"
-};
-
 export const absentTeachers = {
     display:"flex",
+    justifyContent:"space-evenly",
     rowGap:"30px",
     flexWrap:"wrap",
     width:"100%"
 };
 
-export const pageLeftBox = {
-    display:"flex",
-    flexDirection:"column",
-    gap:"10px",
-    width:"20%",
-    height:"300px",
-    paddingRight:"20px",
-    borderRight:"1px solid lightgrey"
-};
-
-export const pageRightBox = {
-    display:"flex",
-    flexWrap:"wrap",
-    alignItems:"flex-start",
-    width:"80%",
-    paddingLeft:"20px",
-    rowGap:"40px"
-};
-
-export const letterDay = {
-    textDecoration:"none",
-    fontSize:"30px",
-    color:"#1976d2",
-};
-
 export const teacherBox = {
     display:"flex",
     flexDirection:"column",
-    justifyContent:"center",
     overflow:"auto",
-    width:"25%"
 };
 
 export const teacherNameDelete = {
@@ -102,6 +77,7 @@ export const coveringTeacher = {
     color:"#008C48"
 };
 
+// available coverages page
 export const availableCoveragesMain = {
     display:"flex",
     flexDirection:"column",
@@ -120,25 +96,21 @@ export const updateSuccessful = {
     marginTop: "10px"
 };
 
+// date select component
 export const dateSelect = {
     width:"200px"
 };
 
+
+// letter day select component
 export const letterDaySelect = {
     display:"flex",
     gap:"5px"
 };
 
+// teacher select component
 export const teacherSelectForm = {
     display:"flex",
     gap:"5px",
     width:"300px"
 };
-
-//~~~~~coverages page mobile view styling~~~~~//
-export const pageTopMobile = {};
-
-export const titleDateContainerMobile = {};
-
-export const titleLeftMobile = {};
-

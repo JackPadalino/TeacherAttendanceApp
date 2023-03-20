@@ -134,7 +134,7 @@ const AvailableCoverages = () => {
                 <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Available coverages for {thisClass.school} {thisClass.name}{thisClass.grade} - Period {thisClass.period} - {letterDay} day</Typography>
                 <Button variant="contained" size="small" onClick={updateCoverages}>Update coverages</Button>
             </Box>
-            {updatedMessage && <Typography style={updateSuccessful}>Coverages for this class have been updated.</Typography>}
+            {updatedMessage && <Typography sx={updateSuccessful}>Coverages for this class have been updated.</Typography>}
             <Box>
                 {allAvailableUsers.map((user) => {
                     return (

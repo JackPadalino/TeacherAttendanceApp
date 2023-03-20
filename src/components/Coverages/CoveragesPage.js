@@ -11,7 +11,6 @@ import { Box,Typography,IconButton,useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { 
-    coveragePageMain,
     pageTop,
     titleDateContainer,
     titleLeft,
@@ -27,7 +26,7 @@ import {
     classTitle,
     coveringTeacher
 } from "./style"; 
-import "./style.css";
+// import "./style.css";
 
 const CoveragesPage = () => {
     const dispatch = useDispatch()
@@ -65,14 +64,14 @@ const CoveragesPage = () => {
 
     if(!token) return <NotFoundPage/>
     return (
-        <Box sx={coveragePageMain}>
+        <Box className="coveragePageMain">
             <Box sx={pageTop}>
                 <Box sx={titleDateContainer}>
                     <Box sx={titleLeft}>
                         <DateSelect/> {Object.keys(coverageDay).length===0 ?
                         <LetterDaySelect/> :
                         <Box sx={{display:"flex",alignItems:"center"}}>
-                            <Typography variant="h4"><Link to={'/single-day'} style={letterDay} className="letterDay">{coverageDay.letterDay} Day</Link></Typography>
+                            <Typography variant="h4"><Link to={'/single-day'} sx={letterDay} className="letterDay">{coverageDay.letterDay} Day</Link></Typography>
                         </Box>}
                     </Box>
                     <Typography variant="h3" sx={title}>Absences/Coverages</Typography>
