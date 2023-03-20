@@ -71,7 +71,7 @@ const CoveragesPage = () => {
                         <DateSelect/> {Object.keys(coverageDay).length===0 ?
                         <LetterDaySelect/> :
                         <Box sx={{display:"flex",alignItems:"center"}}>
-                            <Typography variant="h4"><Link to={'/single-day'} sx={letterDay} className="letterDay">{coverageDay.letterDay} Day</Link></Typography>
+                            <Typography variant="h4"><Link to={'/single-day'}>{coverageDay.letterDay} Day</Link></Typography>
                         </Box>}
                     </Box>
                     <Typography variant="h3" sx={title}>Absences/Coverages</Typography>

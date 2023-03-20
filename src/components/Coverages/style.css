@@ -24,6 +24,12 @@
     gap:5px;
 };
 
+.letterDay{
+    text-decoration:none;
+    color:blue;
+    cursor:pointer;
+}
+
 .title{
     font-family:Montserrat;
 }

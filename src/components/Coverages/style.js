@@ -24,6 +24,11 @@ export const titleLeft = {
     gap:"5px"
 };
 
+export const letterDay = {
+    textDecoration:"none",
+    cursor:"pointer"
+};
+
 export const title = {
     fontFamily:'Montserrat',
 };
