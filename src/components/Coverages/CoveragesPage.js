@@ -70,8 +70,7 @@ const CoveragesPage = () => {
                     <Box className="titleLeft">
                         <DateSelect/> {Object.keys(coverageDay).length===0 ?
                         <LetterDaySelect/> :
-
-                        <h1><Link to={'/single-day'} className="letterDay">{coverageDay.letterDay} Day</Link></h1>}
+                        <Link to={'/single-day'} className="letterDay">{coverageDay.letterDay} Day</Link>}
                     </Box>
                     <h1 className="title">Absences/Coverages</h1>
                     <Box className="titleRight"></Box>
@@ -88,7 +87,7 @@ const CoveragesPage = () => {
                         return (
                             <Box key={user.id} className="teacherBox">
                                 <Box className="teacherNameDelete">
-                                    <Typography className="teacherName">{user.fullName}</Typography>
+                                    <h1 className="teacherName">{user.fullName}</h1>
                                     <IconButton size="small" value={user.id} onClick={deleteAbsence}>
                                         <HighlightOffIcon fontSize="small" />   
                                     </IconButton>
@@ -98,9 +97,9 @@ const CoveragesPage = () => {
                                         return (
                                             eachClass.letterDays.includes(coverageDay.letterDay) && 
                                             <Box key={eachClass.id}>
-                                                <Typography className="classTitle" align="center">
+                                                <p className="classTitle" align="center">
                                                     <Link to={`/coverages/${eachClass.id}/${eachClass.school}/${eachClass.period}/${coverageDay.letterDay}`} style={{textDecoration:"none",color:"#1976D2"}}>{eachClass.name} - {eachClass.period}</Link>
-                                                </Typography>
+                                                </p>
                                                 {todaysCoverages.map((eachCoverage)=>{
                                                     return (
                                                         eachCoverage.class.id===eachClass.id &&

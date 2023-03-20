@@ -27,6 +27,7 @@
 .letterDay{
     text-decoration:none;
     font-family:Montserrat;
+    font-size:30px;
     color:#1976d2;
     cursor:pointer;
 }
@@ -61,8 +62,8 @@
 .teacherBox{
     display:flex;
     flex-direction:column;
+    gap:10px;
     overflow:auto;
-    border:1px solid red;
 }
 
 .teacherNameDelete{
@@ -73,12 +74,16 @@
 
 .teacherName{
     font-family:Montserrat;
+    padding:0px;
+    margin:0px;
     font-size:30px;
 }
 
 .classTitle{
     font-family:Montserrat;
-    font-size:22px;
+    padding:0px;
+    margin:0px;
+    font-size:20px;
 }
 
 .coveringTeacher{
