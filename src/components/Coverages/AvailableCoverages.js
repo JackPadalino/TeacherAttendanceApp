@@ -16,7 +16,15 @@ import {
     Checkbox,
 } from '@mui/material';
 import SchoolIcon from '@mui/icons-material/School';
+<<<<<<< HEAD
 import "./style.css";
+=======
+// import { 
+//     availableCoveragesMain,
+//     updateCoveragesButtonContainer,
+//     updateSuccessful
+// } from "./style";
+>>>>>>> bd808b904cde6d2b7f482712116df6c2cd31de30
 
 const AvailableCoverages = () => {
     const dispatch = useDispatch();
