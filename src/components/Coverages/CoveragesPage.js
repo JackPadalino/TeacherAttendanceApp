@@ -72,8 +72,24 @@ const CoveragesPage = () => {
                         <LetterDaySelect/> :
                         <Link to={'/single-day'} className="letterDay">{coverageDay.letterDay} Day</Link>}
                     </Box>
-                    <h1 className="title">Absences/Coverages</h1>
+                    <h1 className="title">Coverages</h1>
                     <Box className="titleRight"></Box>
+                </Box>
+                {Object.keys(coverageDay).length > 0 && 
+                <Box className="teacherSelect">
+                    <TeacherSelect/>
+                </Box>}
+            </Box>
+            <Box className="pageTopMobile">
+                <Box className="titleDateContainer">
+                    <h1 className="title">Coverages</h1>
+                    <Box className="selectors">
+                        {Object.keys(coverageDay).length!==0 &&
+                        <Link to={'/single-day'} className="letterDay">{coverageDay.letterDay} Day</Link>}
+                        <DateSelect/> 
+                        {Object.keys(coverageDay).length===0 &&
+                        <LetterDaySelect/>}
+                    </Box>
                 </Box>
                 {Object.keys(coverageDay).length > 0 && 
                 <Box className="teacherSelect">

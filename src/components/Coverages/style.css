@@ -1,130 +1,435 @@
-/* coverages page */
-.coveragePageMain{
-    display: flex;
-    flex-direction: column;
-    gap:50px;
+@media only screen and (max-width: 600px) {
+    /* coverages page */
+    .coveragePageMain{
+        display: flex;
+        flex-direction: column;
+        gap:50px;
+    }
+
+    .pageTop{
+        display:none;
+    }
+
+    .pageTopMobile{
+        display:flex;
+        justify-content: center;
+        flex-direction:column;
+        gap:5px;
+    }
+
+    .titleDateContainer{
+        display:flex;
+        justify-content: center;
+        flex-direction:column;
+        gap:30px;
+    }
+
+    .selectors{
+        display:flex;
+        flex-direction: column;
+        justify-content:center;
+        gap:5px;
+    }
+
+    .letterDay{
+        text-decoration:none;
+        font-family:Montserrat;
+        text-align:center;
+        font-size:30px;
+        color:#1976d2;
+        cursor:pointer;
+    }
+
+    .title{
+        font-family:Montserrat;
+        font-size: 5px;
+    }
+
+    .titleRight{
+        display:none;
+    }
+
+    .teacherSelect{
+        display:flex;
+    }
+
+    .pageBottom{
+        display:flex;
+        flex-direction:column;
+    }
+
+    .absentTeachers{
+        display:flex;
+        justify-content:space-evenly;
+        row-gap:30px;
+        flex-wrap:wrap;
+        width:100%;
+    }
+
+    .teacherBox{
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        overflow:auto;
+    }
+
+    .teacherNameDelete{
+        display:flex;
+        justify-content:center;
+        gap:10px;
+    }
+
+    .teacherName{
+        font-family:Montserrat;
+        padding:0px;
+        margin:0px;
+        font-size:30px;
+    }
+
+    .classTitle{
+        font-family:Montserrat;
+        padding:0px;
+        margin:0px;
+        font-size:20px;
+    }
+
+    .coveringTeacher{
+        font-family:Montserrat;
+        font-size:15px;
+        color:#008C48;
+    }
+
+    /* available coverages page */
+    .availableCoveragesMain{
+        display:flex;
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .updateCoveragesButtonContainer{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+    }
+
+    .updateSuccessful{
+        font-family:Montserrat;
+        color: green;
+        margin-top:10px;
+    }
+
+    /* date select component */
+    .dateSelect{
+        width:100%;
+    }
+
+    /* letter day select component */
+    .letterDaySelect{
+        display:flex;
+        flex-direction: column;
+        gap:5px;
+    }
+
+    /* teacher select component */
+    .teacherSelectForm{
+        display:flex;
+        flex-direction: column;
+        width:100%;
+        gap:5px;
+    }
+
+    .teacherSelectOnly{
+        width:100%;
+    }
 }
 
-.pageTop{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
+@media only screen and (min-width: 600px) and (max-width: 900px){
+    /* coverages page */
+    .coveragePageMain{
+        display: flex;
+        flex-direction: column;
+        gap:50px;
+    }
+
+    .pageTop{
+        display:none;
+    }
+
+    .pageTopMobile{
+        display:flex;
+        justify-content: center;
+        flex-direction:column;
+        gap:5px;
+    }
+
+    .titleDateContainer{
+        display:flex;
+        justify-content: center;
+        flex-direction:column;
+        gap:30px;
+    }
+
+    .selectors{
+        display:flex;
+        flex-direction: column;
+        justify-content:center;
+        margin-left:auto;
+        margin-right:auto;
+        width:65%;
+        gap:5px;
+    }
+
+    .letterDay{
+        text-decoration:none;
+        font-family:Montserrat;
+        text-align:center;
+        font-size:30px;
+        color:#1976d2;
+        cursor:pointer;
+    }
+
+    .title{
+        font-family:Montserrat;
+        font-size: 5px;
+    }
+
+    .titleRight{
+        display:none;
+    }
+
+    .teacherSelect{
+        display:flex;
+    }
+
+    .pageBottom{
+        display:flex;
+        flex-direction:column;
+    }
+
+    .absentTeachers{
+        display:flex;
+        justify-content:space-evenly;
+        row-gap:30px;
+        flex-wrap:wrap;
+        width:100%;
+    }
+
+    .teacherBox{
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        overflow:auto;
+    }
+
+    .teacherNameDelete{
+        display:flex;
+        justify-content:center;
+        gap:10px;
+    }
+
+    .teacherName{
+        font-family:Montserrat;
+        padding:0px;
+        margin:0px;
+        font-size:30px;
+    }
+
+    .classTitle{
+        font-family:Montserrat;
+        padding:0px;
+        margin:0px;
+        font-size:20px;
+    }
+
+    .coveringTeacher{
+        font-family:Montserrat;
+        font-size:15px;
+        color:#008C48;
+    }
+
+    /* available coverages page */
+    .availableCoveragesMain{
+        display:flex;
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .updateCoveragesButtonContainer{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+    }
+
+    .updateSuccessful{
+        font-family:Montserrat;
+        color: green;
+        margin-top:10px;
+    }
+
+    /* date select component */
+    .dateSelect{
+        width:100%;
+    }
+
+    /* letter day select component */
+    .letterDaySelect{
+        display:flex;
+        flex-direction: column;
+        gap:5px;
+    }
+
+    /* teacher select component */
+    .teacherSelectForm{
+        display:flex;
+        flex-direction: column;
+        width:65%;
+        margin-left:auto;
+        margin-right:auto;
+        gap:5px;
+    }
+
+    .teacherSelectOnly{
+        width:100%;
+    }
 }
 
-.titleDateContainer{
-    display:flex;
-    justify-content:space-between;
-    gap:30px;
-    align-items:center
-}
+@media only screen and (min-width: 900px) {
+    /* coverages page */
+    .coveragePageMain{
+        display: flex;
+        flex-direction: column;
+        gap:50px;
+    }
 
-.titleLeft{
-    display:flex;
-    width:350px;
-    gap:5px;
-}
+    .pageTop{
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+    }
 
-.letterDay{
-    text-decoration:none;
-    font-family:Montserrat;
-    font-size:30px;
-    color:#1976d2;
-    cursor:pointer;
-}
+    .pageTopMobile{
+        display:none;
+    }
 
-.title{
-    font-family:Montserrat;
-    font-size: 50px;
+    .titleDateContainer{
+        display:flex;
+        justify-content:space-between;
+        gap:30px;
+        align-items:center
+    }
 
-}
+    .titleLeft{
+        display:flex;
+        width:350px;
+        gap:5px;
+    }
 
-.titleRight{
-    width:350px;
-}
+    .letterDay{
+        text-decoration:none;
+        font-family:Montserrat;
+        font-size:30px;
+        color:#1976d2;
+        cursor:pointer;
+    }
 
-.teacherSelect{
-    display:flex;
-}
+    .title{
+        font-family:Montserrat;
+        font-size: 50px;
 
-.pageBottom{
-    display:flex;
-    flex-direction:column;
-}
+    }
 
-.absentTeachers{
-    display:flex;
-    justify-content:space-evenly;
-    row-gap:30px;
-    flex-wrap:wrap;
-    width:100%;
-}
+    .titleRight{
+        width:350px;
+    }
 
-.teacherBox{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    overflow:auto;
-}
+    .teacherSelect{
+        display:flex;
+    }
 
-.teacherNameDelete{
-    display:flex;
-    justify-content:center;
-    gap:10px;
-}
+    .pageBottom{
+        display:flex;
+        flex-direction:column;
+    }
 
-.teacherName{
-    font-family:Montserrat;
-    padding:0px;
-    margin:0px;
-    font-size:30px;
-}
+    .absentTeachers{
+        display:flex;
+        justify-content:space-evenly;
+        row-gap:30px;
+        flex-wrap:wrap;
+        width:100%;
+    }
 
-.classTitle{
-    font-family:Montserrat;
-    padding:0px;
-    margin:0px;
-    font-size:20px;
-}
+    .teacherBox{
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        overflow:auto;
+    }
 
-.coveringTeacher{
-    font-family:Montserrat;
-    font-size:15px;
-    color:#008C48;
-}
+    .teacherNameDelete{
+        display:flex;
+        justify-content:center;
+        gap:10px;
+    }
 
-/* available coverages page */
-.availableCoveragesMain{
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-}
+    .teacherName{
+        font-family:Montserrat;
+        padding:0px;
+        margin:0px;
+        font-size:30px;
+    }
 
-.updateCoveragesButtonContainer{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
+    .classTitle{
+        font-family:Montserrat;
+        padding:0px;
+        margin:0px;
+        font-size:20px;
+    }
 
-.updateSuccessful{
-    font-family:Montserrat;
-    color: green;
-    margin-top:10px;
-}
+    .coveringTeacher{
+        font-family:Montserrat;
+        font-size:15px;
+        color:#008C48;
+    }
 
-/* date select component */
-.dateSelect{
-    width:200px;
-}
+    /* available coverages page */
+    .availableCoveragesMain{
+        display:flex;
+        flex-direction:column;
+        gap:15px;
+    }
 
-/* letter day select component */
-.letterDaySelect{
-    display:flex;
-    gap:5px;
-}
+    .updateCoveragesButtonContainer{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+    }
 
-/* teacher select component */
-.teacherSelectForm{
-    display:flex;
-    gap:5px;
-    width:300px;
+    .updateSuccessful{
+        font-family:Montserrat;
+        color: green;
+        margin-top:10px;
+    }
+
+    /* date select component */
+    .dateSelect{
+        width:200px;
+    }
+
+    /* letter day select component */
+    .letterDaySelect{
+        display:flex;
+        gap:5px;
+    }
+
+    /* teacher select component */
+    .teacherSelectForm{
+        display:flex;
+        gap:5px;
+        width:300px;
+    }
+
+    .teacherSelectOnly{
+        width:200px;
+    }
 }
