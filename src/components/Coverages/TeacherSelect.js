@@ -35,8 +35,8 @@ const TeacherSelect = () => {
     };
 
     return (
-        <form onSubmit={createAbsence} style={teacherSelectForm}>
-            <FormControl sx={{width:"200px"}}>
+        <form onSubmit={createAbsence} className="teacherSelectForm">
+            <FormControl className="teacherSelectOnly">
                 <InputLabel id="demo-simple-select-label">Teacher</InputLabel>
                 <Select
                     labelId="demo-simple-select-label"

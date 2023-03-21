@@ -1,0 +1,10 @@
+.title{
+    font-family:Montserrat;
+    font-size:50px;
+}
+
+.homeContainer{
+    height:100vh;
+    display:flex;
+    justify-content: center;
+}

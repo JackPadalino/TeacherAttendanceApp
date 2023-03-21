@@ -48,31 +48,46 @@ const CoveragesPage = () => {
 
     if(!token) return <NotFoundPage/>
     return (
-        <Box sx={coveragePageMain}>
-            <Box sx={pageTop}>
-                <Box sx={titleDateContainer}>
-                    <Box sx={titleLeft}>
+        <Box className="coveragePageMain">
+            <Box className="pageTop">
+                <Box className="titleDateContainer">
+                    <Box className="titleLeft">
                         <DateSelect/> {Object.keys(coverageDay).length===0 ?
                         <LetterDaySelect/> :
-                        <Box sx={{display:"flex",alignItems:"center"}}>
-                            <Typography variant="h4"><Link to={'/single-day'} style={letterDay} className="letterDay">{coverageDay.letterDay} Day</Link></Typography>
-                        </Box>}
+                        <Link to={'/single-day'} className="letterDay">{coverageDay.letterDay} Day</Link>}
                     </Box>
-                    <Typography variant="h3" sx={title}>Absences/Coverages</Typography>
-                    <Box sx={titleRight}></Box>
+                    <h1 className="title">Coverages</h1>
+                    <Box className="titleRight"></Box>
                 </Box>
-                {Object.keys(coverageDay).length > 0 && <Box sx={teacherSelect}>
+                {Object.keys(coverageDay).length > 0 && 
+                <Box className="teacherSelect">
+                    <TeacherSelect/>
+                </Box>}
+            </Box>
+            <Box className="pageTopMobile">
+                <Box className="titleDateContainer">
+                    <h1 className="title">Coverages</h1>
+                    <Box className="selectors">
+                        {Object.keys(coverageDay).length!==0 &&
+                        <Link to={'/single-day'} className="letterDay">{coverageDay.letterDay} Day</Link>}
+                        <DateSelect/> 
+                        {Object.keys(coverageDay).length===0 &&
+                        <LetterDaySelect/>}
+                    </Box>
+                </Box>
+                {Object.keys(coverageDay).length > 0 && 
+                <Box className="teacherSelect">
                     <TeacherSelect/>
                 </Box>}
             </Box>
             {Object.keys(coverageDay).length > 0 &&
-            <Box sx={pageBottom}>
-                <Box sx={absentTeachers}>
+            <Box className="pageBottom">
+                <Box className="absentTeachers">
                     {allAbsentUsers.map((user) => {
                         return (
-                            <Box key={user.id} sx={teacherBox}>
-                                <Box sx={teacherNameDelete}>
-                                    <Typography sx={teacherName}>{user.fullName}</Typography>
+                            <Box key={user.id} className="teacherBox">
+                                <Box className="teacherNameDelete">
+                                    <h1 className="teacherName">{user.fullName}</h1>
                                     <IconButton size="small" value={user.id} onClick={deleteAbsence}>
                                         <HighlightOffIcon fontSize="small" />   
                                     </IconButton>
@@ -82,13 +97,13 @@ const CoveragesPage = () => {
                                         return (
                                             eachClass.letterDays.includes(coverageDay.letterDay) && 
                                             <Box key={eachClass.id}>
-                                                <Typography sx={classTitle} align="center">
+                                                <p className="classTitle" align="center">
                                                     <Link to={`/coverages/${eachClass.id}/${eachClass.school}/${eachClass.period}/${coverageDay.letterDay}`} style={{textDecoration:"none",color:"#1976D2"}}>{eachClass.name} - {eachClass.period}</Link>
-                                                </Typography>
+                                                </p>
                                                 {todaysCoverages.map((eachCoverage)=>{
                                                     return (
                                                         eachCoverage.class.id===eachClass.id &&
-                                                        <Typography sx={coveringTeacher} align="center">{eachCoverage.user.fullName}</Typography>
+                                                        <Typography className="coveringTeacher" align="center">{eachCoverage.user.fullName}</Typography>
                                                     )
                                                 })}
                                             </Box>

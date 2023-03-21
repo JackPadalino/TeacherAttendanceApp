@@ -2,7 +2,7 @@
     .mainContainer{
         display: flex;
         flex-direction: column;
-        gap:50px;
+        gap:30px;
         place-self: center;
         place-items: center;
         /* placeContent: center center; */
@@ -12,13 +12,16 @@
     .titleTeacherDayContainer{
         display:flex;
         flex-direction:column;
-        gap:30px;
+        gap:15px;
         align-items:center;
     }
     
     .title{
         font-family:Montserrat;
         font-size:50px;
+        padding:0px;
+        margin:0px;
+        text-align: center;
     }
     
     .selectContainer{
@@ -38,9 +41,9 @@
     .mainContainer{
         display: flex;
         flex-direction: column;
-        gap:25px;
-        /* place-self: center;
-        place-items: center; */
+        gap:30px;
+        place-self: center;
+        place-items: center;
         /* placeContent: center center; */
         position: relative;
     }
@@ -48,16 +51,20 @@
     .titleTeacherDayContainer{
         display:flex;
         flex-direction:column;
-        gap:30px;
+        gap:15px;
+        align-items:center;
     }
     
     .title{
         font-family:Montserrat;
+        font-size:50px;
+        padding:0px;
+        margin:0px;
+        text-align: center;
     }
     
     .selectContainer{
         display:flex;
-        flex-direction: column;
         gap:10px;
     }
     
@@ -65,6 +72,6 @@
         font-family:Montserrat;
         padding:0px;
         margin:5px;
-        font-size: 20px;
+        font-size: 25px;
     }
   }

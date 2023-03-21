@@ -21,7 +21,8 @@ dayjs.extend(timezone);
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import { dateSelect } from "./style";
+// import { dateSelect } from "./style";
+import "./style.css";
 
 const DateSelect = () => {
     const dispatch = useDispatch();
@@ -55,7 +56,7 @@ const DateSelect = () => {
     };
 
     return (
-        <Box sx={dateSelect}>
+        <Box>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DesktopDatePicker
                     label="Date"
@@ -63,6 +64,7 @@ const DateSelect = () => {
                     value={Object.keys(selectedCalendarDate).length > 0 ? selectedCalendarDate : null}
                     onChange={handleDateChange}
                     renderInput={(params) => <TextField {...params} />}
+                    className="dateSelect"
                 />
             </LocalizationProvider>
         </Box>

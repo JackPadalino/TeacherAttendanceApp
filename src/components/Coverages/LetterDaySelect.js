@@ -31,7 +31,7 @@ const LetterDaySelect = () => {
 
     return (
         <Box>
-            <form onSubmit={createNewDay} style={letterDaySelect}>
+            <form onSubmit={createNewDay} className="letterDaySelect">
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Day</InputLabel>
                     <Select
