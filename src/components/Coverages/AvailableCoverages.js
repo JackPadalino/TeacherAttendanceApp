@@ -16,11 +16,11 @@ import {
     Checkbox,
 } from '@mui/material';
 import SchoolIcon from '@mui/icons-material/School';
-import { 
-    availableCoveragesMain,
-    updateCoveragesButtonContainer,
-    updateSuccessful
-} from "./style";
+// import { 
+//     availableCoveragesMain,
+//     updateCoveragesButtonContainer,
+//     updateSuccessful
+// } from "./style";
 
 const AvailableCoverages = () => {
     const dispatch = useDispatch();
@@ -129,12 +129,12 @@ const AvailableCoverages = () => {
 
     if(!token) return <NotFoundPage/>
     return (
-        <Box sx={availableCoveragesMain}>
-            <Box sx={updateCoveragesButtonContainer}>
+        <Box className="availableCoveragesMain">
+            <Box className="updateCoveragesButtonContainer">
                 <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Available coverages for {thisClass.school} {thisClass.name}{thisClass.grade} - Period {thisClass.period} - {letterDay} day</Typography>
                 <Button variant="contained" size="small" onClick={updateCoverages}>Update coverages</Button>
             </Box>
-            {updatedMessage && <Typography sx={updateSuccessful}>Coverages for this class have been updated.</Typography>}
+            {updatedMessage && <Typography className="updateSuccessful">Coverages for this class have been updated.</Typography>}
             <Box>
                 {allAvailableUsers.map((user) => {
                     return (
