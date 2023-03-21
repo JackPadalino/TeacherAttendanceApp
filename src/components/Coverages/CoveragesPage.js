@@ -8,7 +8,7 @@ import { NotFoundPage } from "..";
 import { setAllAbsentUsers,setAllCoverages,setTodaysCoverages } from "../../store/coverageSlice";
 import { setAllUsers } from "../../store/userSlice";
 import { Box,Typography,IconButton,useMediaQuery } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+//import { useTheme } from '@mui/material/styles';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import "./style.css";
 
@@ -16,8 +16,8 @@ const CoveragesPage = () => {
     const dispatch = useDispatch()
     const { coverageDay,allAbsentUsers,todaysCoverages } = useSelector((state) => state.coverage);
     const [token, setToken] = useState(window.localStorage.getItem("token"));
-    const theme = useTheme();
-    const mobileView = useMediaQuery(theme.breakpoints.down('sm'),{noSsr:true});
+    //const theme = useTheme();
+    //const mobileView = useMediaQuery(theme.breakpoints.down('sm'),{noSsr:true});
 
     const deleteAbsence = async(event) => {
         // deleting the coverages associated with this absence first
@@ -50,35 +50,21 @@ const CoveragesPage = () => {
     return (
         <Box className="coveragePageMain">
             <Box className="pageTop">
-                <Box className="titleDateContainer">
-                    <Box className="titleLeft">
+                <h1 className="title">Coverages</h1>
+                <Box className="dateTeacherSelectContainer">
+                    <Box className="stageLeft">
                         <DateSelect/> {Object.keys(coverageDay).length===0 ?
                         <LetterDaySelect/> :
                         <Link to={'/single-day'} className="letterDay">{coverageDay.letterDay} Day</Link>}
                     </Box>
-                    <h1 className="title">Coverages</h1>
-                    <Box className="titleRight"></Box>
-                </Box>
-                {Object.keys(coverageDay).length > 0 && 
-                <Box className="teacherSelect">
-                    <TeacherSelect/>
-                </Box>}
-            </Box>
-            <Box className="pageTopMobile">
-                <Box className="titleDateContainer">
-                    <h1 className="title">Coverages</h1>
-                    <Box className="selectors">
-                        {Object.keys(coverageDay).length!==0 &&
-                        <Link to={'/single-day'} className="letterDay">{coverageDay.letterDay} Day</Link>}
-                        <DateSelect/> 
-                        {Object.keys(coverageDay).length===0 &&
-                        <LetterDaySelect/>}
+                    <Box className="centerStage">
+                        {Object.keys(coverageDay).length > 0 && 
+                        <Box className="teacherSelect">
+                            <TeacherSelect/>
+                        </Box>}
                     </Box>
+                    <Box className="stageRight"></Box>
                 </Box>
-                {Object.keys(coverageDay).length > 0 && 
-                <Box className="teacherSelect">
-                    <TeacherSelect/>
-                </Box>}
             </Box>
             {Object.keys(coverageDay).length > 0 &&
             <Box className="pageBottom">

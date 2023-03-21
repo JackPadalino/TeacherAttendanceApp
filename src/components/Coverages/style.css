@@ -7,50 +7,53 @@
     }
 
     .pageTop{
-        display:none;
-    }
-
-    .pageTopMobile{
         display:flex;
-        justify-content: center;
-        flex-direction:column;
-        gap:5px;
-    }
-
-    .titleDateContainer{
-        display:flex;
-        justify-content: center;
         flex-direction:column;
         gap:30px;
     }
 
-    .selectors{
+    .title{
+        font-family:Montserrat;
+        font-size: 50px;
+    }
+
+    .dateTeacherSelectContainer{
         display:flex;
         flex-direction: column;
-        justify-content:center;
+        gap:30px;
+        width:100%;
+    }
+
+    .stageLeft{
+        display:flex;
+        flex-direction: column;
+        width:100%;
         gap:5px;
     }
 
     .letterDay{
+        text-align:center;
         text-decoration:none;
         font-family:Montserrat;
-        text-align:center;
-        font-size:30px;
+        font-size:35px;
         color:#1976d2;
         cursor:pointer;
     }
 
-    .title{
-        font-family:Montserrat;
-        font-size: 5px;
-    }
-
-    .titleRight{
-        display:none;
+    .centerStage{
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        width:100%;
     }
 
     .teacherSelect{
         display:flex;
+        flex-direction: column;
+    }
+
+    .stageRight{
+        display:none;
     }
 
     .pageBottom{
@@ -152,55 +155,52 @@
     }
 
     .pageTop{
-        display:none;
-    }
-
-    .pageTopMobile{
         display:flex;
-        justify-content: center;
-        flex-direction:column;
-        gap:5px;
-    }
-
-    .titleDateContainer{
-        display:flex;
-        justify-content: center;
         flex-direction:column;
         gap:30px;
     }
 
-    .selectors{
+    .title{
+        font-family:Montserrat;
+        font-size: 50px;
+    }
+
+    .dateTeacherSelectContainer{
         display:flex;
-        flex-direction: column;
-        justify-content:center;
-        margin-left:auto;
-        margin-right:auto;
-        width:65%;
+        gap:30px;
+        width:100%;
+    }
+
+    .stageLeft{
+        display:flex;
+        width:33.33%;
         gap:5px;
     }
 
     .letterDay{
+        text-align:center;
         text-decoration:none;
         font-family:Montserrat;
-        text-align:center;
-        font-size:30px;
+        font-size:20px;
         color:#1976d2;
         cursor:pointer;
     }
 
-    .title{
-        font-family:Montserrat;
-        font-size: 5px;
-    }
-
-    .titleRight{
-        display:none;
+    .centerStage{
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        width:33.33%;
     }
 
     .teacherSelect{
         display:flex;
     }
 
+    .stageRight{
+        width:33.33%;
+    }
+    
     .pageBottom{
         display:flex;
         flex-direction:column;
@@ -274,15 +274,13 @@
     /* letter day select component */
     .letterDaySelect{
         display:flex;
-        flex-direction: column;
         gap:5px;
     }
 
     /* teacher select component */
     .teacherSelectForm{
         display:flex;
-        flex-direction: column;
-        width:65%;
+        width:100%;
         margin-left:auto;
         margin-right:auto;
         gap:5px;
@@ -307,20 +305,20 @@
         gap:30px;
     }
 
-    .pageTopMobile{
-        display:none;
+    .title{
+        font-family:Montserrat;
+        font-size: 50px;
     }
 
-    .titleDateContainer{
+    .dateTeacherSelectContainer{
         display:flex;
         justify-content:space-between;
-        align-items:center;
         width:100%;
     }
 
-    .titleLeft{
+    .stageLeft{
         display:flex;
-        width:350px;
+        width:33%;
         gap:5px;
     }
 
@@ -332,18 +330,19 @@
         cursor:pointer;
     }
 
-    .title{
-        font-family:Montserrat;
-        font-size: 50px;
-
-    }
-
-    .titleRight{
-        width:350px;
+    .centerStage{
+        display:flex;
+        justify-content: center;
+        width:33%;
+        padding:0px;
     }
 
     .teacherSelect{
         display:flex;
+    }
+
+    .stageRight{
+        width:33%;
     }
 
     .pageBottom{
