@@ -304,7 +304,7 @@
     .pageTop{
         display:flex;
         flex-direction:column;
-        gap:10px;
+        gap:30px;
     }
 
     .pageTopMobile{
@@ -314,8 +314,8 @@
     .titleDateContainer{
         display:flex;
         justify-content:space-between;
-        gap:30px;
-        align-items:center
+        align-items:center;
+        width:100%;
     }
 
     .titleLeft{
@@ -364,6 +364,7 @@
         flex-direction:column;
         gap:10px;
         overflow:auto;
+        width:25%;
     }
 
     .teacherNameDelete{
