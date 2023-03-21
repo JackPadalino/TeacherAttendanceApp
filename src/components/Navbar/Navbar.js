@@ -44,7 +44,7 @@ const Navbar = () => {
           </ListItem>
           <ListItem>
             <ListItemButton>
-              <Link className="navLink" to="/coverages">Absences/Coverages</Link>
+              <Link className="navLink" to="/coverages">Coverages</Link>
             </ListItemButton>
           </ListItem>
           <ListItem>
@@ -101,7 +101,7 @@ const Navbar = () => {
         {user.id && 
         <Box className="navCenter">
           <Link className="navLink" to="/schedules">Schedules</Link>
-          <Link className="navLink" to="/coverages">Absences/Coverages</Link>
+          <Link className="navLink" to="/coverages">Coverages</Link>
           <Link className="navLink" to="/teachers">Teachers</Link>
           <Link className="navLink" to="/classes">Classes</Link>
         </Box>}
