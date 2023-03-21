@@ -31,6 +31,7 @@ import {
     singleTeacherModal,
     updateSingleTeacherForm
 } from "./style";
+import "./style.css";
 
 
 const SingleTeacherPage = () => {
@@ -157,7 +158,7 @@ const SingleTeacherPage = () => {
     if(!token) return <NotFoundPage/>
     if(loading) return <p>Loading...</p>
     return (
-        <Box sx={singleTeacherMainContainer}>
+        <Box className="singleTeacherMainContainer">
             <Modal
                 open={modalOpen}
                 onClose={handleModalClose}
@@ -172,10 +173,10 @@ const SingleTeacherPage = () => {
                 </Box>
             </Modal>
             <Box>
-                <Typography variant="h3" sx={{fontFamily:"Montserrat"}}>{firstName} {lastName}</Typography>
+                <h1 className="singleTeacherName">{firstName} {lastName}</h1>
             </Box>
             <Box>
-                <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Schedule</Typography>
+                <p className="formLabel">Schedule</p>
                 <List>
                     {classes.map((eachClass) => {
                         return (
@@ -190,15 +191,15 @@ const SingleTeacherPage = () => {
                 </List>
             </Box>
             <Box>
-                <form onSubmit={updateTeacher} style={updateSingleTeacherForm}>
+                <form onSubmit={updateTeacher} className="updateSingleTeacherForm">
                     <Box>
-                        <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Personal info.</Typography>
+                        <p className="formLabel">Personal info.</p>
                         <TextField sx={{width:"50%"}} id="outlined-basic" label="First name" variant="outlined" value={firstName} onChange={handleFirstNameChange}/>
                         <TextField sx={{width:"50%"}} id="outlined-basic" label="Last name" variant="outlined" value={lastName} onChange={handleLastNameChange}/>
                         {/* <TextField id="outlined-basic" label="Phone number" variant="outlined" value={phoneNumber} onChange={handlePhoneNumberChange}/> */}
                     </Box>
                     <Box>
-                        <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Add a new class</Typography>
+                        <p className="formLabel">Add a new class</p>
                         <FormControl fullWidth>
                             <InputLabel id="add a class label">Class name</InputLabel>
                             <Select
@@ -219,7 +220,7 @@ const SingleTeacherPage = () => {
                         </FormControl>
                     </Box>
                     <Box>
-                        <Typography variant="h5" sx={{fontFamily:"Montserrat"}}>Add a lunch period/team meeting</Typography>
+                        <p className="formLabel">Add a lunch period/team meeting</p>
                         <FormControl sx={{width:"33.33%"}}>
                             <InputLabel id="lunch/team meeting select label">Lunch/Meeting</InputLabel>
                             <Select
@@ -264,8 +265,8 @@ const SingleTeacherPage = () => {
                     </Box>
                     <Box>
                         <FormControl>
-                            <FormLabel>Letter Days</FormLabel>
-                            <Box>
+                            <p className="formLabel">Letter days</p>
+                            <Box className="letterDays">
                                 <FormControlLabel control={<Checkbox value="A" onChange={handleLetterDaysChange}/>} label="A" />
                                 <FormControlLabel control={<Checkbox value="B" onChange={handleLetterDaysChange}/>} label="B" />
                                 <FormControlLabel control={<Checkbox value="C" onChange={handleLetterDaysChange}/>} label="C" />

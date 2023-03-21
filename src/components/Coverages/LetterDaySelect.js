@@ -3,6 +3,10 @@ import React,{ useRef } from 'react';
 import { useDispatch,useSelector } from "react-redux";
 import { setCoverageDay } from "../../store/coverageSlice";
 import { Box,Button,InputLabel,Select,MenuItem,FormControl} from '@mui/material';
+<<<<<<< HEAD
+import "./style.css";
+=======
+>>>>>>> bd808b904cde6d2b7f482712116df6c2cd31de30
 
 const LetterDaySelect = () => {
     const dispatch = useDispatch();
