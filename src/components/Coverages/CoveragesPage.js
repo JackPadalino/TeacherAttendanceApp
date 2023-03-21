@@ -10,23 +10,6 @@ import { setAllUsers } from "../../store/userSlice";
 import { Box,Typography,IconButton,useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import { 
-    coveragePageMain,
-    pageTop,
-    titleDateContainer,
-    titleLeft,
-    title,
-    titleRight,
-    pageBottom,
-    teacherSelect,
-    absentTeachers,
-    letterDay,
-    teacherBox,
-    teacherNameDelete,
-    teacherName,
-    classTitle,
-    coveringTeacher
-} from "./style"; 
 import "./style.css";
 
 const CoveragesPage = () => {
