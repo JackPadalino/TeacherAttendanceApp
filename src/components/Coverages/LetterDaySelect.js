@@ -3,7 +3,7 @@ import React,{ useRef } from 'react';
 import { useDispatch,useSelector } from "react-redux";
 import { setCoverageDay } from "../../store/coverageSlice";
 import { Box,Button,InputLabel,Select,MenuItem,FormControl} from '@mui/material';
-import { letterDaySelect } from "./style";
+import "./style.css";
 
 const LetterDaySelect = () => {
     const dispatch = useDispatch();
