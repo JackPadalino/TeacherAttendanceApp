@@ -3,7 +3,8 @@ import React, { useRef } from 'react';
 import { setAllUsers,addNewUser } from "../../store/userSlice";
 import { useDispatch } from "react-redux";
 import { Box,Button,Typography,TextField} from '@mui/material';
-import { createTeacherForm } from "./style";
+// import { createTeacherForm } from "./style";
+import "./style.css";
 
 const CreateTeacherForm = ({handleParentModal,handleSuccessModal}) => {
     const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const CreateTeacherForm = ({handleParentModal,handleSuccessModal}) => {
 
     return (
         <Box>
-            <Box component="form" sx={createTeacherForm}>
+            <Box component="form" className="createTeacherForm">
                 <Typography sx={{textAlign: "center"}} variant="h5">Add a teacher</Typography>
                 <Box sx={{display:"flex"}}>
                     <TextField id="outlined-basic" label="First name" variant="outlined" onChange={handleFirstNameChange}/>

@@ -1,28 +1,35 @@
 @media only screen and (max-width: 600px) {
     /* all teachers page */
-    .mainContainer{
+    .allTeachersMainContainer{
         display: flex;
         flex-direction:column;
         gap:15px;
         position: relative;
     }
     
-    .pageTop{
+    .allTeachersPageTop{
         display:flex;
-        justify-content:space-between;
-        align-items:center;
+        flex-direction: column;
+        gap:15px;
     }
     
-    .headingStyle{
+    .allTeachersHeading{
         font-family:Montserrat;
+        text-align:center;
+        font-size:50px;
+        padding:0px;
+        margin:0px;
     }
-    
-    .teacherName{
+
+    .allTeachersTeacherName{
         font-family:Montserrat;
         font-size:22px;
+        padding:0px;
+        margin:0px;
+        text-decoration:none;
     }
     
-    /* .parentModalStyle{
+    /* .allTeachersParentModal{
         position: absolute;
         top: 50%;
         left: 50%;
@@ -39,7 +46,7 @@
         alignItems:"center",
     } */
     
-    /* .childModalStyle{
+    /* .allTeachersChildModal{
         position: 'absolute',
         top: '50%',
         left: '50%',
@@ -106,7 +113,7 @@
         display:flex;
         flex-direction:column;
         gap:20px;
-        width:90%;
+        width:75%;
     }
     
     /* create teacher form */
@@ -119,29 +126,35 @@
 
 @media only screen and (min-width: 600px) and (max-width: 900px){
     /* all teachers page */
-    .mainContainer{
+    .allTeachersMainContainer{
         display: flex;
         flex-direction:column;
         gap:15px;
         position: relative;
     }
     
-    .pageTop{
+    .allTeachersPageTop{
         display:flex;
         justify-content:space-between;
         align-items:center;
     }
     
-    .headingStyle{
+    .allTeachersHeading{
         font-family:Montserrat;
+        font-size:50px;
+        padding:0px;
+        margin:0px;
     }
-    
-    .teacherName{
+
+    .allTeachersTeacherName{
         font-family:Montserrat;
         font-size:22px;
+        padding:0px;
+        margin:0px;
+        text-decoration:none;
     }
     
-    /* .parentModalStyle{
+    /* .allTeachersParentModal{
         position: absolute;
         top: 50%;
         left: 50%;
@@ -158,7 +171,7 @@
         alignItems:"center",
     } */
     
-    /* .childModalStyle{
+    /* .allTeachersChildModal{
         position: 'absolute',
         top: '50%',
         left: '50%',
@@ -232,29 +245,35 @@
 
 @media only screen and (min-width: 900px) {
     /* all teachers page */
-    .mainContainer{
+    .allTeachersMainContainer{
         display: flex;
         flex-direction:column;
         gap:15px;
         position: relative;
     }
     
-    .pageTop{
+    .allTeachersPageTop{
         display:flex;
         justify-content:space-between;
         align-items:center;
     }
     
-    .headingStyle{
+    .allTeachersHeading{
         font-family:Montserrat;
+        font-size:50px;
+        padding:0px;
+        margin:0px;
     }
-    
-    .teacherName{
+
+    .allTeachersTeacherName{
         font-family:Montserrat;
         font-size:22px;
+        padding:0px;
+        margin:0px;
+        text-decoration:none;
     }
     
-    /* .parentModalStyle{
+    /* .allTeachersParentModal{
         position: absolute;
         top: 50%;
         left: 50%;
@@ -271,7 +290,7 @@
         alignItems:"center",
     } */
     
-    /* .childModalStyle{
+    /* .allTeachersChildModal{
         position: 'absolute',
         top: '50%',
         left: '50%',

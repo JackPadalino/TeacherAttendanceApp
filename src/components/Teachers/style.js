@@ -1,29 +1,4 @@
-export const mainContainer = {
-    display: "flex",
-    flexDirection: "column",
-    gap:"15px",
-    //placeSelf: "center",
-    //placeItems: "center",
-    //placeContent: "center center",
-    position: "relative",
-};
-
-export const pageTop = {
-    display:"flex",
-    justifyContent:"space-between",
-    alignItems:"center"
-};
-
-export const headingStyle={
-    fontFamily:"Montserrat",
-};
-
-export const teacherName = {
-    fontFamily:'Montserrat',
-    fontSize:"22px"
-};
-
-export const parentModalStyle = {
+export const allTeachersParentModal = {
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -40,7 +15,7 @@ export const parentModalStyle = {
     alignItems:"center",
   };
 
-export const childModalStyle = {
+export const allTeachersChildModal = {
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -56,16 +31,6 @@ export const childModalStyle = {
     justifyContent:'center',
     alignItems:"center",
   };
-
-export const singleTeacherMainContainer = {
-    display: "flex",
-    flexDirection: "column",
-    gap:"20px",
-    //placeSelf: "center",
-    //placeItems: "center",
-    //placeContent: "center center",
-    position: "relative",
-};
 
 export const singleTeacherModal = {
     position: 'absolute',
@@ -83,16 +48,3 @@ export const singleTeacherModal = {
     justifyContent:"center",
     gap:"20px"
   };
-
-export const updateSingleTeacherForm = {
-    display:"flex",
-    flexDirection:"column",
-    gap:"20px",
-    width:"50%"
-};
-
-export const createTeacherForm = {
-    display:"flex",
-    flexDirection:"column",
-    gap:"10px"
-};
