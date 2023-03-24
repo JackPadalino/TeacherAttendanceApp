@@ -70,7 +70,7 @@ const CreateClassForm = ({handleParentModal,handleSuccessModal}) => {
 
     return (
         <Box>
-            <Box component="form" sx={formStyle}>
+            <Box component="form" className="createClassFormStyle">
                 <Typography sx={{textAlign: "center"}} variant="h5">Add a class</Typography>
                 <Box>
                     <TextField sx={{width:"100%"}} id="outlined-basic" label="Class name" variant="outlined" onChange={handleNameChange}/>

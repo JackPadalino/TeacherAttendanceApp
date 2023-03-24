@@ -3,17 +3,9 @@ import { Link } from 'react-router-dom';
 import { NotFoundPage } from "../..";
 import { useSelector } from "react-redux";
 import CreateClassForm from "./CreateClassForm";
-import { Box,Container,Typography,Modal,List,ListItem,ListItemIcon,Button,ListItemText} from '@mui/material';
+import { Box,Typography,Modal,List,ListItem,ListItemIcon,Button,ListItemText} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import Avatar from '@mui/material/Avatar';
-import { 
-    mainContainer,
-    headingStyle,
-    className,
-    buttonStyle,
-    parentModalStyle,
-    childModalStyle
- } from "./style";
+import "./style.css";
 
 const AllClassesPage = () => {
     const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -32,14 +24,14 @@ const AllClassesPage = () => {
     
     if(!token) return <NotFoundPage/>
     return (
-        <Box sx={mainContainer}>
+        <Box className="allClassesMainContainer">
             <Modal
                 open={parentModalOpen}
                 onClose={handleParentModal}
                 aria-labelledby="parent-modal-title"
                 aria-describedby="parent-modal-description"
             >
-                <Box sx={parentModalStyle}>
+                <Box className="allClassesParentModal">
                     <CreateClassForm handleParentModal={handleParentModal} handleSuccessModal={handleSuccessModal}/>
                 </Box>
             </Modal>
@@ -49,25 +41,25 @@ const AllClassesPage = () => {
                 aria-labelledby="parent-modal-title"
                 aria-describedby="parent-modal-description"
                 >
-                <Box sx={childModalStyle}>
+                <Box className="childModalStyle">
                     <Typography variant="h5">New class added!</Typography>
                 </Box>
             </Modal>
-            <Box sx={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                <Typography variant="h3" sx={headingStyle}>All Classes</Typography>
+            <Box className="allClassesPageTop">
+                <h1 className="allClassesHeadingStyle">All Classes</h1>
                 <Button variant="contained" size="small" onClick={handleParentModal}><AddIcon/>Add a class</Button>
             </Box>
             <Box>
-                {allClasses.map((eachClass) => {
-                    return (
-                        eachClass.name!=='Team meeting' && 
-                        <Box key={eachClass.id}>
-                            <Typography sx={className}>
-                                <Link to={`/classes/${eachClass.id}`}>{eachClass.name}</Link>
-                            </Typography>
-                        </Box>  
-                    );
-                })}
+                <List>
+                    {allClasses.map((eachClass) => {
+                        return (
+                            eachClass.name!=='Team meeting' && 
+                            <ListItem disablePadding key={eachClass.id}>
+                                <Link to={`/classes/${eachClass.id}`} className="allClassesClassName">{eachClass.name}</Link>
+                            </ListItem>  
+                        );
+                    })}
+                </List>
             </Box>
         </Box>
     );
