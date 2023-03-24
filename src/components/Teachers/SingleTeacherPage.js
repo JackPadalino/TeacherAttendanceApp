@@ -1,9 +1,8 @@
 import axios from 'axios';
-import React, { useState,useEffect,useRef } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useNavigate,useParams } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
 import { NotFoundPage } from "..";
-import { ClassSelect,AddExtraPeriodForm } from ".";
 import { setAllUsers } from "../../store/userSlice";
 import { 
     Box,
@@ -26,11 +25,6 @@ import {
 } from '@mui/material';
 import SchoolIcon from '@mui/icons-material/School';
 import DeleteIcon from '@mui/icons-material/Delete';
-import {
-    singleTeacherMainContainer,
-    singleTeacherModal,
-    updateSingleTeacherForm
-} from "./style";
 import "./style.css";
 
 
@@ -165,7 +159,7 @@ const SingleTeacherPage = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={singleTeacherModal}>
+                <Box className="singleTeacherModal">
                     <Typography id="modal-modal-title" variant="h6" align="center">
                         Are you sure you want to delete this teacher?
                     </Typography>

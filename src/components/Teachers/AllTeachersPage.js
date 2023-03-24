@@ -5,10 +5,6 @@ import { NotFoundPage } from "..";
 import CreateTeacherForm from './CreateTeacherForm';
 import { Box,Typography,Modal,Button,List,ListItem,ListItemIcon,ListItemText} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { 
-    allTeachersParentModal,
-    allTeachersChildModal
- } from "./style";
 import "./style.css";
 
 const AllTeachersPage = () => {
@@ -35,7 +31,7 @@ const AllTeachersPage = () => {
                 aria-labelledby="parent-modal-title"
                 aria-describedby="parent-modal-description"
             >
-                <Box sx={allTeachersParentModal}>
+                <Box className="allTeachersParentModal">
                     <CreateTeacherForm handleParentModal={handleParentModal} handleSuccessModal={handleSuccessModal}/>
                 </Box>
             </Modal>
@@ -45,7 +41,7 @@ const AllTeachersPage = () => {
                 aria-labelledby="parent-modal-title"
                 aria-describedby="parent-modal-description"
                 >
-                <Box sx={allTeachersChildModal}>
+                <Box className="allTeachersChildModal">
                     <Typography variant="h5">New teacher added!</Typography>
                 </Box>
             </Modal>

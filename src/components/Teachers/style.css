@@ -29,39 +29,35 @@
         text-decoration:none;
     }
     
-    /* .allTeachersParentModal{
+    .allTeachersParentModal{
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 400;
-        background-color:background.paper;
+        width: 300;
+        background-color:white;
         border: 2px solid #000;
         box-shadow: 24;
-        pt: 5,
-        px: 2,
-        pb: 5,
-        display:'flex',
-        justifyContent:'center',
-        alignItems:"center",
-    } */
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:10px;
+    }
     
-    /* .allTeachersChildModal{
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 300,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        pt: 5,
-        px: 2,
-        pb: 5,
-        display:'flex',
-        justifyContent:'center',
-        alignItems:"center",
-    } */
+    .allTeachersChildModal{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        background-color: white;
+        border: 2px solid #000;
+        box-shadow: 24;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:20px;
+    }
     
     /* single teacher page */
     .singleTeacherMainContainer{
@@ -92,22 +88,21 @@
         
     }
     
-    /* .singleTeacherModal{
+    .singleTeacherModal{
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-    
-        display:"flex",
-        flexDirection:"column",
-        justifyContent:"center",
-        gap:"20px"
-    } */
+        transform: translate(-50%, -50%);
+        width: 300;
+        background-color: white;
+        border: 2px solid #000;
+        box-shadow: 24;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        gap:20px;
+        padding:20px;
+    }
     
     .updateSingleTeacherForm{
         display:flex;
@@ -154,39 +149,35 @@
         text-decoration:none;
     }
     
-    /* .allTeachersParentModal{
+    .allTeachersParentModal{
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 400;
-        background-color:background.paper;
+        background-color:white;
         border: 2px solid #000;
         box-shadow: 24;
-        pt: 5,
-        px: 2,
-        pb: 5,
-        display:'flex',
-        justifyContent:'center',
-        alignItems:"center",
-    } */
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:10px;
+    }
     
-    /* .allTeachersChildModal{
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 300,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        pt: 5,
-        px: 2,
-        pb: 5,
-        display:'flex',
-        justifyContent:'center',
-        alignItems:"center",
-    } */
+    .allTeachersChildModal{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        background-color: white;
+        border: 2px solid #000;
+        box-shadow: 24;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:20px;
+    }
     
     /* single teacher page */
     .singleTeacherMainContainer{
@@ -211,22 +202,21 @@
         font-size:25px;
     }
     
-    /* .singleTeacherModal{
+    .singleTeacherModal{
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-    
-        display:"flex",
-        flexDirection:"column",
-        justifyContent:"center",
-        gap:"20px"
-    } */
+        transform: translate(-50%, -50%);
+        width: 400;
+        background-color: white;
+        border: 2px solid #000;
+        box-shadow: 24;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        gap:20px;
+        padding:20px;
+    }
     
     .updateSingleTeacherForm{
         display:flex;
@@ -273,39 +263,35 @@
         text-decoration:none;
     }
     
-    /* .allTeachersParentModal{
+    .allTeachersParentModal{
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 400;
-        background-color:background.paper;
+        background-color:white;
         border: 2px solid #000;
         box-shadow: 24;
-        pt: 5,
-        px: 2,
-        pb: 5,
-        display:'flex',
-        justifyContent:'center',
-        alignItems:"center",
-    } */
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:10px;
+    }
     
-    /* .allTeachersChildModal{
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 300,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        pt: 5,
-        px: 2,
-        pb: 5,
-        display:'flex',
-        justifyContent:'center',
-        alignItems:"center",
-    } */
+    .allTeachersChildModal{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        background-color: white;
+        border: 2px solid #000;
+        box-shadow: 24;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:20px;
+    }
     
     /* single teacher page */
     .singleTeacherMainContainer{
@@ -328,22 +314,21 @@
         font-size:25px;
     }
 
-    /* .singleTeacherModal{
+    .singleTeacherModal{
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-    
-        display:"flex",
-        flexDirection:"column",
-        justifyContent:"center",
-        gap:"20px"
-    } */
+        transform: translate(-50%, -50%);
+        width: 400;
+        background-color: white;
+        border: 2px solid #000;
+        box-shadow: 24;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        gap:20px;
+        padding:20px;
+    }
     
     .updateSingleTeacherForm{
         display:flex;

@@ -3,7 +3,6 @@ import React, { useRef } from 'react';
 import { setAllUsers,addNewUser } from "../../store/userSlice";
 import { useDispatch } from "react-redux";
 import { Box,Button,Typography,TextField} from '@mui/material';
-// import { createTeacherForm } from "./style";
 import "./style.css";
 
 const CreateTeacherForm = ({handleParentModal,handleSuccessModal}) => {
