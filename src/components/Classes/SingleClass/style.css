@@ -1,0 +1,95 @@
+@media only screen and (max-width: 600px) {
+    .singleClassModal{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400;
+        background-color: white;
+        border: 2px solid #000;
+        box-shadow: 24;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        gap:20px;
+    }
+    
+    .successModal{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400;
+        background-color: white;
+        border: 2px solid #000;
+        box-shadow: 24;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        gap:20px;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 900px){
+    .singleClassModal{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400;
+        background-color: white;
+        border: 2px solid #000;
+        box-shadow: 24;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        gap:20px;
+    }
+    
+    .successModal{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400;
+        background-color: white;
+        border: 2px solid #000;
+        box-shadow: 24;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        gap:20px;
+    }
+}
+
+@media only screen and (min-width: 900px){
+    .singleClassModal{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400;
+        background-color: white;
+        border: 2px solid #000;
+        box-shadow: 24;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        gap:20px;
+    }
+    
+    .successModal{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400;
+        background-color: white;
+        border: 2px solid #000;
+        box-shadow: 24;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        gap:20px;
+    }
+}

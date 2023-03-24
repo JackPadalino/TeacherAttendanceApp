@@ -18,6 +18,7 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { singleClassModal,successModal } from './style';
+import "./style.css";
 
 const formStyle = {
     display:'flex',
