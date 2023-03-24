@@ -17,15 +17,7 @@ import {
     Modal
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { singleClassModal,successModal } from './style';
 import "./style.css";
-
-const formStyle = {
-    display:'flex',
-    flexDirection:'column',
-    width:"400px",
-    gap:'10px'
-};
 
 const SingleClassPage = () => {
     const { id } = useParams();
@@ -139,7 +131,7 @@ const SingleClassPage = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={singleClassModal}>
+                <Box className="singleClassModal">
                     <Typography id="modal-modal-title" variant="h6" align="center">
                         Are you sure you want to delete this class?
                     </Typography>
@@ -152,14 +144,14 @@ const SingleClassPage = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={successModal}>
+                <Box className="successModal">
                     <Typography id="modal-modal-title" variant="h6" align="center">
                         This class has been updated!
                     </Typography>
                 </Box>
             </Modal>
-            <Typography variant="h3" sx={{fontFamily:"Montserrat"}}>{className}</Typography>
-            <form onSubmit={updateClass} style={formStyle}>
+            <h1 className="singleClassTitle">{className}</h1>
+            <form onSubmit={updateClass} className="formStyle">
                 <TextField id="outlined-basic" label="Class name" variant="outlined" value={className} onChange={handleNameChange}/>
                 <Box sx={{display:"flex"}}>
                     <SchoolSelect school={school} handleSchoolChange={handleSchoolChange}/>

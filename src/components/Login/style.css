@@ -1,0 +1,19 @@
+.mainBox{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    place-self: center center;
+    place-items: center center;
+    place-content: center center;
+    position: relative;
+}
+
+.avatar{
+    background-color: white;
+    border: 1px solid #1976d2;
+}
+
+.loggedInMessage{
+    font-family:Montserrat;
+    color:black;
+}

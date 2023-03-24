@@ -8,7 +8,7 @@ import { setCoverageDay,resetCoverageDay,setAllAbsentUsers,setAllCoverages,reset
 import { Box,Typography,Button,InputLabel,Select,MenuItem,FormControl,Modal} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from "@mui/material/IconButton";
-import { mainContainer,title,formBox,modalStyle } from "./style";
+import "./style.css";
 
 const SingleDay = () => {
     const navigate = useNavigate();
@@ -69,10 +69,10 @@ const SingleDay = () => {
 
     if(!token) return <NotFoundPage/>
     return (
-        <Box sx={mainContainer}>
-            <Typography variant="h3" sx={title}>{coverageDay.date.slice(0,10)} {coverageDay.letterDay} day</Typography>
+        <Box className="singleDayMainContainer">
+            <h1 className="singleDayTitle">{coverageDay.date.slice(0,10)} {coverageDay.letterDay} day</h1>
             <Box>
-                <form onSubmit={updateDay} style={formBox}>
+                <form onSubmit={updateDay} className="formBox">
                     <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">Letter day</InputLabel>
                         <Select
@@ -105,7 +105,7 @@ const SingleDay = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={modalStyle}>
+                <Box className="modalStyle">
                     <Typography id="modal-modal-title" variant="h6" align="center">
                         Are you sure you want to delete this day?
                     </Typography>

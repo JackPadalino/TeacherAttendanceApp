@@ -1,12 +1,12 @@
 import React from 'react';
-import { Box,Typography} from '@mui/material';
+import { Box } from '@mui/material';
 import "./style.css";
 
 const Home = () => {
     return (
       <Box component="main" className="homeContainer">
-        <Box>
-          <h1 className="title">AMS Attendance</h1>
+        <Box className="titleContainer">
+          <h1 className="title">AMS Attendance App</h1>
         </Box>
       </Box>
     );

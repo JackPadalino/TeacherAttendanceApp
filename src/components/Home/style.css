@@ -1,10 +1,44 @@
-.title{
-    font-family:Montserrat;
-    font-size:50px;
+@media only screen and (max-width: 600px) {
+    .title{
+        font-family:Montserrat;
+        font-size:40px;
+        padding:0px;
+        margin:0px;
+    }
+    
+    .homeContainer{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+  }
+
+@media only screen and (min-width: 600px) and (max-width: 900px){
+    .title{
+        font-family:Montserrat;
+        font-size:40px;
+        padding:0px;
+        margin:0px;
+    }
+    
+    .homeContainer{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
-.homeContainer{
-    height:100vh;
-    display:flex;
-    justify-content: center;
+@media only screen and (min-width: 900px) {
+    .title{
+        font-family:Montserrat;
+        font-size:40px;
+        padding:0px;
+        margin:0px;
+    }
+    
+    .homeContainer{
+        height:100vh;
+        display:flex;
+        justify-content: center;
+    }
 }

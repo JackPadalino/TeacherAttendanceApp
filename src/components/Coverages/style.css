@@ -14,7 +14,7 @@
 
     .title{
         font-family:Montserrat;
-        font-size: 50px;
+        font-size: 40px;
     }
 
     .dateTeacherSelectContainer{
@@ -162,12 +162,12 @@
 
     .title{
         font-family:Montserrat;
-        font-size: 50px;
+        font-size: 40px;
     }
 
     .dateTeacherSelectContainer{
         display:flex;
-        gap:30px;
+        justify-content: space-evenly;
         width:100%;
     }
 
@@ -198,7 +198,7 @@
     }
 
     .stageRight{
-        width:33.33%;
+        display:none;
     }
     
     .pageBottom{
@@ -307,7 +307,7 @@
 
     .title{
         font-family:Montserrat;
-        font-size: 50px;
+        font-size: 40px;
     }
 
     .dateTeacherSelectContainer{
