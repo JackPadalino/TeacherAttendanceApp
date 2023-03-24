@@ -12,7 +12,7 @@ const LetterDaysSelect = ({letterDays,handleLetterDaysChange}) => {
         <Box>
             <FormControl>
                 <FormLabel>Letter Days</FormLabel>
-                <Box>
+                <Box sx={{display:"flex"}}>
                     {letterDays.includes('A') ? <FormControlLabel control={<Checkbox defaultChecked value="A" onChange={handleLetterDaysChange}/>} label="A" /> :
                     <FormControlLabel control={<Checkbox value="A" onChange={handleLetterDaysChange}/>} label="A"/>}
                     {letterDays.includes('B') ? <FormControlLabel control={<Checkbox defaultChecked value="B" onChange={handleLetterDaysChange}/>} label="B" /> :

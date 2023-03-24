@@ -126,7 +126,7 @@ const CreateClassForm = ({handleParentModal,handleSuccessModal}) => {
                 <Box>
                     <FormControl>
                         <FormLabel>Letter Days</FormLabel>
-                        <Box>
+                        <Box sx={{display:"flex"}}>
                             <FormControlLabel control={<Checkbox value="A" onChange={handleLetterDaysChange}/>} label="A" />
                             <FormControlLabel control={<Checkbox value="B" onChange={handleLetterDaysChange}/>} label="B" />
                             <FormControlLabel control={<Checkbox value="C" onChange={handleLetterDaysChange}/>} label="C" />

@@ -25,7 +25,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 300;
+        width: 325;
         background-color: white;
         border: 2px solid #000;
         box-shadow: 24;
@@ -40,7 +40,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 300;
+        width: 300px;
         background-color: white;
         border: 2px solid #000;
         box-shadow: 24;
@@ -69,6 +69,7 @@
     .createClassFormStyle{
         display:flex;
         flex-direction:column;
+        width:350px;
         gap:10px;
     }
 }

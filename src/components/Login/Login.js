@@ -56,7 +56,7 @@ const Login = () => {
           autoComplete="off"
           onSubmit={attemptLogin}
         >
-          <Avatar className="avatar">
+          <Avatar sx={{bgcolor: "white",border: '1px solid #1976d2'}}>
             <LockOutlinedIcon color="primary"/>
           </Avatar>
           <TextField
