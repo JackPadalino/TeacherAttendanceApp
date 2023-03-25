@@ -3,6 +3,7 @@ const app = express();
 const path = require("path");
 const volleyball = require("volleyball");
 const { urlencoded } = require('body-parser');
+require('dotenv').config();
 
 // Set up middleware
 app.use(volleyball);

@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const sequelize = require("sequelize");
-const { MessagingResponse } = require('twilio').twiml;
 const { User,Absence,Message,Day } = require("../db");
-const {accountSID,authToken,twilioNumber} = require("../../bin/env");
+const { MessagingResponse } = require('twilio').twiml;
+const accountSID = process.env.AMSATT_TWILIO_ACCOUNT_SID;
+const authToken = process.env.AMSATT_TWILIO_AUTHTOKEN;
+const twilioNumber = process.env.AMSATT_TWILIO_NUMBER;
 const client = require('twilio')(accountSID,authToken);
 
 // GET localhost:3000/api/message/send
