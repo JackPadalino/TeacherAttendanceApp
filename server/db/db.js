@@ -6,6 +6,6 @@ const config = {
 const DB_NAME = 'ams_att_db';
 const URL = `postgres://localhost/${DB_NAME}`;
 
-const db = new Sequelize(process.env.DATABASE_URL , config);
+const db = new Sequelize(process.env.DATABASE_URL || URL, config);
 
 module.exports = db;
