@@ -25,7 +25,7 @@ Within just a few clicks, admin are able to clearly see what teachers have been 
 The app is even set up to receive text messages from staff using the Twilio API:
 <br>
 <br>
-![image](https://github.com/JackPadalino/TeacherAttendanceApp/assets/97137486/0d6ac304-7f31-4661-b337-1585668ec124)
+<img align="center" src="https://github.com/JackPadalino/TeacherAttendanceApp/assets/97137486/0d6ac304-7f31-4661-b337-1585668ec124">
 
 
 ## Created With
