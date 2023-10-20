@@ -37,8 +37,3 @@ This application was created using the following Languages, Technologies, and Li
 - ReactRouter
 - Redux
 - Twilio API
-- Many more!
-
-## Ongoing work
-
-Currently working on updating the mobile view of this application!
