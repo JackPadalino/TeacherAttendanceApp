@@ -1,6 +1,6 @@
 # AMS Attendance App
 
-Single page application designed to streamline staff attendance and coverage assignments at a NYC Public high school.
+Single page application designed to assist school administrators. Rather than pen and paper, school administrators are able to create and update teacher schedules, track staff attendance, and assign class coverages all within this single page application.
 
 ## Created With
 
