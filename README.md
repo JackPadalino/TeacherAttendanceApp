@@ -17,6 +17,12 @@ Once a staff member is marked absent, the app automatically generates a list of 
 <br>
 ![image](https://github.com/JackPadalino/TeacherAttendanceApp/assets/97137486/e0943bf4-1f01-4aa8-a5f9-b17d9b834254)
 
+Within just a few clicks, admin are able to clearly see what teachers have been assigned coverages. What used to take up to an hour each morning now takes only a few minutes!
+<br>
+<br>
+![image](https://github.com/JackPadalino/TeacherAttendanceApp/assets/97137486/d6ebe284-acac-4b28-aea1-efcfae95f9c0)
+
+
 
 ## Created With
 
